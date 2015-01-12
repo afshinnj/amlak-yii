@@ -16,14 +16,9 @@ class DefaultController extends Controller
 			//'only' => ['index','create','update','view','hello'],
 			'rules' => [
 							[
-							'actions' => ['index','create','update','view'],
+							'actions' => ['index'],
 							'allow' => true,
-							'roles' => ['admin','author'],
-							],
-							[
-							'actions' => ['hello'],
-							'allow' => true,
-							'roles' => ['user'],
+							'roles' => ['admin'],
 							],
 						],
 					],
@@ -35,15 +30,5 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
-    
-    public function actionCreate()
-    {
-        return $this->render('index');
-    }
 
-
-    public function actionHello()
-    {
-    	return $this->render('index');
-    }
 }

@@ -1,17 +1,17 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 use yii\widgets\LinkPager;
 use yii\data\Pagination;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('panel','States');
-$this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
+$this->title = Yii::t('panel','Substates');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="state-index">
+<div class="substate-index">
     <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
         <div class="alert alert-success">
         <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
@@ -21,24 +21,25 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
         </div>
 
     <?php endif; ?>
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <p>
-        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create State'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('panel','Create Substate'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <hr>
-    <div class="table-responsive">
+  <div class="table-responsive">
 		<table class="table table-striped table-bordered">
 		<thead>
 		<tr>
-			<th class="text-right"><?= Yii::t('panel','States Name')?></th>
+			<th class="text-right"><?= Yii::t('panel','Citys Name')?></th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>
 		</thead>
-			<?php foreach ($State as $row):?>
+			<?php foreach ($City as $row):?>
 				<tr>
 					<td><?= $row['name']?></td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/state-edit/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/city-edit/'.$row['id']], [
 				                    'title' => Yii::t('yii', 'Update'),
 				                    //'data-confirm' => Yii::t('yii', 'Are you sure you want to edit this item?'),
 				                   'data-method' => 'post',
@@ -47,7 +48,7 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 						?>
 					</td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/state-delete/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/city-delete/'.$row['id']], [
 		                    'title' => Yii::t('yii', 'Delete'),
 		                    'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
 		                    'data-method' => 'post',
@@ -64,5 +65,4 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 		<?= LinkPager::widget(['pagination' => $pages,]);?>
 	</div>			
 		
-	
 </div>

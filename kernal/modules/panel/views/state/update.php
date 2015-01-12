@@ -5,14 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\panel\models\State */
 
-$this->title = 'Update State: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'States', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = Yii::t('panel','Update State: ') . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('panel','States'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('panel','Update');
 ?>
 <div class="state-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

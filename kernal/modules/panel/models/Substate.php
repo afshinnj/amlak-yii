@@ -3,6 +3,7 @@
 namespace app\modules\panel\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "substate".
@@ -16,7 +17,7 @@ use Yii;
  * @property Area[] $areas
  * @property State $state
  */
-class Substate extends \yii\db\ActiveRecord
+class Substate extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -33,6 +34,7 @@ class Substate extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'state_id'], 'required'],
+        	[['name'], 'unique'],
             [['state_id'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['name'], 'string', 'max' => 255]
@@ -46,8 +48,8 @@ class Substate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'state_id' => 'State ID',
+            'name' => Yii::t('panel','City Name'),
+            'state_id' => Yii::t('panel','State ID'),
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
@@ -67,5 +69,42 @@ class Substate extends \yii\db\ActiveRecord
     public function getState()
     {
         return $this->hasOne(State::className(), ['id' => 'state_id']);
+    }
+    
+    
+    public static function stateDropdown()
+    {
+    	// get data if needed
+    	static $dropdown;
+    	//$state = new State();
+    	
+    	if ($dropdown === null) {
+			$state = State::find()->all();
+    		foreach ($state as $row) {
+    			$dropdown[$row['id']] = $row['name'];
+
+    		}
+    	}
+    
+    	return $dropdown;
+    }
+    /**
+     * @inheritdoc
+     */
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => 'yii\behaviors\TimestampBehavior',
+                'value'      => function () { return Yii::$app->jdate->date('Y-m-d H:i:s'); },
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+            ],
+        ];
     }
 }

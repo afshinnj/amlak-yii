@@ -35,31 +35,13 @@ $config = [
     		
     	'jdate' => ['class' => 'jDate\DateTime'],
     		
-        'urlManager' => [
-            'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-        	
-            'rules' => [
-            	'index' => 'frontend/default/index',
-            	'about' => 'frontend/default/about',
-            	'contact' => 'frontend/default/contact',
-            		
-            	//'' => 'frontend/default/index',
-
-                'login' => 'user/default/login',
-                'logout' => 'user/default/logout',
-                'change-password' => '/user/account',
-            	'change-profile' => '/user/profile',
-				'change-avatar' => '/user/avatar',
-            		
-                'user-delete/<id:\d+>' => 'user/default/delete',
-                'user-edit/<id:\d+>' => 'user/default/update',
-                
-
-            ],
-        ],
-        
+       
+    	'urlManager' => [
+    			'class' => 'yii\web\UrlManager',
+    			'enablePrettyUrl' => true,
+    			'showScriptName' => false,
+    			'rules' => require(__DIR__ . '/routes.php'),
+    	],        
         'session' => [
             'class' => 'yii\web\DbSession',
              //'db' => 'yiicms',

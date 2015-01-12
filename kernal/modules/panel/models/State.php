@@ -3,6 +3,7 @@
 namespace app\modules\panel\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "state".
@@ -14,7 +15,7 @@ use Yii;
  *
  * @property Substate[] $substates
  */
-class State extends \yii\db\ActiveRecord
+class State extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -31,6 +32,7 @@ class State extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+        	[['name'], 'unique'],
             [['create_time', 'update_time'], 'safe'],
             [['name'], 'string', 'max' => 255]
         ];
@@ -43,7 +45,7 @@ class State extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => Yii::t('panel','Name'),
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
@@ -55,5 +57,22 @@ class State extends \yii\db\ActiveRecord
     public function getSubstates()
     {
         return $this->hasMany(Substate::className(), ['state_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => 'yii\behaviors\TimestampBehavior',
+                'value'      => function () { return Yii::$app->jdate->date('Y-m-d H:i:s'); },
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+            ],
+        ];
     }
 }
