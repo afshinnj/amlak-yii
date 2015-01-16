@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 
     <?php endif; ?>
     <p>
-        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create State'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create State'), ['/Create-State'], ['class' => 'btn btn-success']) ?>
     </p>
     <hr>
     <div class="table-responsive">

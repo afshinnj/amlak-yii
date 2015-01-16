@@ -17,12 +17,12 @@ class User extends \yii\web\User
     /**
      * @inheritdoc
      */
-    public $enableAutoLogin = true;
+    public $enableAutoLogin = false;
 
     /**
      * @inheritdoc
      */
-    public $loginUrl = ["/user/login"];
+    public $loginUrl = ["/login"];
 
     /**
      * Check if user is logged in
@@ -39,7 +39,7 @@ class User extends \yii\web\User
      */
     public function afterLogin($identity, $cookieBased, $duration)
     {
-        /** @var \amnah\yii2\user\models\User $identity */
+        /** @var \app\modules\user\models\User $identity */
         $identity->updateLoginMeta();
         parent::afterLogin($identity, $cookieBased, $duration);
     }
@@ -52,7 +52,7 @@ class User extends \yii\web\User
      */
     public function getDisplayName($default = "")
     {
-        /** @var \amnah\yii2\user\models\User $user */
+        /** @var \app\modules\user\models\User $user */
         $user = $this->getIdentity();
         return $user ? $user->getDisplayName($default) : "";
     }
@@ -76,7 +76,7 @@ class User extends \yii\web\User
         }
 
         // otherwise use our own custom permission (via the role table)
-        /** @var \amnah\yii2\user\models\User $user */
+        /** @var \app\modules\user\models\User $user */
         $user = $this->getIdentity();
         return $user ? $user->can($permissionName) : false;
     }

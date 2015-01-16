@@ -7,10 +7,10 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('panel','Substates');
+$this->title = Yii::t('panel','Areas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="substate-index">
+<div class="area-index">
     <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
         <div class="alert alert-success">
         <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
@@ -20,11 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php endif; ?>
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <p>
-        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create Substate'), ['/Create-City'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create Area'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
   <div class="table-responsive">
 		<table class="table table-striped table-bordered">
 		<thead>
@@ -34,11 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			<th>&nbsp;</th>
 		</tr>
 		</thead>
-			<?php foreach ($City as $row):?>
+			<?php foreach ($Area as $row):?>
 				<tr>
 					<td><?= $row['name']?></td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/city-edit/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/area-edit/'.$row['id']], [
 				                    'title' => Yii::t('yii', 'Update'),
 				                    //'data-confirm' => Yii::t('yii', 'Are you sure you want to edit this item?'),
 				                   'data-method' => 'post',
@@ -47,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						?>
 					</td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/city-delete/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/area-delete/'.$row['id']], [
 		                    'title' => Yii::t('yii', 'Delete'),
 		                    'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
 		                    'data-method' => 'post',
@@ -60,8 +61,5 @@ $this->params['breadcrumbs'][] = $this->title;
 			<?php endforeach;?>
 		</table>
 	</div>
-	<div class="text-center">
-		<?= LinkPager::widget(['pagination' => $pages,]);?>
-	</div>			
-		
+
 </div>

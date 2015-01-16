@@ -1,9 +1,5 @@
-html,
-.body {
-    height: 100%;
-  	text-align: right;
-  	background: #222222;
-  	
+body {
+  	background: #222222;	
 }
 
 .panelbody > .wrap {

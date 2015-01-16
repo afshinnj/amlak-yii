@@ -6,24 +6,22 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "area".
+ * This is the model class for table "pages".
  *
  * @property integer $id
- * @property string $name
- * @property integer $substate_id
+ * @property string $title
+ * @property string $text
  * @property string $create_time
  * @property string $update_time
- *
- * @property Substate $substate
  */
-class Area extends ActiveRecord
+class Pages extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return static::getDb()->tablePrefix . 'area';
+        return 'pages';
     }
 
     /**
@@ -32,10 +30,10 @@ class Area extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'substate_id'], 'required'],
-            [['substate_id'], 'integer'],
+            [['title', 'text'], 'required'],
+            [['text'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -46,35 +44,14 @@ class Area extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => Yii::t('panel','Area Name'),
-            'substate_id' => Yii::t('panel','Substate ID'),
+            'title' => Yii::t('panel','Title'),
+            'text' => Yii::t('panel','Text'),
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubstate()
-    {
-        return $this->hasOne(Substate::className(), ['id' => 'substate_id']);
-    }
-    
-    public static function cityDropdown()
-    {
-    	// get data if needed
-    	static $dropdown;
-    	    	 
-    	if ($dropdown === null) {
-    		$city = Substate::find()->all();
-    		foreach ($city as $row) {
-    			$dropdown[$row['id']] = $row['name']; 
-    		}
-    	}
-    
-    	return $dropdown;
-    }
+
     /**
      * @inheritdoc
      */

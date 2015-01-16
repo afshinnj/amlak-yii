@@ -21,9 +21,21 @@ return [
 		
 		'city-delete/<id:\d+>' => 'panel/city/delete',
 		'city-edit/<id:\d+>' => 'panel/city/update',
+
+		'area-delete/<id:\d+>' => 'panel/area/delete',
+		'area-edit/<id:\d+>' => 'panel/area/update',
 		
 		'panel' => 'panel/default/index',
-		'Registration-State' => 'panel/state/index',
-		'Registration-Sub-State' => 'panel/city/index',
+		'State-List' => 'panel/state/index',
+		'Create-State' => 'panel/state/create',
+		
+		'City-List' => 'panel/city/index',
+		'Create-City' => 'panel/city/create',
+		
+		'Area-List' => 'panel/area/index',
+		
+		'Pages-List' => 'panel/pages/index',
+		'page-edit/<id:\d+>' => 'panel/pages/update',
+		
 
 ];

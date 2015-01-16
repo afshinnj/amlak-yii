@@ -88,7 +88,7 @@ class CityController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully registered [ {StateName} ] City", ["StateName" => $model->name]));
-            return $this->redirect(['/Registration-Sub-State']);
+            return $this->redirect(['/City-List']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -108,7 +108,7 @@ class CityController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {StateName} ] City", ["StateName" => $model->name]));
-            return $this->redirect(['/Registration-Sub-State']);
+            return $this->redirect(['/City-List']);
         } else {
             return $this->render('update', [
                 'model' => $model,

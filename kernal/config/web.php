@@ -34,8 +34,7 @@ $config = [
 	    ],
     		
     	'jdate' => ['class' => 'jDate\DateTime'],
-    		
-       
+    	//'editor' => ['class' => 'Editor\Redactor'],
     	'urlManager' => [
     			'class' => 'yii\web\UrlManager',
     			'enablePrettyUrl' => true,
@@ -59,7 +58,7 @@ $config = [
             'class' => 'app\modules\user\components\User',
         	'loginUrl' => ['login'],
             //'identityClass' => 'app\models\User',
-            'enableAutoLogin' => false,
+           //'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'frontend/default/error',

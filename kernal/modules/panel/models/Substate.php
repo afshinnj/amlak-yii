@@ -91,9 +91,6 @@ class Substate extends ActiveRecord
     /**
      * @inheritdoc
      */
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [

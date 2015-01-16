@@ -19,6 +19,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
 </head>
 <body class="panelbody">
 
@@ -40,7 +41,18 @@ AppAsset::register($this);
                     
                 ],
             ]);
-
+            echo Nav::widget([
+            		'options' => ['class' => 'navbar-nav navbar-right'],
+            		'items' => [
+            				[
+            				'label' => Yii::t('fa-IR','Settings'),
+            				'items' =>
+            						[
+            						['label'=>Yii::t('fa-IR','Pages'),'url' =>['/Pages-List']],
+            						],
+            				],
+            		],
+            ]);
             echo Nav::widget([
             		'options' => ['class' => 'navbar-nav navbar-right'],
             		'items' => [
@@ -48,9 +60,9 @@ AppAsset::register($this);
             				'label' => Yii::t('fa-IR','Registration variable'),
             				'items' =>
             						[
-	            						['label'=>Yii::t('fa-IR','State'),'url' =>['/Registration-State']],
-	            						['label'=>Yii::t('fa-IR','Sub State'),'url' =>['/Registration-Sub-State']],
-            							['label'=>Yii::t('fa-IR','Area'),'url' =>['/Registration-Area']],
+	            						['label'=>Yii::t('fa-IR','State'),'url' =>['/State-List']],
+	            						['label'=>Yii::t('fa-IR','Sub State'),'url' =>['/City-List']],
+            							['label'=>Yii::t('fa-IR','Area'),'url' =>['/Area-List']],
             						],
             				],
             		],
@@ -112,12 +124,13 @@ AppAsset::register($this);
     </div>
 
     <footer class="footer text-center">
-        <div class="container">
+        
             <p>&copy; My Company <?= date('Y') ?></p>
-        </div>
+      
     </footer>
 
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

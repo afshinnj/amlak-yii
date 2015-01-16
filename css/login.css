@@ -1,6 +1,7 @@
 .btnLogin, #loginform-username, #loginform-password{
 	width: 100%;
 	height: 45px;
+	border-radius :0;
 }
 
 #loginform-username, #loginform-password{
@@ -8,11 +9,26 @@
 }
 
 .login-body{
-	padding-top:80px; 
+	background: #064770;
+	direction: rtl;
 }
-.login-body > .wrap > .container {
-    padding: 30px 15px 10px;
-    direction: rtl;
-    background: #f5f5f5;
-    border-radius : 5px;
+.login-body > .container {
+    padding: 0px 15px 10px;
+    background: #E4E7EA;
+    border-radius :0 0 5px 5px;
+}
+
+.login-header{
+	padding: 15px;
+	margin-bottom:30px;
+	border-bottom: 1px solid #d3d7db;
+	border-top: 1px solid #eee;
+	background: #f7f7f7;
+	position: relative;
+	text-align: center;
+	min-height: 80px;
+}
+.login-footer{
+	padding: 0px 15px 0px 15px;
+	color: #064770;
 }

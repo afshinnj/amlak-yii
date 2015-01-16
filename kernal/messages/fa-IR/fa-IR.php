@@ -18,6 +18,9 @@ return [
 	'Sub State' => 'شهرستان',
 	'Area' => 'منطقه',
 
+	'Pages' => 'صفحه ها',
+		
+	'Settings' => 'تنظیمات',
 		
 	'Registration-State' => 'ثیت شهر',
 	'Registration-Sub-State' => 'ثبت شهرستان',

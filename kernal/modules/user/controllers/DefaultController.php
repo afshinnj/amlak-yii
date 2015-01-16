@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 use app\modules\user\models\Profile;
+use app\modules\panel\models\Pages;
 /**
  * Default controller for User module
  */
@@ -67,7 +68,7 @@ class DefaultController extends Controller
             $actions = Yii::$app->getModule("user")->getActions();
             return $this->render('index', ["actions" => $actions]);
         } elseif (Yii::$app->user->isGuest) {
-            return $this->redirect(["/user/login"]);
+            return $this->redirect(["/login"]);
         } else {
            return $this->redirect(["/dashboard"]);
         }
@@ -95,9 +96,14 @@ class DefaultController extends Controller
   
         }
 
+        $Page = Pages::find()->where(['id' => 1])->one();
+    	
+    
+        
         // render
         return $this->renderPartial('login', [
             'model' => $model,
+        	'page' => $Page,
         ]);
     }
 

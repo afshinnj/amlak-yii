@@ -20,9 +20,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
     	'css/login.css',
-    	'css/panel.css'
+    	'css/panel.css',
     ];
     public $js = [
+
     ];
     public $depends = [
         'yii\web\YiiAsset',
