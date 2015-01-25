@@ -1,7 +1,8 @@
+
 .btnLogin, #loginform-username, #loginform-password{
 	width: 100%;
 	height: 45px;
-	border-radius :0;
+	border-radius :5;
 }
 
 #loginform-username, #loginform-password{

@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use yii\data\Pagination;
 
+
 /**
  * PagesController implements the CRUD actions for Pages model.
  */
@@ -24,7 +25,7 @@ class PagesController extends Controller
         			'class' => AccessControl::className(),
         			'rules' => [
         				[
-        				'actions' => ['index','update'],
+        				'actions' => ['index','update','upload'],
         				'allow'   => true,
         				'roles'   => ['admin'],
         				],
@@ -35,6 +36,7 @@ class PagesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                 	'update' => ['post'],
+                	'upload' => ['post'],
                 ],
             ],
         ];
@@ -75,10 +77,16 @@ class PagesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {PageName} ] Page", ["PageName" => $model->title]));
-            return $this->redirect(['/Pages-List']);
+        	// validate for ajax request
+        	if (!Yii::$app->request->isAjax) {
+        	     Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {PageName} ] Page", ["PageName" => $model->title]));
+          		 return $this->redirect(['/Pages-List']);
+        	}
+
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -101,4 +109,5 @@ class PagesController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

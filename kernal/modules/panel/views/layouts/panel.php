@@ -49,6 +49,7 @@ AppAsset::register($this);
             				'items' =>
             						[
             						['label'=>Yii::t('fa-IR','Pages'),'url' =>['/Pages-List']],
+            						['label'=>Yii::t('fa-IR','Settings'),'url' =>['/settings']],
             						],
             				],
             		],
@@ -115,19 +116,13 @@ AppAsset::register($this);
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 'homeLink' => [
 		            'label' => Yii::t('yii','Home'),  // required
-		         	'url' => 'panel',      // optional, will be processed by Url::to()
+		         	'url' => ['/panel'],      // optional, will be processed by Url::to()
 		            ],
             ]) ?>
             <?= $content ?>
             
         </div>
     </div>
-
-    <footer class="footer text-center">
-        
-            <p>&copy; My Company <?= date('Y') ?></p>
-      
-    </footer>
 
 <?php $this->endBody() ?>
 

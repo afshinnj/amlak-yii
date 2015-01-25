@@ -19,6 +19,11 @@ $config = [
     		
     ],   
     'components' => [
+    	'panel' => ['class' => 'app\modules\panel\components\panel',],
+    		
+    				
+    		
+    		
     		
 	    'i18n' => [
 	        'translations' => [
@@ -34,7 +39,7 @@ $config = [
 	    ],
     		
     	'jdate' => ['class' => 'jDate\DateTime'],
-    	//'editor' => ['class' => 'Editor\Redactor'],
+
     	'urlManager' => [
     			'class' => 'yii\web\UrlManager',
     			'enablePrettyUrl' => true,
@@ -57,8 +62,6 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\components\User',
         	'loginUrl' => ['login'],
-            //'identityClass' => 'app\models\User',
-           //'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'frontend/default/error',

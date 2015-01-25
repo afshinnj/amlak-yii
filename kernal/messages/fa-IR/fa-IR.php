@@ -27,6 +27,7 @@ return [
 	'Registration-Area' => 'ثیت منطقه',
 	
 		
-	'You are not allowed to perform this action.' =>'انجام این عمل برای شما امکان پذیر نمی باشد .'
+	'You are not allowed to perform this action.' =>'انجام این عمل برای شما امکان پذیر نمی باشد .',
 	
+	'Auto Save' => 'ذخیره اتوماتیک',
 ];

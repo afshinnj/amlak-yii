@@ -21,7 +21,7 @@ class Pages extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'pages';
+        return static::getDb()->tablePrefix . 'pages';
     }
 
     /**

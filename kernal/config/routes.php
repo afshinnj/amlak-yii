@@ -1,14 +1,13 @@
 <?php
-	/*
-	 * amlak routes 
-	 */
-return [
 
+return [
+		//'' => 'frontend/default/index',
+		
 		'index' => 'frontend/default/index',
 		'about' => 'frontend/default/about',
 		'contact' => 'frontend/default/contact',
 		
-		//'' => 'frontend/default/index',
+		
 		
 		'login' => 'user/default/login',
 		'logout' => 'user/default/logout',
@@ -36,6 +35,8 @@ return [
 		
 		'Pages-List' => 'panel/pages/index',
 		'page-edit/<id:\d+>' => 'panel/pages/update',
+		
+		'settings' => 'panel/settings/index',
 		
 
 ];

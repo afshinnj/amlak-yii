@@ -21,10 +21,19 @@ class AppAsset extends AssetBundle
         'css/site.css',
     	'css/login.css',
     	'css/panel.css',
+    	//'css/redactor.css',
     ];
-    public $js = [
-
-    ];
+	public $js = [
+    	//'js/redactor.js',
+    	//'js/table.js',
+    	//'js/definedlinks.js',
+    	//'js/fontcolor.js',
+    	//'js/fontfamily.js',
+    	//'js/fontsize.js',
+    	//'js/imagemanager.js',
+    	//'js/textdirection.js',
+			
+	];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
