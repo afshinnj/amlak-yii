@@ -40,4 +40,16 @@ return [
 		
 		'Title' => 'عنوان',
 		'Text' => 'متن',
+		
+		'Title Site' => 'عنوان سایت',
+		'Email' => 'ایمیل',
+		'Telephone' => 'تلفن',
+		'Description' => 'توضیحات',
+		'Keywords' => 'کلمات کلیدی',
+		'Admin Language' => 'زبان مدیریت',
+		'Site Language' => 'زبان سایت',
+		'Site Off' => 'حالت تعمیر سایت',
+		'Site Off Description Text' => 'متن حالت تعمیر',
+		
+		
 ];

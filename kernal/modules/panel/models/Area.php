@@ -60,7 +60,9 @@ class Area extends ActiveRecord
     {
         return $this->hasOne(Substate::className(), ['id' => 'substate_id']);
     }
-    
+   /* 
+    * old code
+    * remove
     public static function cityDropdown()
     {
     	// get data if needed
@@ -74,7 +76,8 @@ class Area extends ActiveRecord
     	}
     
     	return $dropdown;
-    }
+    }*/
+    
     /**
      * @inheritdoc
      */

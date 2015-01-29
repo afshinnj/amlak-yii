@@ -4,6 +4,8 @@ namespace app\modules\panel\controllers;
 
 use Yii;
 use app\modules\panel\models\State;
+use app\modules\panel\models\Area;
+
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,6 +13,10 @@ use yii\filters\VerbFilter;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
+use yii\helpers\Json;
+use app\modules\panel\models\Substate;
+
+
 /**
  * StateController implements the CRUD actions for State model.
  */
@@ -32,7 +38,7 @@ class StateController extends Controller
     					'class' => AccessControl::className(),
     					'rules' => [
     							[
-    								'actions' => ['index','create','update','delete'],
+    								'actions' => ['index','create','update','delete','subcat','subcity'],
     								'allow'   => true,
     								'roles'   => ['admin'],
     							],
@@ -142,5 +148,27 @@ class StateController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    
+    public function actionSubcat() {
+    	
+    	$id = $_POST['id'];
+		$area = Substate::find()->where(['state_id'=> $id])->all();
+			echo '<option value="">select...</option>';
+		foreach ($area as $row){
+			echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+		}
+    	//echo Json::encode(['id'=> $row['id'], 'selected'=>$row['name']]);
+    }
+    public function actionSubcity() {
+    	 
+    	$id = $_POST['id'];
+    	$area = Area::find()->where(['substate_id'=> $id])->all();
+    		echo '<option value="">select...</option>';
+    	foreach ($area as $row){
+    		echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+    	}
+    	//echo Json::encode(['id'=> $row['id'], 'selected'=>$row['name']]);
     }
 }

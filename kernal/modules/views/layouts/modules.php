@@ -19,15 +19,16 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
 </head>
-<body>
+<body class="panelbody">
 
 <?php $this->beginBody() ?>
     <div class="wrap">
         <?php
             NavBar::begin([
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar navbar-default navbar-fixed-top',
                 ],
             ]);
         if(!Yii::$app->user->isGuest):  
@@ -36,27 +37,40 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
             	'encodeLabels' => false,
                 'items' => [
-                    ['label' => Yii::t('fa-IR','Dashbord'). ' '. '<spam class="glyphicon glyphicon-dashboard"></spam>', 'url' => ['/dashbord']],
+                    ['label' => Yii::t('fa-IR','Dashbord'). ' '. '<spam class="glyphicon glyphicon-dashboard"></spam>', 'url' => ['/panel']],
                     
                 ],
             ]);
-
             echo Nav::widget([
-            		'options' => ['class' => 'navbar-nav navbar-right  text-right'],
+            		'options' => ['class' => 'navbar-nav navbar-right'],
             		'items' => [
             				[
-            				'label' => Yii::t('fa-IR','Home'),
+            				'label' => Yii::t('fa-IR','Settings'),
             				'items' =>
             						[
-	            						['label'=>Yii::t('fa-IR','Registration Home'),'url' =>['/change-password']],
-	            						['label'=>Yii::t('fa-IR','House request'),'url' =>['/change-profile']],
+            						['label'=>Yii::t('fa-IR','Pages'),'url' =>['/Pages-List']],
+            						['label'=>Yii::t('fa-IR','Settings'),'url' =>['/settings']],
+            						],
+            				],
+            		],
+            ]);
+            echo Nav::widget([
+            		'options' => ['class' => 'navbar-nav navbar-right'],
+            		'items' => [
+            				[
+            				'label' => Yii::t('fa-IR','Registration variable'),
+            				'items' =>
+            						[
+	            						['label'=>Yii::t('fa-IR','State'),'url' =>['/State-List']],
+	            						['label'=>Yii::t('fa-IR','Sub State'),'url' =>['/City-List']],
+            							['label'=>Yii::t('fa-IR','Area'),'url' =>['/Area-List']],
             						],
             				],
             		],
             ]);
 
             echo Nav::widget([
-            		'options' => ['class' => 'navbar-nav navbar-right  text-right'],
+            		'options' => ['class' => 'navbar-nav navbar-right'],
             		'items' => [
             				[
             				'label' => Yii::t('fa-IR','Home'),
@@ -69,7 +83,7 @@ AppAsset::register($this);
             		],
             ]);
 			echo Nav::widget([
-			'options' => ['class' => 'navbar-nav navbar-right  text-right'],
+			'options' => ['class' => 'navbar-nav navbar-right'],
 					'items' => [
 					[
 						'label' => Yii::t('fa-IR','User'),
@@ -84,7 +98,7 @@ AppAsset::register($this);
 				]);
 
             echo Nav::widget([
-            		'options' => ['class' => 'navbar-nav navbar-left  text-right'],
+            		'options' => ['class' => 'navbar-nav navbar-left'],
 					'encodeLabels' => false,
             		'items' => [
             			['label' =>'<span class="glyphicon glyphicon-log-out"></span>' .' '. Yii::t("fa-IR", "logout  [ {displayName} ]", ["displayName" =>Yii::$app->user->identity->username]),
@@ -102,7 +116,7 @@ AppAsset::register($this);
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 'homeLink' => [
 		            'label' => Yii::t('yii','Home'),  // required
-		         	'url' => 'dashbord',      // optional, will be processed by Url::to()
+		         	'url' => ['/panel'],      // optional, will be processed by Url::to()
 		            ],
             ]) ?>
             <?= $content ?>
@@ -110,13 +124,8 @@ AppAsset::register($this);
         </div>
     </div>
 
-    <footer class="footer text-center">
-        <div class="container">
-            <p>&copy; My Company <?= date('Y') ?></p>
-        </div>
-    </footer>
-
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

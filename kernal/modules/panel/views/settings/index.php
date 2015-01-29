@@ -20,10 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'site_off')->dropDownList(['0'=>'off', '1'=>'on']) ?>
 	<?php 
+	
 	echo yii\imperavi\Widget::widget([
 		'model' => $model,
 		'attribute' => 'site_off_description',
-			
+	
 	    'options' => [
 	        'lang' => 'fa',
 	    	'imageUpload' => Yii::getAlias('@web')."/kernal/vendor/imperavi/Upload.php",

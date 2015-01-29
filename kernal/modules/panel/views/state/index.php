@@ -5,12 +5,16 @@ use yii\grid\GridView;
 use yii\widgets\LinkPager;
 use yii\data\Pagination;
 use yii\helpers\Url;
+use app\modules\panel\models\Substate;
+use yii\helpers\ArrayHelper;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('panel','States');
 $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 ?>
+
 <div class="state-index">
     <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
         <div class="alert alert-success">
@@ -66,3 +70,51 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 		
 	
 </div>
+ 	      
+<select id ="state" class="form-control">
+<?php foreach ($State as $row):?>
+<option value="<?= $row['id']?>"><?= $row['name']?></option>
+<?php endforeach;?>
+</select>
+<select id ="city" class="form-control"></select>
+<select id ="area" class="form-control"></select>
+<?php 
+$js = <<<JS
+$('#state').change(function(){
+		var id = $('#state').val();
+		var formURL = 'http://localhost/amlak/panel/state/subcat';
+		var postData = {'id' : id};
+		$.ajax({
+			url: formURL,
+			type: 'post',
+			data: postData,
+			success:function(data)
+					{
+						$("#city").html('');
+						$("#city").html(data);
+			    	}
+		 });	
+
+});
+$('#city').change(function(){
+		var id = $('#city').val();
+		var formURL = 'http://localhost/amlak/panel/state/subcity';
+		var postData = {'id' : id};
+		$.ajax({
+			url: formURL,
+			type: 'post',
+			data: postData,
+			success:function(data)
+					{
+						$("#area").html('');
+						$("#area").html(data);
+			    	}
+		 });	
+
+})
+
+
+JS;
+$this->registerJs($js)
+
+?>

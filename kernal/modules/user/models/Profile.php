@@ -38,7 +38,9 @@ class Profile extends ActiveRecord
             //            [['user_id'], 'integer'],
             //            [['create_time', 'update_time'], 'safe'],
             [['full_name'], 'string', 'max' => 255],
-        	[['mobile'], 'integer', 'max' => 40],
+        	[['full_name'], 'match', 'pattern' => '/^[A-Za-z0-9_ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوآ]+$/u', 'message' => "{attribute} can contain only letters, numbers, and '_'."],
+        	['mobile', 'match', 'pattern' => '/^[۱۲۳۴۵۶۷۸۹۰0-9]+$/u', 'message' => "{attribute} can contain only numbers."],
+        	[['mobile'],'string', 'min' => 9],
         	[['file'], 'file','extensions' => 'gif, jpg', 'mimeTypes' => 'image/jpeg, image/png','maxSize' => 1024*1024*1024,'on' => ['avatar']],
         	[['file'], 'required','on' => ['avatar']],
         ];

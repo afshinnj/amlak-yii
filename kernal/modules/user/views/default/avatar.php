@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\user\models\Profile;
-use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -60,13 +58,5 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="col-lg-3">
 
 <?php //echo Html::activeDropDownList($user, 'id',ArrayHelper::map(Profile::find()->all(), 'id', 'mobile')) ?>
-    <?php  echo $form->field($user, 'mobile')->widget(DepDrop::classname(), [
-     'options' => ['id'=>'id'],
-     'pluginOptions'=>[
-         'depends'=>['cat-id'],
-         'placeholder' => 'Select...',
-         'url' => Url::to(['/site/subcat'])
-     ]
- ]); 
-    ?>
+
 	</div>

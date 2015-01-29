@@ -71,7 +71,9 @@ class Substate extends ActiveRecord
         return $this->hasOne(State::className(), ['id' => 'state_id']);
     }
     
-    
+    /*
+     * old code
+     * remove
     public static function stateDropdown()
     {
     	// get data if needed
@@ -88,6 +90,7 @@ class Substate extends ActiveRecord
     
     	return $dropdown;
     }
+    */
     /**
      * @inheritdoc
      */

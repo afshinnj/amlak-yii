@@ -17,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string $site_language
  * @property integer $site_off
  * @property integer $site_off_description
+ * @property string site_off_lable
  * @property string $create_time
  * @property string $update_time
  */
@@ -50,17 +51,19 @@ class Settings extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'email' => 'Email',
-            'telephone' => 'Telephone',
-            'description' => 'Description',
-            'keywords' => 'Keywords',
-            'admin_language' => 'Admin Language',
-            'site_language' => 'Site Language',
-            'site_off' => 'Site Off',
-        	'site_off_description' => 'Site Off Description',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
+            'title' => Yii::t('panel','Title Site'),
+            'email' => Yii::t('panel','Email'),
+            'telephone' => Yii::t('panel','Telephone'),
+            'description' => Yii::t('panel','Description'),
+            'keywords' => Yii::t('panel','Keywords'),
+            'admin_language' => Yii::t('panel','Admin Language'),
+            'site_language' => Yii::t('panel','Site Language'),
+            'site_off' => Yii::t('panel','Site Off'),
+        	'site_off_description' => Yii::t('panel','Site Off Description'),
+            'create_time' => Yii::t('panel','Create Time'),
+            'update_time' => Yii::t('panel','Update Time'),
+        	'site_off_description' => Yii::t('panel','Site Off Description'),
+        	'site_off_lable' => Yii::t('panel','Site Off Description'),
         ];
     }
     public function behaviors()

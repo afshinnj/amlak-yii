@@ -33,9 +33,6 @@ $this->title = Yii::t('user', 'Login');
     
         <div class="container">
 		 	<div class="row">
-				<div class="login-header">
-			 		<?= Html::img('@web/images/home.png',['class' =>'img','width'=>'160px']);?>
-			 	</div> <!-- login-header -->
 			 	
 				<div class="col-lg-8">
 					<div class="panel panel-default">

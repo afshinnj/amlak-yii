@@ -4,12 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\data\Pagination;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('panel','Areas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="area-index">
     <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
         <div class="alert alert-success">
