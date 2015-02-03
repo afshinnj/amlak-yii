@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\panel;
+
 use Yii;
 
 class panel extends \yii\base\Module

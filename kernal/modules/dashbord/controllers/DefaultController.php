@@ -1,7 +1,7 @@
 <?php
 
 namespace app\modules\dashbord\controllers;
-
+use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -12,10 +12,10 @@ class DefaultController extends Controller
 	{
 		// check for admin permission (`tbl_role.can_admin`)
 		// note: check for Yii::$app->user first because it doesn't exist in console commands (throws exception)
-		if (!empty(Yii::$app->user) && !Yii::$app->user->can("user")) {
+		/*if (!empty(Yii::$app->user) && !Yii::$app->user->can("user")) {
 			throw new ForbiddenHttpException('You are not allowed to perform this action.');
 		}
-		parent::init();
+		parent::init();*/
 	}	
     public function behaviors()
     {

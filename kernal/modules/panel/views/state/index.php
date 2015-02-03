@@ -7,6 +7,7 @@ use yii\data\Pagination;
 use yii\helpers\Url;
 use app\modules\panel\models\Substate;
 use yii\helpers\ArrayHelper;
+use app\modules\panel\models\State;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -70,17 +71,29 @@ $this->params['breadcrumbs'][] = Yii::t('panel',$this->title);
 		
 	
 </div>
- 	      
-<select id ="state" class="form-control">
-<?php foreach ($State as $row):?>
-<option value="<?= $row['id']?>"><?= $row['name']?></option>
-<?php endforeach;?>
-</select>
+
+ 	<?php 
+
+ 		echo Html::activeDropDownList( $model = new State(), 'id', ArrayHelper::map(State::find()->All(),'id','name'),['id'=>'state','class'=>'form-control']);
+ 	?> 
+ 	     
 <select id ="city" class="form-control"></select>
 <select id ="area" class="form-control"></select>
 <?php 
 $js = <<<JS
+State();
+City();	
 $('#state').change(function(){
+	State();
+});
+$('#city').change(function(){
+	City();
+});		
+function State(){
+		$('#city').prop('disabled', true);
+		$('#area').prop('disabled', true);	
+		$("#city").html("<option>Please wait</option>");
+		$("#area").html("<option>Please wait</option>");
 		var id = $('#state').val();
 		var formURL = 'http://localhost/amlak/panel/state/subcat';
 		var postData = {'id' : id};
@@ -90,13 +103,20 @@ $('#state').change(function(){
 			data: postData,
 			success:function(data)
 					{
-						$("#city").html('');
+					if(data){
+						$('#city').prop('disabled', false);
+						$('#area').prop('disabled', false);
 						$("#city").html(data);
-			    	}
-		 });	
+					}else{
+						$("#city").html(data);
+					}
 
-});
-$('#city').change(function(){
+					City();
+			    	}
+		 });
+};
+function City(){
+			
 		var id = $('#city').val();
 		var formURL = 'http://localhost/amlak/panel/state/subcity';
 		var postData = {'id' : id};
@@ -106,12 +126,15 @@ $('#city').change(function(){
 			data: postData,
 			success:function(data)
 					{
-						$("#area").html('');
-						$("#area").html(data);
+						if(data){
+							$("#area").html(data);
+						}else{
+							$("#area").html('')
+							}
+						
 			    	}
-		 });	
-
-})
+		 });
+};		
 
 
 JS;

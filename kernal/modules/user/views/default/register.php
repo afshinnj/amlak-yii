@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				    <?php endif; ?>
 						</div>
 						<div class="panel-footer">
-				                <?= Html::a(Yii::t('user', 'Login'), ["/user/login"],['class' => 'btn btn-info btnLogin']) ?>
+				                <?= Html::a(Yii::t('user', 'Login'), ["/dashbord"],['class' => 'btn btn-info btnLogin']) ?>
 					</div>
 					</div>
 					

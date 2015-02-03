@@ -159,6 +159,7 @@ class User extends ActiveRecord implements IdentityInterface
 
             'currentPassword' => Yii::t('user', 'Current Password'),
             'newPassword'     => Yii::t('user', 'New Password'),
+        	'newPasswordConfirm' => Yii::t('user', 'New Password Confirm'),
         ];
     }
 

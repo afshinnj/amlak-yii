@@ -155,20 +155,27 @@ class StateController extends Controller
     	
     	$id = $_POST['id'];
 		$area = Substate::find()->where(['state_id'=> $id])->all();
-			echo '<option value="">select...</option>';
-		foreach ($area as $row){
-			echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-		}
+
+			foreach ($area as $row){
+				echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+			}			
+			
+	
+
+			
     	//echo Json::encode(['id'=> $row['id'], 'selected'=>$row['name']]);
     }
+    
     public function actionSubcity() {
     	 
     	$id = $_POST['id'];
     	$area = Area::find()->where(['substate_id'=> $id])->all();
-    		echo '<option value="">select...</option>';
-    	foreach ($area as $row){
-    		echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-    	}
+
+    		foreach ($area as $row){
+    			echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+    		}
+    			
+
     	//echo Json::encode(['id'=> $row['id'], 'selected'=>$row['name']]);
     }
 }

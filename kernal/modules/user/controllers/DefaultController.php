@@ -16,7 +16,6 @@ use app\modules\panel\models\Pages;
  */
 class DefaultController extends Controller
 {
-	public $layout = "@app/modules/views/layouts/modules.php";
 	
     /**
      * @inheritdoc

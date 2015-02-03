@@ -13,10 +13,11 @@ use yii\base\InvalidConfigException;
  */
 class Module extends \yii\base\Module
 {
+	public $layout = "@app/modules/views/layouts/modules.php";
     /**
      * @var string Module version
      */
-    protected $_version = "2.1.0-RC";
+    protected $_version = "2.1.0";
 
     /**
      * @var string Alias for module
@@ -237,7 +238,7 @@ class Module extends \yii\base\Module
      *
      * @inheritdoc
      */
-    public function createController($route)
+   public function createController($route)
     {
         // check valid routes
         $validRoutes  = [$this->defaultRoute, "admin", "copy", "auth"];
