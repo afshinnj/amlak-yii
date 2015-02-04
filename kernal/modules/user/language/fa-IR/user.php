@@ -43,7 +43,8 @@ return [
 
     // models/forms
     'Email not found' => 'ایمیل یافت نشد',
-   // 'Email/username not found' => 'ایمیل/نام کاربری یافت نشد',
+	'Email / Username' => 'ایمیل / نام کاربری',
+    'Email / username not found' => 'ایمیل/نام کاربری یافت نشد',
     'Username not found' => 'نام کاربری یافت نشد',
     'User is banned - {banReason}' => 'کاربر ممنوع است - {banReason}',
     'Incorrect password' => 'رمز ورود اشتباه است',

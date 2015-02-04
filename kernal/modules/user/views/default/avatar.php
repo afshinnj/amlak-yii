@@ -38,8 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-offset-2 col-lg-10">
         <h2><?= Html::encode(Yii::$app->user->identity->username)?></h2>
         <hr>
-        
+        <?php if($user->avatar):?>
 		<?= Html::img(Yii::getAlias('@web').'/uploads/avatars/'. $user->avatar,['class'=>'img-thumbnail','width'=>'150px;']);?>
+		<?php else :?>
+		<?= Html::img(Yii::getAlias('@web').'/images/avatar.png',['class'=>'img-thumbnail','width'=>'150px;']);?>
+		<?php endif?>
 		<br>
 		<br>
            <?= $form->field($user, 'file')->fileInput(["class" => "form-control"]) ?>

@@ -50,8 +50,8 @@ $this->title = Yii::t('user', 'Login');
 						<div class="panel-body">
 							<div style="text-align: center; margin-bottom: 20px;" >
 								<?= Html::img('@web/images/avatar.png',['class' =>'img-circle','width'=>'120px']);?>
-								<h4>Administration</h4>
-								<small class="text-muted">Please enter your login details.</small>
+								<h4><?= Yii::t('fa-IR','Administration')?></h4>
+								<small class="text-muted"><?= Yii::t('fa-IR','Please enter your login details.')?></small>
 							</div>
 				
 						<?php $form = ActiveForm::begin(['id' => 'login-form','options' => ['class' => 'form-horizontal'],

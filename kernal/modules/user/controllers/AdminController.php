@@ -18,9 +18,7 @@ class AdminController extends Controller
 {
     /**
      * @inheritdoc
-     */
-	public $layout = "@app/modules/views/layouts/modules.php";
-	
+     */	
     public function init()
     {
         // check for admin permission (`tbl_role.can_admin`)
@@ -54,7 +52,6 @@ class AdminController extends Controller
      */
     public function actionIndex()
     {
-    	
         /** @var \amnah\yii2\user\models\search\UserSearch $searchModel */
         $searchModel = Yii::$app->getModule("user")->model("UserSearch");
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
@@ -116,8 +113,6 @@ class AdminController extends Controller
      */
     public function actionUpdate($id)
     {
-    	
-    	
         // set up user and profile
         $user = $this->findModel($id);
         $user->setScenario("admin");

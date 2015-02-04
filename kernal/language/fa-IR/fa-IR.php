@@ -30,4 +30,7 @@ return [
 	'You are not allowed to perform this action.' =>'انجام این عمل برای شما امکان پذیر نمی باشد .',
 	
 	'Auto Save' => 'ذخیره اتوماتیک',
+		
+	'Administration' => 'مدیریت',
+	'Please enter your login details.' => 'لطفا مشخصات کاربری خود را وارد کنید.',
 ];

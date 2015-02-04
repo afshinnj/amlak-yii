@@ -10,10 +10,11 @@ use yii\base\InvalidConfigException;
  * User module
  *
  * @author amnah <amnah.dev@gmail.com>
+ * @update afshin
  */
 class Module extends \yii\base\Module
 {
-	public $layout = "@app/modules/views/layouts/modules.php";
+	public $layout = "@app/modules/views/layouts/module.php";
     /**
      * @var string Module version
      */
@@ -137,7 +138,7 @@ class Module extends \yii\base\Module
        if (empty(Yii::$app->i18n->translations['user'])) {
             Yii::$app->i18n->translations['user'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => __DIR__ . '/messages',
+                'basePath' => __DIR__ . '/language',
                 //'forceTranslation' => true,
             ];
         }
