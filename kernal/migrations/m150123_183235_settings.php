@@ -31,7 +31,7 @@ class m150123_183235_settings extends Migration
     	// insert role data
     	$columns = ["site_off", "admin_language", "site_language","create_time"];
     	$this->batchInsert('settings', $columns, [
-    			[1, "fa-IR", "fa-IR", date("Y-m-d H:i:s")],
+    			[1, "fa-IR", "fa-IR", Yii::$app->jdate->date('Y-m-d H:i:s')],
 
     	]);
     }

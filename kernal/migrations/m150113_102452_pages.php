@@ -24,10 +24,10 @@ class m150113_102452_pages extends Migration
     	// insert role data
     	$columns = ["title", "text", "create_time"];
     	$this->batchInsert('pages', $columns, [
-    			["صفحه ورود", "صفحه ورود",  date("Y-m-d H:i:s")],
-    			["صفحه ثبت نام ", "صفحه ثبت نام", date("Y-m-d H:i:s")],
-    			["درباره ما", "درباره ما", date("Y-m-d H:i:s")],
-    			["تماس با ما", "تماس با ما", date("Y-m-d H:i:s")],
+    			["صفحه ورود", "صفحه ورود",  Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["صفحه ثبت نام ", "صفحه ثبت نام", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["درباره ما", "درباره ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["تماس با ما", "تماس با ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
     	]);
     }
 

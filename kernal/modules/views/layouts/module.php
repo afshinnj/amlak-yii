@@ -24,12 +24,15 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrap">
     
-<?php if (!empty(Yii::$app->user) && Yii::$app->user->can("admin")): ?>
-   <?= $this->render("admin.php")?>
-<?php elseif (!empty(Yii::$app->user) && Yii::$app->user->can("user")): ?>
-   <?= $this->render("user.php")?>
-<?php endif ?>
-
+<?php
+	if (!empty(Yii::$app->user) && Yii::$app->user->can("admin")):
+	  		 echo $this->render("admin.php");
+	  		 $url = '/panel';
+	elseif (!empty(Yii::$app->user) && Yii::$app->user->can("user")):
+	  		echo  $this->render("user.php");
+	  		 $url = '/dashbord';
+	endif
+?>
         
 
         <div class="container">
@@ -37,7 +40,7 @@ AppAsset::register($this);
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 'homeLink' => [
 		            'label' => Yii::t('yii','Home'),  // required
-		         	'url' => ['/panel'],      // optional, will be processed by Url::to()
+		         	'url' => [$url],      // optional, will be processed by Url::to()
 		            ],
             ]) ?>
             <?= $content ?>

@@ -5,8 +5,11 @@ use yii\helpers\Html;
 	<div class="col-lg-4">
 	    <div class="panel panle-info">
 	    	<div class="panel-body">
+	    	<?php if(Yii::$app->user->identity->profile->avatar):?>
 	    		<?= Html::img(Yii::getAlias('@web').'/uploads/avatars/'. Yii::$app->user->identity->profile->avatar,['class'=>'img-thumbnail pull-left','width'=>'150px;'])?>
-
+	    	<?php else:?>
+	    		<?= Html::img(Yii::getAlias('@web').'/images/avatar.png',['class'=>'img-thumbnail pull-left','width'=>'150px;'])?>
+			<?php endif?>
 	    		<span class="glyphicon glyphicon-user"></span> : <?= Yii::$app->user->identity->username?><br>
 	    		<span class="glyphicon glyphicon-envelope"></span> : <?= Yii::$app->user->identity->email?><br>
 	    		<br>

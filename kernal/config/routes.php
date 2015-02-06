@@ -38,5 +38,10 @@ return [
 		
 		'settings' => 'panel/settings/index',
 		
+		'Home-Type' => '',
+		'Bargain-Type' => '',
+		'Total-Price' => '',
+		'Area-Groups' => 'Area-Groups',
+		
 
 ];

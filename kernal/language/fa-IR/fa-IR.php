@@ -33,4 +33,9 @@ return [
 		
 	'Administration' => 'مدیریت',
 	'Please enter your login details.' => 'لطفا مشخصات کاربری خود را وارد کنید.',
+		
+	'Home Type' => 'نوع ملک',
+	'Bargain Type' => 'نوع سند',
+	'Area Groups' => 'محدوده متراژ',
+	'Total Price' => 'حدود قیمت',
 ];

@@ -14,6 +14,7 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
+    	'jdate' => ['class' => 'jDate\DateTime'],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

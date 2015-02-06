@@ -12,7 +12,7 @@ use yii\bootstrap\NavBar;
                 'options' => ['class' => 'navbar-nav navbar-right'],
             	'encodeLabels' => false,
                 'items' => [
-                    ['label' => Yii::t('fa-IR','Dashbord'). ' '. '<spam class="glyphicon glyphicon-dashboard"></spam>', 'url' => ['/panel']],
+                    ['label' => Yii::t('fa-IR','Dashbord'). ' '. '<spam class="glyphicon glyphicon-dashboard"></spam>', 'url' => ['/dashbord']],
                     
                 ],
             ]);

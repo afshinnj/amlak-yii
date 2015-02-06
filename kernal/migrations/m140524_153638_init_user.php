@@ -75,22 +75,22 @@ class m140524_153638_init_user extends \yii\db\Migration
         // insert role data
         $columns = ["name", "can_admin", "can_user", "can_author", "create_time"];
         $this->batchInsert(Role::tableName(), $columns, [
-            ["Admin", 1, 0, 0,  date("Y-m-d H:i:s")],
-            ["User", 0, 1, 0,  date("Y-m-d H:i:s")],
-        	["Author", 0, 0, 1,  date("Y-m-d H:i:s")],
+            ["Admin", 1, 0, 0,  Yii::$app->jdate->date('Y-m-d H:i:s')],
+            ["User", 0, 1, 0,  Yii::$app->jdate->date('Y-m-d H:i:s')],
+        	["Author", 0, 0, 1,  Yii::$app->jdate->date('Y-m-d H:i:s')],
         ]);
 
         // insert admin user: neo/neo
         $security = Yii::$app->security;
         $columns = ["id", "role_id", "email", "username", "password", "status", "create_time", "api_key", "auth_key"];
         $this->batchInsert(User::tableName(), $columns, [
-            [1, Role::ROLE_ADMIN, "neo@neo.com", "neo", '$2y$10$WYB666j7MmxuW6b.kFTOde/eGCLijWa6BFSjAAiiRbSAqpC1HCmrC', User::STATUS_ACTIVE,  date("Y-m-d H:i:s"), $security->generateRandomString(), $security->generateRandomString()],
+            [1, Role::ROLE_ADMIN, "neo@neo.com", "neo", '$2y$10$WYB666j7MmxuW6b.kFTOde/eGCLijWa6BFSjAAiiRbSAqpC1HCmrC', User::STATUS_ACTIVE,  Yii::$app->jdate->date('Y-m-d H:i:s'), $security->generateRandomString(), $security->generateRandomString()],
         ]);
 
         // insert profile data
         $columns = ["id", "user_id", "full_name", "create_time"];
         $this->batchInsert(Profile::tableName(), $columns, [
-            [1, 1, "the one",  date("Y-m-d H:i:s")],
+            [1, 1, "the one",  Yii::$app->jdate->date('Y-m-d H:i:s')],
         ]);
     }
 
