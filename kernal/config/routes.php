@@ -21,8 +21,8 @@ return [
 		'city-delete/<id:\d+>' => 'panel/city/delete',
 		'city-edit/<id:\d+>' => 'panel/city/update',
 
-		'area-delete/<id:\d+>' => 'panel/area/delete',
-		'area-edit/<id:\d+>' => 'panel/area/update',
+		'zone-delete/<id:\d+>' => 'panel/zone/delete',
+		'zone-edit/<id:\d+>' => 'panel/zone/update',
 		
 		'panel' => 'panel/default/index',
 		'State-List' => 'panel/state/index',
@@ -31,17 +31,17 @@ return [
 		'City-List' => 'panel/city/index',
 		'Create-City' => 'panel/city/create',
 		
-		'Area-List' => 'panel/area/index',
+		'Zone-List' => 'panel/zone/index',
 		
 		'Pages-List' => 'panel/pages/index',
 		'page-edit/<id:\d+>' => 'panel/pages/update',
 		
 		'settings' => 'panel/settings/index',
 		
-		'Home-Type' => '',
-		'Bargain-Type' => '',
-		'Total-Price' => '',
-		'Area-Groups' => 'Area-Groups',
+		'Home-Type' => 'panel/home/index',
+		'Bargain-Type' => 'panel/Bargain/index',
+		'Total-Price' => 'panel/Total/index',
+		'Area-Groups' => 'panel/Groups/index',
 		
 
 ];

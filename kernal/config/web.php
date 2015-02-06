@@ -21,18 +21,14 @@ $config = [
     'components' => [
     	'panel' => ['class' => 'app\modules\panel\components\panel',],
     		
-    				
-    		
-    		
-    		
 	    'i18n' => [
 	        'translations' => [
 	            'fa-IR' => [
 	                'class' => 'yii\i18n\PhpMessageSource',
 	                'basePath' => '@app/language',
-	                //'sourceLanguage' => 'en-US',
 	                'fileMap' => [
-	                    'fa-IR' => 'fa-IR.php',
+	                    'fa-IR' => 'app.php',
+	                	
 	                ],
 	            ],
 	        ],

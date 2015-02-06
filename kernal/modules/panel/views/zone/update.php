@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\panel\models\Area */
 
-$this->title = 'Update Area: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Areas', 'url' => ['index']];
+$this->title = 'Update Zone: ' . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Zones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('panel','Areas');
+$this->title = Yii::t('panel','Zones');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3><?= Html::encode($this->title) ?></h3>
 
     <p>
-        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create Area'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;' . Yii::t('panel','Create Zone'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
   <div class="table-responsive">
@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			<th>&nbsp;</th>
 		</tr>
 		</thead>
-			<?php foreach ($Area as $row):?>
+			<?php foreach ($Zone as $row):?>
 				<tr>
 					<td><?= $row['name']?></td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/area-edit/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-edit"></span>',['/zone-edit/'.$row['id']], [
 				                    'title' => Yii::t('yii', 'Update'),
 				                    //'data-confirm' => Yii::t('yii', 'Are you sure you want to edit this item?'),
 				                   'data-method' => 'post',
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						?>
 					</td>
 					<td align="center" width="50px">
-						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/area-delete/'.$row['id']], [
+						<?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/zone-delete/'.$row['id']], [
 		                    'title' => Yii::t('yii', 'Delete'),
 		                    'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
 		                    'data-method' => 'post',

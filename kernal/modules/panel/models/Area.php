@@ -4,17 +4,13 @@ namespace app\modules\panel\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-
 /**
- * This is the model class for table "area".
+ * This is the model class for table "{{%area_groups}}".
  *
  * @property integer $id
- * @property string $name
- * @property integer $substate_id
+ * @property string $title
  * @property string $create_time
  * @property string $update_time
- *
- * @property Substate $substate
  */
 class Area extends ActiveRecord
 {
@@ -23,7 +19,7 @@ class Area extends ActiveRecord
      */
     public static function tableName()
     {
-        return static::getDb()->tablePrefix . 'area';
+        return '{{%area}}';
     }
 
     /**
@@ -32,10 +28,9 @@ class Area extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'substate_id'], 'required'],
-            [['substate_id'], 'integer'],
+            [['title'], 'required'],
             [['create_time', 'update_time'], 'safe'],
-            [['name'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -45,38 +40,12 @@ class Area extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => Yii::t('panel','Area Name'),
-            'substate_id' => Yii::t('panel','Substate ID'),
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
+            'id' => Yii::t('fa-IR','ID'),
+            'title' => Yii::t('fa-IR','Title'),
+            'create_time' => Yii::t('fa-IR','Create Time'),
+            'update_time' => Yii::t('fa-IR','Update Time'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubstate()
-    {
-        return $this->hasOne(Substate::className(), ['id' => 'substate_id']);
-    }
-   /* 
-    * old code
-    * remove
-    public static function cityDropdown()
-    {
-    	// get data if needed
-    	static $dropdown;
-    	    	 
-    	if ($dropdown === null) {
-    		$city = Substate::find()->all();
-    		foreach ($city as $row) {
-    			$dropdown[$row['id']] = $row['name']; 
-    		}
-    	}
-    
-    	return $dropdown;
-    }*/
     
     /**
      * @inheritdoc

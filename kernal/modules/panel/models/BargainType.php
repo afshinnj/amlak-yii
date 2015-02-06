@@ -46,4 +46,23 @@ class BargainType extends ActiveRecord
             'update_time' => Yii::t('fa-IR','Update Time'),
         ];
     }
+    
+
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => 'yii\behaviors\TimestampBehavior',
+                'value'      => function () { return Yii::$app->jdate->date('Y-m-d H:i:s'); },
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+            ],
+        ];
+    }
 }

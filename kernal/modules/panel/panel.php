@@ -17,8 +17,9 @@ class panel extends \yii\base\Module
        if (empty(Yii::$app->i18n->translations['panel'])) {
             Yii::$app->i18n->translations['panel'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => __DIR__ . '/language',
-                //'forceTranslation' => true,
+                'basePath' =>'@app/language',
+                'forceTranslation' => true,
+                
             ];
         }
     }

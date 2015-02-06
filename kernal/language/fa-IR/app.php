@@ -16,7 +16,7 @@ return [
 	'Registration variable' => 'ثبت متغیر ها',
 	'State' => 'شهر',
 	'Sub State' => 'شهرستان',
-	'Area' => 'منطقه',
+	'Zone' => 'منطقه',
 
 	'Pages' => 'صفحه ها',
 		

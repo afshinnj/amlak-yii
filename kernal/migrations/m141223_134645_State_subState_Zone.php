@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m141223_134645_State_subState_Area extends Migration
+class m141223_134645_State_subState_Zone extends Migration
 {
     public function up()
     {
@@ -26,7 +26,7 @@ class m141223_134645_State_subState_Area extends Migration
     			"create_time" => Schema::TYPE_DATETIME . ' null default null',
     			"update_time" => Schema::TYPE_DATETIME . ' null default null',
     	], $tableOptions);
-    	$this->createTable('area', [
+    	$this->createTable('zone', [
     			"id" => Schema::TYPE_PK,
     			"name" => Schema::TYPE_STRING . ' not null',
     			"substate_id" => Schema::TYPE_INTEGER . ' not null',
@@ -36,7 +36,7 @@ class m141223_134645_State_subState_Area extends Migration
     	
     	// add foreign keys for data integrity
     	$this->addForeignKey('substate' . "_state_id", 'substate', "state_id", 'state', "id");
-    	$this->addForeignKey('area' . "_substate_id", 'area', "substate_id", 'substate', "id");
+    	$this->addForeignKey('zone' . "_substate_id", 'zone', "substate_id", 'substate', "id");
     }
 
     public function down()

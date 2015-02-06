@@ -138,7 +138,7 @@ class Module extends \yii\base\Module
        if (empty(Yii::$app->i18n->translations['user'])) {
             Yii::$app->i18n->translations['user'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => __DIR__ . '/language',
+                'basePath' => '@app/language',
                 //'forceTranslation' => true,
             ];
         }

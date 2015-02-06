@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150131_205457_area_groups extends Migration
+class m150131_205457_area extends Migration
 {
     public function up()
     {
@@ -13,7 +13,7 @@ class m150131_205457_area_groups extends Migration
     	}
     	
     	// create tables. note the specific order
-    	$this->createTable('area_groups', [
+    	$this->createTable('area', [
     			"id" => Schema::TYPE_PK,
     			"title" => Schema::TYPE_STRING . ' not null',
     			"create_time" => Schema::TYPE_DATETIME . ' null default null',
@@ -22,7 +22,7 @@ class m150131_205457_area_groups extends Migration
     	 
     	// insert role data
     	$columns = ["title", "create_time"];
-    	$this->batchInsert('area_groups', $columns, [
+    	$this->batchInsert('area', $columns, [
     			["تا 50 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["50 تا 75 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["75 تا 100 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],

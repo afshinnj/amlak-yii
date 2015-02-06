@@ -3,7 +3,7 @@
 namespace app\modules\panel\controllers;
 
 use Yii;
-use app\modules\panel\models\Area;
+use app\modules\panel\models\Zone;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,9 +13,9 @@ use yii\web\ForbiddenHttpException;
 use yii\data\Pagination;
 
 /**
- * AreaController implements the CRUD actions for Area model.
+ * ZoneController implements the CRUD actions for Zone model.
  */
-class AreaController extends Controller
+class ZoneController extends Controller
 {
     public function behaviors()
     {
@@ -42,7 +42,7 @@ class AreaController extends Controller
     }
 
     /**
-     * Lists all Area models.
+     * Lists all Zone models.
      * @return mixed
      */
     public function actionIndex()
@@ -51,24 +51,24 @@ class AreaController extends Controller
     	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
     	
     	
-    	$query = Area::find();
+    	$query = Zone::find();
     	$countQuery = clone $query;
     	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
     	$models = $query->offset($pages->offset)
     	->limit($pages->limit)
     	->all();
     	$dataProvider = new ActiveDataProvider([
-    			'query' => Area::find(),
+    			'query' => Zone::find(),
     	]);
     	return $this->render('index', [
     			'dataProvider' => $dataProvider,
-    			'Area' => $models,
+    			'Zone' => $models,
     			'pages' => $pages,
     	]);
     }
 
     /**
-     * Displays a single Area model.
+     * Displays a single Zone model.
      * @param integer $id
      * @return mixed
      */
@@ -80,17 +80,17 @@ class AreaController extends Controller
     }
 
     /**
-     * Creates a new Area model.
+     * Creates a new Zone model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Area();
+        $model = new Zone();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully registered [ {StateName} ] Area", ["StateName" => $model->name]));
-            return $this->redirect(['/Area-List']);
+            Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully registered [ {StateName} ] Zone", ["StateName" => $model->name]));
+            return $this->redirect(['/Zone-List']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -99,7 +99,7 @@ class AreaController extends Controller
     }
 
     /**
-     * Updates an existing Area model.
+     * Updates an existing Zone model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,8 +109,8 @@ class AreaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {StateName} ] Area", ["StateName" => $model->name]));
-            return $this->redirect(['/Area-List']);
+        	Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {StateName} ] Zone", ["StateName" => $model->name]));
+            return $this->redirect(['/Zone-List']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -119,7 +119,7 @@ class AreaController extends Controller
     }
 
     /**
-     * Deletes an existing Area model.
+     * Deletes an existing Zone model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -132,15 +132,15 @@ class AreaController extends Controller
     }
 
     /**
-     * Finds the Area model based on its primary key value.
+     * Finds the Zone model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Area the loaded model
+     * @return Zone the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Area::findOne($id)) !== null) {
+        if (($model = Zone::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

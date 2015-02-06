@@ -38,7 +38,7 @@ use yii\bootstrap\NavBar;
             						[
 	            						['label'=>Yii::t('fa-IR','State'),'url' =>['/State-List']],
 	            						['label'=>Yii::t('fa-IR','Sub State'),'url' =>['/City-List']],
-            							['label'=>Yii::t('fa-IR','Area'),'url' =>['/Area-List']],
+            							['label'=>Yii::t('fa-IR','Zone'),'url' =>['/Zone-List']],
             							'<li class="divider"></li>',
             							['label'=>Yii::t('fa-IR','Home Type'),'url' =>['/Home-Type']],
             							['label'=>Yii::t('fa-IR','Bargain Type'),'url' =>['/Bargain-Type']],
