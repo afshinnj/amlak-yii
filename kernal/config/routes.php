@@ -39,9 +39,9 @@ return [
 		'settings' => 'panel/settings/index',
 		
 		'Home-Type' => 'panel/home/index',
-		'Bargain-Type' => 'panel/Bargain/index',
-		'Total-Price' => 'panel/Total/index',
-		'Area-Groups' => 'panel/Groups/index',
+		'Bargain-Type' => 'panel/bargain/index',
+		'Total-Price' => 'panel/price/index',
+		'Area-Groups' => 'panel/area/index',
 		
 
 ];
