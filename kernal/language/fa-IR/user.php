@@ -2,7 +2,6 @@
 
 return [
 
-    // models
     'ID' => 'شناسه',
     'User ID' => 'شناسه کاربر',
     'Create Time' => 'زمان ایجاد',

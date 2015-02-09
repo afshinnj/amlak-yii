@@ -2,8 +2,7 @@
 
 return [
 
-    // models
-		'States' => 'لیست شهر ها',
+ 		'States' => 'لیست شهر ها',
 		'Create State' => 'ثبت شهر',
 		
 		'Successfully registered [ {StateName} ] City' => 'شهر [ {StateName} ] با موفقیت ثبت شد ',
