@@ -68,18 +68,6 @@ class ZoneController extends Controller
     }
 
     /**
-     * Displays a single Zone model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Zone model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

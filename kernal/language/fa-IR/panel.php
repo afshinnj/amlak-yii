@@ -11,7 +11,6 @@ return [
 		
 		'Successfully registered [ {StateName} ] Zone' => 'منطقه [ {StateName} ] با موفقیت ثبت شد ',
 		'Successfully Update [ {StateName} ] Zone' => 'منطقه [ {StateName} ] با موفقیت بروز شد ',
-
 		'Successfully Update [ {PageName} ] Page' => 'صفحه [ {PageName} ] با موفقیت بروز شد ',
 		
 		'States Name' => 'نام شهر ها',
@@ -51,5 +50,14 @@ return [
 		'Site Off' => 'حالت تعمیر سایت',
 		'Site Off Description Text' => 'متن حالت تعمیر',
 		
+		'Successfully registered [ {StateName} ] Type' => 'نوع [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Type' => 'نوع [ {StateName} ] با موفقیت بروز رسانی شد ',
+		
+		'Home Types' => 'نوع ملک',
+		'Create Home Type' => 'ایجاد نوع ملک',
+		'Home Type' => 'نوع ملک',
+		'Create Home Type' => 'ایجاد نوع ملک',
+		'Home Types' => 'لیست نوع ملک',
+		'Update Home Type: ' => 'ویرایش : ',
 		
 ];

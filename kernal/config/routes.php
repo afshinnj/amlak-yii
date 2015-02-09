@@ -43,5 +43,8 @@ return [
 		'Total-Price' => 'panel/price/index',
 		'Area-Groups' => 'panel/area/index',
 		
+		'homeType-create' => 'panel/home/create',
+		'homeType-delete/<id:\d+>' => 'panel/home/delete',
+		'homeType-edit/<id:\d+>' => 'panel/home/update',
 
 ];

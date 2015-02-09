@@ -8,7 +8,6 @@ return [
 	'Change Avatar' => 'تغییر نمایه',	
 	'logout  [ {displayName} ]' => 'خروج [ {displayName} ]',
 	'logout' => 'خروج',
-
 	'Home' => 'خانه',
 	'Registration Home' => 'ثبت خانه',
 	'House request' => 'ثبت درخواست خانه',	
@@ -17,7 +16,6 @@ return [
 	'State' => 'شهر',
 	'Sub State' => 'شهرستان',
 	'Zone' => 'منطقه',
-
 	'Pages' => 'صفحه ها',
 		
 	'Settings' => 'تنظیمات',
