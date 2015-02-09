@@ -1,7 +1,7 @@
 Welcome to amlak 
 =============
 
-![amlak V0.0.1](http://iafshin.ir/images/logo.png "amlak V0.0.1 Store Front") 
+![amlak V0.0.1](http://dl.persianscript.ir/img/amlak-rooz.jpg "amlak V0.0.1 Store Front") 
 
 
 Overview
