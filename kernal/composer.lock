@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6b6eed9cdfc3da22d32eed8f1c709e6a",
+    "hash": "37cfc76f35b968e88033bc48d73d1b5a",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -365,6 +365,48 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "spanjeta/yii2-backup",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spanjeta/yii2-backup.git",
+                "reference": "d64a3c31d5fe0910434a9a8efeb8e3b0fe154b1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spanjeta/yii2-backup/zipball/d64a3c31d5fe0910434a9a8efeb8e3b0fe154b1b",
+                "reference": "d64a3c31d5fe0910434a9a8efeb8e3b0fe154b1b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "spanjeta\\modules\\backup\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Shiv Charan Panjeta",
+                    "email": "shivcharan.panjeta@gmail.com"
+                }
+            ],
+            "description": "Database Backup and Restore functionality",
+            "keywords": [
+                "backup",
+                "database",
+                "restore",
+                "yii2"
+            ],
+            "time": "2014-10-28 21:00:23"
         },
         {
             "name": "swiftmailer/swiftmailer",

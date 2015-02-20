@@ -5,14 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\panel\models\TotalPrice */
 
-$this->title = 'Update Total Price: ' . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Total Prices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = Yii::t('panel','Update Price: ') . ' ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('panel','Total Prices'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('panel','Update');
 ?>
 <div class="total-price-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

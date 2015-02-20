@@ -46,5 +46,22 @@ return [
 		'homeType-create' => 'panel/home/create',
 		'homeType-delete/<id:\d+>' => 'panel/home/delete',
 		'homeType-edit/<id:\d+>' => 'panel/home/update',
+		
+		'Area-Create' => 'panel/area/create',
+		'area-delete/<id:\d+>' => 'panel/area/delete',
+		'area-edit/<id:\d+>' => 'panel/area/update',
+		'area-list' => 'panel/area/index',
+		
+		'price-create' => 'panel/price/create',
+		'price-delete/<id:\d+>' => 'panel/price/delete',
+		'price-edit/<id:\d+>' => 'panel/price/update',
+		'price-list' => 'panel/price/index',
+
+		'bargain-create' => 'panel/bargain/create',
+		'bargain-delete/<id:\d+>' => 'panel/bargain/delete',
+		'bargain-edit/<id:\d+>' => 'panel/bargain/update',
+		'bargain-list' => 'panel/bargain/index'		
+		
+		
 
 ];

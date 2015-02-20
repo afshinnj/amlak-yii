@@ -9,6 +9,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+use yii\data\Pagination;
+
 /**
  * AreaController implements the CRUD actions for Area model.
  */
@@ -21,9 +24,9 @@ class AreaController extends Controller
         				'class' => AccessControl::className(),
         				'rules' => [
         						[
-        								'actions' => ['index','create','update','delete'],
-        								'allow'   => true,
-        								'roles'   => ['admin'],
+        						'actions' => ['index','create','update','delete'],
+        						'allow'   => true,
+        						'roles'   => ['admin'],
         						],
         						 
         				],
@@ -32,6 +35,7 @@ class AreaController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                	'update' => ['post'],
                 ],
             ],
         ];
@@ -43,25 +47,24 @@ class AreaController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Area::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Area model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+    	// redirect url
+    	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
+    	
+    	
+    	$query = Area::find();
+    	$countQuery = clone $query;
+    	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
+    	$models = $query->offset($pages->offset)
+    	->limit($pages->limit)
+    	->all();
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => Area::find(),
+    	]);
+    	return $this->render('index', [
+    			'dataProvider' => $dataProvider,
+    			'Area' => $models,
+    			'pages' => $pages,
+    	]);
     }
 
     /**
@@ -74,7 +77,8 @@ class AreaController extends Controller
         $model = new Area();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully registered [ {StateName} ] Area", ["StateName" => $model->title]));
+            return $this->redirect(['/area-list']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -93,7 +97,8 @@ class AreaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+           Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {StateName} ] Area", ["StateName" => $model->title]));
+            return $this->redirect(['/area-list']);
         } else {
             return $this->render('update', [
                 'model' => $model,

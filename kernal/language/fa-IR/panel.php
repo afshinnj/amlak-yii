@@ -10,7 +10,17 @@ return [
 		
 		'Successfully registered [ {StateName} ] Zone' => 'منطقه [ {StateName} ] با موفقیت ثبت شد ',
 		'Successfully Update [ {StateName} ] Zone' => 'منطقه [ {StateName} ] با موفقیت بروز شد ',
+		
 		'Successfully Update [ {PageName} ] Page' => 'صفحه [ {PageName} ] با موفقیت بروز شد ',
+		
+		'Successfully registered [ {StateName} ] Area' => 'متراژ [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Area' => 'متراژ [ {StateName} ] با موفقیت بروز شد ',
+
+		'Successfully registered [ {StateName} ] Price' => 'مبلغ [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Price' => 'مبلغ [ {StateName} ] با موفقیت بروز شد ',
+		
+		'Successfully registered [ {StateName} ] Bargain' => 'نوع سند [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Bargain' => 'نوع سند [ {StateName} ] با موفقیت بروز شد ',
 		
 		'States Name' => 'نام شهر ها',
 		
@@ -59,4 +69,14 @@ return [
 		'Home Types' => 'لیست نوع ملک',
 		'Update Home Type: ' => 'ویرایش : ',
 		
+		'Areas' => 'متراژ',
+		'Create Area' => 'ثبت متراژ جدید',
+		
+		'Create Price' => 'ایجاد قیمت',
+		'Total Prices' => 'لیست قیمت ها',
+		'Prices' => 'لیست قیمت',
+		'Update Price: ' => 'ویرایش قیمت',
+		
+		'Bargain Types' => 'نوع سند',
+		'Create Bargain Type' => 'ایجاد نوع سند',
 ];

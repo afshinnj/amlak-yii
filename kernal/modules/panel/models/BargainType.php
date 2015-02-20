@@ -40,8 +40,8 @@ class BargainType extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app','ID'),
-            'title' => Yii::t('app','Title'),
+            'id' => Yii::t('panel','ID'),
+            'title' => Yii::t('panel','Title'),
             'create_time' => Yii::t('app','Create Time'),
             'update_time' => Yii::t('app','Update Time'),
         ];

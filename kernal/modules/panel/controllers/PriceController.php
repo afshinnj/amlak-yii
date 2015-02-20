@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+use yii\data\Pagination;
 /**
  * PriceController implements the CRUD actions for TotalPrice model.
  */
@@ -43,13 +45,24 @@ class PriceController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => TotalPrice::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+    	// redirect url
+    	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
+    	
+    	
+    	$query = TotalPrice::find();
+    	$countQuery = clone $query;
+    	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
+    	$models = $query->offset($pages->offset)
+    	->limit($pages->limit)
+    	->all();
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => TotalPrice::find(),
+    	]);
+    	return $this->render('index', [
+    			'dataProvider' => $dataProvider,
+    			'Price' => $models,
+    			'pages' => $pages,
+    	]);
     }
 
     /**
@@ -74,7 +87,8 @@ class PriceController extends Controller
         $model = new TotalPrice();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully registered [ {StateName} ] Price", ["StateName" => $model->title]));
+            return $this->redirect(['/price-list']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -93,7 +107,8 @@ class PriceController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+             Yii::$app->session->setFlash("State-success", Yii::t("panel", "Successfully Update [ {StateName} ] Price", ["StateName" => $model->title]));
+            return $this->redirect(['/price-list']);
         } else {
             return $this->render('update', [
                 'model' => $model,

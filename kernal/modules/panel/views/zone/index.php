@@ -63,5 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<?php endforeach;?>
 		</table>
 	</div>
-
+	<div class="text-center">
+		<?= LinkPager::widget(['pagination' => $pages,]);?>
+	</div>	
 </div>
