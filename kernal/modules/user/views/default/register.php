@@ -26,18 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="col-lg-8 ">
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="panel-title">Using Layouts</div>
+		<div class="panel-title"><?= Html::encode($this->title) ?></div>
 	</div>
 	<div class="panel-body">
-			<p>As described in the <a href="#rendering-in-controllers">Rendering in Controllers</a> subsection, when you render a view
-		by calling the [[yii\base\Controller::render()|rendpplied
-		to the rendering result. By default, the layout <code>@app/views/layouts/main.php</code> will be used. </p>
-		
-		<p>You may use a different layout by configuring either [[yii\base\Application::layout]] or [[yii\base\Controller::layout]].
-		The former governs the layout used by all controllers, while the latter overrides the former for individual controllers.
-		For example, the following code makes the <code>post</code> controller to use <code>@app/views/layouts/post.php</code> as the layout
-		when rendering its views. Other controllers, assuming their <code>layout</code> property is untouched, will still use the default
-		<code>@app/views/layouts/main.php</code> as the layout.</p>
+				<?= $page['option_value']?>
 	</div>
 	<div class="panel-footer">
 	
@@ -104,11 +96,6 @@ $this->params['breadcrumbs'][] = $this->title;
             
         </div>
     </div>
-    	<div class="footer">
-        <div class="container text-center">
-            <p>&copy; My Company <?= date('Y') ?></p>
-        </div>
-	</div>
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -6,6 +6,7 @@ use Yii;
 use app\modules\user\models\User;
 use app\modules\user\models\UserKey;
 use app\modules\user\models\UserAuth;
+use app\modules\user\models\Profile;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -144,10 +145,9 @@ class AdminController extends Controller
     {
         // delete profile and userkeys first to handle foreign key constraint
         $user = $this->findModel($id);
-        $profile = $user->profile;
         UserKey::deleteAll(['user_id' => $user->id]);
         UserAuth::deleteAll(['user_id' => $user->id]);
-        $profile->delete();
+        Profile::deleteAll(['user_id' => $user->id]);
         $user->delete();
 
         return $this->redirect(['index']);

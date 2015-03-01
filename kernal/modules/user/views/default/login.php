@@ -33,22 +33,25 @@ $this->title = Yii::t('user', 'Login');
     
         <div class="container">
 		 	<div class="row">
-			 	
-				<div class="col-lg-8">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<div class="panel-title"><?= $page['title']?></div>
-						</div>
-						<div class="panel-body">
-								<?= $page['text']?>
-						</div>
-					</div>
-				</div> <!-- col-lg-8 -->
-				
-				<div class="col-lg-4">
-						<div class="panel panel-default">
-						<div class="panel-body">
-							<div style="text-align: center; margin-bottom: 20px;" >
+		 		<div class="col-lg-8">
+		 				<div class="box box-primary" dir="rtl">
+			                <div class="box-header">
+			                  <i class="ion ion-clipboard"></i>
+			                  <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+			                  </div><!-- /.box-header -->
+			                <div class="box-body">
+									<?= $page['text']?>
+			                </div><!-- /.box-body -->
+			 				</div>
+		 		</div>
+		 		<div class="col-lg-4">
+		 				<div class="box box-primary" dir="rtl">
+			                <div class="box-header">
+			                  <i class="ion ion-locked"></i>
+			                  <h3 class="box-title"></h3>
+			                  </div><!-- /.box-header -->
+			                <div class="box-body">
+			<div style="text-align: center; margin-bottom: 20px;" >
 								<?= Html::img('@web/images/avatar.png',['class' =>'img-circle','width'=>'120px']);?>
 								<h4><?= Yii::t('fa-IR','Administration')?></h4>
 								<small class="text-muted"><?= Yii::t('fa-IR','Please enter your login details.')?></small>
@@ -64,22 +67,17 @@ $this->title = Yii::t('user', 'Login');
 						       <?= $form->field($model, 'password')->passwordInput(array('placeholder' => 'Password')) ?>
 							  <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary btnLogin']) ?>
 						<?php ActiveForm::end(); ?>
-					</div>
-					<div class="panel-footer text-center">
+					<div class="box-footer text-center">
 						<?= Html::a(Yii::t("user", "Register"), ["/user/register"],['class' => 'btn btn-info btnLogin']) ?>
 						<br>
 							<?= Html::a(Yii::t("user", "Forgot password") . "?", ["/user/forgot"]) ?><br>
 							<?= Html::a(Yii::t("user", "Resend confirmation email"), ["/user/resend"]) ?>
 				  	
 					</div>
-						</div> <!-- panel panel-default -->
-				</div>	<!-- col-lg-4 -->		 	
-			 	<div class="login-footer text-left">
-			 			
-			 			<small class="">Copyright © 2009 - 2015 All Rights Reserved</small>
-			 			&nbsp;&nbsp;&nbsp;
-			 			<small>HomeCart Version 0.0.1</small> 
-			 	</div>
+			                </div><!-- /.box-body -->
+			 				</div>
+		 		</div>
+
 			</div>   <!-- row -->          
         </div> <!-- container -->
 

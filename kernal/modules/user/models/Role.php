@@ -43,7 +43,7 @@ class Role extends ActiveRecord
     {
         return [
             [['name'], 'required'],
-            //            [['create_time', 'update_time'], 'safe'],
+            //[['create_time', 'update_time'], 'safe'],
             [['can_admin'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
@@ -85,8 +85,8 @@ class Role extends ActiveRecord
      */
     public function getUsers()
     {
-        $user = Yii::$app->getModule("user")->model("User");
-        return $this->hasMany($user::className(), ['role_id' => 'id']);
+        //$user = Yii::$app->getModule("user")->model("User");
+        return $this->hasMany(User::className(), ['role_id' => 'id']);
     }
 
     /**

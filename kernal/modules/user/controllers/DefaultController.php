@@ -10,7 +10,8 @@ use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 use app\modules\user\models\Profile;
-use app\modules\panel\models\Pages;
+use app\modules\dashboard\models\Pages;
+use app\modules\dashboard\models\Option;
 /**
  * Default controller for User module
  */
@@ -83,26 +84,15 @@ class DefaultController extends Controller
         // load post data and login
         $model = Yii::$app->getModule("user")->model("LoginForm");
         if ($model->load(Yii::$app->request->post()) && $model->login(Yii::$app->getModule("user")->loginDuration)) {
-        	
-	        	if(Yii::$app->user->can("admin")){
-	        		return $this->goBack(Yii::$app->getModule("user")->AdminloginRedirect);
-	        	}
-        	
-        		if(Yii::$app->user->can("user")){
-        			return $this->goBack(Yii::$app->getModule("user")->UserloginRedirect);
-        		}
 
-  
+	        		return $this->goBack(['dashboard']);
+
         }
-
-        $Page = Pages::find()->where(['id' => 1])->one();
-    	
-    
         
         // render
         return $this->renderPartial('login', [
             'model' => $model,
-        	'page' => $Page,
+        	'page' => Pages::find()->where(['id' => 1])->one(),
         ]);
     }
 
@@ -175,6 +165,7 @@ class DefaultController extends Controller
         return $this->renderPartial("register", [
             'user'    => $user,
             'profile' => $profile,
+        	'page' => Option::find()->where(['id' => 10])->one(),
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 use yii\db\Schema;
 use yii\db\Migration;
+use  app\modules\dashboard\models\Settings;
 
 class m150123_183235_settings extends Migration
 {
@@ -13,7 +14,7 @@ class m150123_183235_settings extends Migration
     	}
     	 
     	// create tables. note the specific order
-    	$this->createTable('settings', [
+    	$this->createTable(Settings::tableName(), [
     			"id" => Schema::TYPE_PK,
     			"title" => Schema::TYPE_STRING . ' null default null',
     			"email" => Schema::TYPE_STRING . ' null default null',
@@ -30,7 +31,7 @@ class m150123_183235_settings extends Migration
     	
     	// insert role data
     	$columns = ["site_off", "admin_language", "site_language","create_time"];
-    	$this->batchInsert('settings', $columns, [
+    	$this->batchInsert(Settings::tableName(), $columns, [
     			[1, "fa-IR", "fa-IR", Yii::$app->jdate->date('Y-m-d H:i:s')],
 
     	]);
@@ -38,6 +39,6 @@ class m150123_183235_settings extends Migration
 
     public function down()
     {
-         $this->dropTable('settings');
+         $this->dropTable(Settings::tableName());
     }
 }

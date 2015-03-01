@@ -18,20 +18,17 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-    	'css/login.css',
-    	'css/panel.css',
-    	//'css/redactor.css',
+        'css-js/css/site1.css',
+    	'css-js/css/login.css',
+    	'css-js/css/panel1.css',
+    	'css-js/css/AdminLTErtl.css',
+    	'css-js/css/skins/_all-skins.css',
+    	'css-js/css/fonts/font-awesome.min.css',
+    	'css-js/css/fonts/ionicons.css',
     ];
 	public $js = [
-    	//'js/redactor.js',
-    	//'js/table.js',
-    	//'js/definedlinks.js',
-    	//'js/fontcolor.js',
-    	//'js/fontfamily.js',
-    	//'js/fontsize.js',
-    	//'js/imagemanager.js',
-    	//'js/textdirection.js',
+    	'css-js/js/app.js',
+		'css-js/js/bootstrap.js',
 			
 	];
     public $depends = [

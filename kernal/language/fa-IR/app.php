@@ -1,17 +1,20 @@
 <?php
 
 return [
-	'Dashbord' => 'داشبورد',
+	'Dashboard' => 'داشبورد',
+	'Control panel' => 'پنل مدیریت',
 	'User' => 'تنظیمات کاربر',
 	'Change Password' => 'تغییر رمز عبور',
-	'Change Profile' => 'تغییر مشخصات',
+	'Profile' => 'مشخصات',
 	'Change Avatar' => 'تغییر نمایه',	
 	'logout  [ {displayName} ]' => 'خروج [ {displayName} ]',
 	'logout' => 'خروج',
+	'Sign out' => 'خروج',	
 	'Home' => 'خانه',
 	'Registration Home' => 'ثبت خانه',
 	'House request' => 'ثبت درخواست خانه',	
 	
+	'Registration location' => 'ثبت شهر / منطقه',
 	'Registration variable' => 'ثبت متغیر ها',
 	'State' => 'شهر',
 	'Sub State' => 'شهرستان',
@@ -19,6 +22,7 @@ return [
 	'Pages' => 'صفحه ها',
 		
 	'Settings' => 'تنظیمات',
+	'Setting' => 'تنظیمات',
 		
 	'Registration-State' => 'ثیت شهر',
 	'Registration-Sub-State' => 'ثبت شهرستان',

@@ -2,6 +2,7 @@
 
 use yii\db\Schema;
 use yii\db\Migration;
+use  app\modules\dashboard\models\Pages;
 
 class m150113_102452_pages extends Migration
 {
@@ -13,7 +14,7 @@ class m150113_102452_pages extends Migration
     	}
     	 
     	// create tables. note the specific order
-    	$this->createTable('pages', [
+    	$this->createTable(Pages::tableName(), [
     			"id" => Schema::TYPE_PK,
     			"title" => Schema::TYPE_STRING . ' not null',
     			"text" => Schema::TYPE_TEXT . ' not null',
@@ -23,7 +24,7 @@ class m150113_102452_pages extends Migration
     	
     	// insert role data
     	$columns = ["title", "text", "create_time"];
-    	$this->batchInsert('pages', $columns, [
+    	$this->batchInsert(Pages::tableName(), $columns, [
     			["صفحه ورود", "صفحه ورود",  Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["صفحه ثبت نام ", "صفحه ثبت نام", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["درباره ما", "درباره ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
@@ -33,6 +34,6 @@ class m150113_102452_pages extends Migration
 
     public function down()
     {
-         $this->dropTable('pages');
+         $this->dropTable(Pages::tableName());
     }
 }

@@ -12,14 +12,16 @@ $config = [
 		
     'modules' => [
         'user' => ['class' => 'app\modules\user\Module',],
-        'panel' => ['class' => 'app\modules\panel\panel',],
-        'dashbord' => ['class' => 'app\modules\dashbord\Module',],
+        'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
     	'frontend' => ['class' => 'app\modules\frontend\Module',],
+    	'error' => ['class' => 'app\modules\error\error',],
+    				
+    		
     				
     		
     ],   
     'components' => [
-    	'panel' => ['class' => 'app\modules\panel\components\panel',],
+    	'dashboard' => ['class' => 'app\modules\dashboard\components\panel',],
     		
 	    'i18n' => [
 	        'translations' => [
@@ -28,7 +30,7 @@ $config = [
 	                'basePath' => '@app/language',
 	                'fileMap' => [
 	                    'fa-IR' => 'app.php',
-	                	
+                	
 	                ],
 	            ],
 	        ],

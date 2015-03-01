@@ -69,10 +69,6 @@ class Module extends \yii\base\Module
      */
     public $loginRedirect = ['login'];
     
-    public $AdminloginRedirect = ['panel'];
-    
-    public $UserloginRedirect = ['dashbord'];
-
     /**
      * @var array|string|null Url to redirect to after logging out. If null, will redirect to home page
      */

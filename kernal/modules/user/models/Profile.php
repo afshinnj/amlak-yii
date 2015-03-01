@@ -90,8 +90,8 @@ class Profile extends ActiveRecord
      */
     public function getUser()
     {
-        $user = Yii::$app->getModule("user")->model("User");
-        return $this->hasOne($user::className(), ['id' => 'user_id']);
+        //$user = Yii::$app->getModule("user")->model("User");
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
