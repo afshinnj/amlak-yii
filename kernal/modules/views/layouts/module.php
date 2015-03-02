@@ -27,7 +27,7 @@ AppAsset::register($this);
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="skin-blue">
+  <body class="skin-blue layout-boxed">
   <?php $this->beginBody() ?>
     <div class="wrapper">
       
@@ -132,7 +132,7 @@ AppAsset::register($this);
               </a>
               <ul class="treeview-menu">
               <?php foreach (Menus::find()->where(['role_id'=>Yii::$app->user->identity->role_id, 'parent_id' => $r['id']])->all() as $rr):?>
-              	<li><?= Html::a(Yii::t('fa-IR',$rr['title']).'<i class="fa fa-circle-o"></i>',$rr['url']);?></li>
+              	<li id="<?= $rr['title']?>" ><?= Html::a(Yii::t('fa-IR',$rr['title']).'<i class="fa fa-circle-o"></i>',$rr['url']);?></li>
               <?php endforeach;?>
                 <!--
                  <li class="active"><?= Html::a(Yii::t('fa-IR',$r['title']).'<i class="fa fa-circle-o"></i>','pages');?></li>

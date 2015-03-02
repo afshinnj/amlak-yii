@@ -11,7 +11,7 @@ use app\modules\dashboard\models\City;
 $this->title = Yii::t('dashboard','Substates');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
- 	<div class="box box-primary" dir="rtl">
+ 	<div class="box box-primary" li="Sub-State" dir="rtl" id="Registration-location">
                 <div class="box-header" style="cursor: move;">
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
       </div><!-- /.box-header -->
                 <div class="box-body">
-					<ul class="todo-list ui-sortable">
+					<ul class="todo-list">
                 	<?php foreach ($City as $row):?>
                 	<li>
                 		<span class="handle ui-sortable-handle">
@@ -61,10 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 	<?php endforeach;?>
                 </ul>
                 </div><!-- /.box-body -->
+                  <div class="box-footer clearfix no-border">
+                 <?= LinkPager::widget(['pagination' => $pages,]);?>
+                </div>
                 
 	</div>
-	<div class="text-center">
-		<?= LinkPager::widget(['pagination' => $pages,]);?>
-	</div>			
+			
 		
-</div>
+

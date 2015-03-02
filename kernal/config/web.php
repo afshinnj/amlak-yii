@@ -15,10 +15,7 @@ $config = [
         'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
     	'frontend' => ['class' => 'app\modules\frontend\Module',],
     	'error' => ['class' => 'app\modules\error\error',],
-    				
-    		
-    				
-    		
+	
     ],   
     'components' => [
     	'dashboard' => ['class' => 'app\modules\dashboard\components\panel',],
@@ -90,9 +87,9 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    //$config['bootstrap'][] = 'debug';
-   // $config['modules']['debug'] = 'yii\debug\Module';
+     //configuration adjustments for 'dev' environment
+   $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = 'yii\debug\Module';
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = 'yii\gii\Module';

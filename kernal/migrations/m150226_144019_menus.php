@@ -40,26 +40,26 @@ class m150226_144019_menus extends Migration
     			[1, 1, "Pages", "pages", "panel","", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[1, 1, "Setting", "settings", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
 
-    			[1, null, "Registration location", "", "panel", "fa-globe", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, null, "Registration-location", "", "panel", "fa-globe", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[1, 4, "State", "State-List", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 4, "Sub State", "City-List", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 4, "Sub-State", "City-List", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[1, 4, "Zone", "Zone-List", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
-    			[1, null, "Registration variable", "", "panel", "fa-home", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 8, "Home Type", "Home-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 8, "Bargain Type", "Bargain-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 8, "Total Price", "Total-Price", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 8, "Area Groups", "Area-Groups", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, null, "Registration-variable", "", "panel", "fa-home", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 8, "Home-Type", "Home-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 8, "Bargain-Type", "Bargain-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 8, "Total-Price", "Total-Price", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 8, "Area-Groups", "Area-Groups", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			[1, null, "User", "", "panel", "fa-user", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 13, "Change Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 13, "Change Profile", "change-profile", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[1, 13, "Change Avatar", "change-avatar", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 13, "Change-Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 13, "Change-Profile", "change-profile", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[1, 13, "Change-Avatar", "change-avatar", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			[2, null, "User", "", "panel", "fa-user", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[2, 17, "Change Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[2, 17, "Change Profile", "change-profile", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[2, 17, "Change Avatar", "change-avatar", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[2, 17, "Change-Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[2, 17, "Change-Profile", "change-profile", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[2, 17, "Change-Avatar", "change-avatar", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			 
     			

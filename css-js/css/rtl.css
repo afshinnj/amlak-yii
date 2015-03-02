@@ -1,0 +1,145 @@
+/*!
+ *   AdminLTE v1.2 rtl
+ *   Author: afshin nj
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
+!*/
+/*
+ * Core: Genral Layout Style
+ * -------------------------
+ */
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif, yekan !important;
+}
+
+.main-sidebar,
+.left-side {
+  right: 0 !important;
+
+}
+
+.content-wrapper,
+.right-side,
+.main-footer {
+  -webkit-transition: margin-right 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: margin-right 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: margin-right 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  margin-right: 230px;
+}
+@media (max-width: 767px) {
+  .content-wrapper,
+  .right-side,
+  .main-footer {
+    margin-right: 0;
+  }
+}
+@media (min-width: 768px) {
+  .sidebar-collapse .content-wrapper,
+  .sidebar-collapse .right-side,
+  .sidebar-collapse .main-footer {
+    margin-right: 0;
+  }
+}
+@media (max-width: 767px) {
+  .sidebar-open .content-wrapper,
+  .sidebar-open .right-side,
+  .sidebar-open .main-footer {
+    -webkit-transform: translate(-230px, 0);
+    -ms-transform: translate(-230px, 0);
+    -o-transform: translate(-230px, 0);
+    transform: translate(-230px, 0);
+  }
+}
+/* H1 - H6 font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Source Sans Pro', sans-serif, dinar;
+}
+.main-header > .navbar {
+  margin-right: 230px;
+}
+.main-header > .navbar {
+  margin-right: 230px;
+}
+.main-header .navbar-custom-menu,
+.main-header .navbar-right {
+  margin-left: 5px;
+  float: left;
+}
+.main-header .sidebar-toggle {
+  float: right;
+}
+.main-header .logo {
+  float: right;
+}
+@media (max-width: 767px) {
+  .main-sidebar,
+  .left-side {
+    -webkit-transform: translate(+230px, 0);
+    -ms-transform: translate(+230px, 0);
+    -o-transform: translate(+230px, 0);
+    transform: translate(+230px, 0);
+  }
+}
+@media (min-width: 768px) {
+  .sidebar-collapse .main-sidebar,
+  .sidebar-collapse .left-side {
+    -webkit-transform: translate(+230px, 0);
+    -ms-transform: translate(+230px, 0);
+    -o-transform: translate(+230px, 0);
+    transform: translate(+230px, 0);
+  }
+}
+.sidebar-menu{
+	text-align: right;
+}
+.sidebar-menu li > a > .fa-angle-right {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+.sidebar-menu li.active > a > .fa-angle-right {
+  -webkit-transform: rotate(+90deg);
+  -ms-transform: rotate(+90deg);
+  -o-transform: rotate(+90deg);
+  transform: rotate(+90deg);
+   margin-top: 0px; 
+}
+.sidebar-menu .treeview-menu .treeview-menu {
+  padding-right: 20px;
+}
+.navbar-nav > .user-menu .user-image {
+  float: right;
+  margin-left: 10px;
+}
+@media (max-width: 767px) {
+  .navbar-nav > .user-menu .user-image {
+    margin-left: 0;
+  }
+}
+.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+  right: auto;
+}
+@media (max-width: 991px) {
+  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    right: auto;
+  }
+}
+.content-header > .breadcrumb {
+	direction: rtl;
+}
+.sidebar-menu .treeview-menu > li > a{
+	margin-right: 10px;
+}

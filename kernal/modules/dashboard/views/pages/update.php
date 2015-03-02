@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use Editor\Redactor;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\dashboard\models\Pages */
@@ -27,11 +26,10 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard','Update');
 echo yii\imperavi\Widget::widget([
 	'model' => $model,
 	'attribute' => 'text',
-		
     'options' => [
         'lang' => 'fa',
     	'imageUpload' => Yii::getAlias('@web')."/kernal/vendor/imperavi/Upload.php",
-    	'imageManagerJson'=> Yii::getAlias('@web')."/kernal/vendor/imperavi/Upload.php",
+    	//'imageManagerJson'=> Yii::getAlias('@web')."/kernal/vendor/imperavi/Upload.php",
     	'buttonSource' => true,   		
     	'fixed' => true,
     	'focus' => true,

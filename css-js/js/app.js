@@ -298,8 +298,65 @@ $.AdminLTE.tree = function (menu) {
   });
 };
 
+/* BoxWidget
+ * =========
+ * BoxWidget is plugin to handle collapsing and
+ * removing boxes from the screen.
+ *
+ * @type Object
+ * @usage $.AdminLTE.boxWidget.activate()
+ *								Set all of your option in the main $.AdminLTE.options object
+ */
+$.AdminLTE.boxWidget = {
+  activate: function () {
+    var o = $.AdminLTE.options;
+    var _this = this;
+    //Listen for collapse event triggers
+    $(o.boxWidgetOptions.boxWidgetSelectors.collapse).click(function (e) {
+      e.preventDefault();
+      _this.collapse($(this));
+    });
 
-$('.pages-index').click(function(){
+    //Listen for remove event triggers
+    $(o.boxWidgetOptions.boxWidgetSelectors.remove).click(function (e) {
+      e.preventDefault();
+      _this.remove($(this));
+    });
+  },
+  collapse: function (element) {
+    //Find the box parent
+    var box = element.parents(".box").first();
+    //Find the body and the footer
+    var bf = box.find(".box-body, .box-footer");
+    if (!box.hasClass("collapsed-box")) {
+      //Convert minus into plus
+      element.children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
+      bf.slideUp(300, function () {
+        box.addClass("collapsed-box");
+      });
+    } else {
+      //Convert plus into minus
+      element.children(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
+      bf.slideDown(300, function () {
+        box.removeClass("collapsed-box");
+      });
+    }
+  },
+  remove: function (element) {
+    //Find the box parent
+    var box = element.parents(".box").first();
+    box.slideUp();
+  },
+  options: $.AdminLTE.options.boxWidgetOptions
+};
+
+
+
+
+
+
+$(".box").each(function(index, value) { 
 	
-	
+    $('#'+$(this).attr('id')).addClass("active");
+    $('#'+$(this).attr('li')).addClass("active");
 });

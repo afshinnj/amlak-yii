@@ -13,8 +13,8 @@ use app\modules\dashboard\models\Zone;
 $this->title = Yii::t('dashboard','Zones');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-	<div class="box box-primary" dir="rtl">
-                <div class="box-header" style="cursor: move;">
+	<div class="box box-primary" li="Zone" dir="rtl" id="Registration-location">
+                <div class="box-header">
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
             <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
@@ -63,9 +63,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 	<?php endforeach;?>
                 </ul>
                 </div><!-- /.box-body -->
+                <div class="box-footer clearfix no-border">
+                 <?= LinkPager::widget(['pagination' => $pages,]);?>
+                </div>
                 
 	</div>
-	<div class="text-center">
-		<?= LinkPager::widget(['pagination' => $pages,]);?>
-	</div>	
-</div>
+

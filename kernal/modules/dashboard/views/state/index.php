@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard',$this->title);
 ?>
 
 
- 	<div class="box box-primary" dir="rtl">
+ 	<div class="box box-primary" li="State" dir="rtl" id="Registration-location">
                 <div class="box-header ui-sortable-handle" style="cursor: move;">
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
@@ -29,12 +29,13 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard',$this->title);
 		            <p><?= $flash ?></p>
 		        </div>
 		    <?php endif; ?> 
-		    <hr>
-		        <p>
-        <?= Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;' . Yii::t('dashboard','Create State'), ['/Create-State'], ['class' => 'btn btn-success']) ?>
-    </p>         
+      
                   </div><!-- /.box-header -->
                 <div class="box-body">
+                <p>
+     			   <?= Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;' . 
+     			   		Yii::t('dashboard','Create State'), ['/Create-State'], ['class' => 'btn btn-success']) ?>
+    			</p>   
 					<ul class="todo-list ui-sortable">
                 	<?php foreach ($State as $row):?>
                 	<li>
@@ -66,11 +67,10 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard',$this->title);
                 	<?php endforeach;?>
                 </ul>
                 </div><!-- /.box-body -->
+               <div class="box-footer clearfix no-border">
+                 <?= LinkPager::widget(['pagination' => $pages,]);?>
+                </div>
    </div> 
-	<div class="text-center">
-		<?= LinkPager::widget(['pagination' => $pages,]);?>
-	</div>			
 		
-	
-</div>
+		
 
