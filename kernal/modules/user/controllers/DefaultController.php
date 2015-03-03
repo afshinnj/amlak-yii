@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\user\controllers;
 
 use Yii;
@@ -11,7 +10,7 @@ use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 use app\modules\user\models\Profile;
 use app\modules\dashboard\models\Pages;
-use app\modules\dashboard\models\Option;
+
 /**
  * Default controller for User module
  */
@@ -165,7 +164,7 @@ class DefaultController extends Controller
         return $this->renderPartial("register", [
             'user'    => $user,
             'profile' => $profile,
-        	'page' => Option::find()->where(['id' => 10])->one(),
+        	'page' => Pages::find()->where(['id' => 2])->one(),
         ]);
     }
 

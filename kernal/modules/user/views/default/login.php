@@ -27,7 +27,7 @@ $this->title = Yii::t('user', 'Login');
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="login-body">
+<body class="login-page" style="padding-top: 50px;">
 
 <?php $this->beginBody() ?>
     
@@ -58,17 +58,18 @@ $this->title = Yii::t('user', 'Login');
 							</div>
 				
 						<?php $form = ActiveForm::begin(['id' => 'login-form','options' => ['class' => 'form-horizontal'],
-										'fieldConfig' => [
-											'template' => "<div class=\"col-lg-12\">{input}{error}</div>",
-										],
+
 						]); ?>
 				
-						       <?= $form->field($model, 'username')->textInput(array('placeholder' => 'Email'));?>
-						       <?= $form->field($model, 'password')->passwordInput(array('placeholder' => 'Password')) ?>
-							  <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary btnLogin']) ?>
+						       <?= $form->field($model, 'username',['template' => '<div class="col-lg-12 has-feedback"><span class="glyphicon glyphicon-envelope form-control-feedback"></span>{input}{error}{hint}</div>',])->textInput(array('placeholder' => 'Email'));?>
+						       
+						       <?= $form->field($model, 'password',['template' => '<div class="col-lg-12 has-feedback"><span class="glyphicon glyphicon-lock form-control-feedback"></span>{input}{error}{hint}</div>',])->passwordInput(array('placeholder' => 'Password')) ?>
+						    <div style="margin-bottom: 10px;">  
+							  <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary btn-block btn-flat']) ?>
+							</div>   
 						<?php ActiveForm::end(); ?>
 					<div class="box-footer text-center">
-						<?= Html::a(Yii::t("user", "Register"), ["/user/register"],['class' => 'btn btn-info btnLogin']) ?>
+						<?= Html::a(Yii::t("user", "Register"), ["/SignUp"],['class' => 'btn btn-info btn-block btn-flat']) ?>
 						<br>
 							<?= Html::a(Yii::t("user", "Forgot password") . "?", ["/user/forgot"]) ?><br>
 							<?= Html::a(Yii::t("user", "Resend confirmation email"), ["/user/resend"]) ?>

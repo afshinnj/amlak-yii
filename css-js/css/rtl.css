@@ -1,3 +1,4 @@
+@import url("fonts.css");
 /*!
  *   AdminLTE v1.2 rtl
  *   Author: afshin nj
@@ -142,4 +143,8 @@ h6,
 }
 .sidebar-menu .treeview-menu > li > a{
 	margin-right: 10px;
+}
+.login-box,
+.register-box {
+  width: 100%;
 }

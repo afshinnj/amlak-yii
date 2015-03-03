@@ -23,10 +23,13 @@ class AppAsset extends AssetBundle
     	'css-js/css/skins/_all-skins.css',
     	'css-js/css/fonts/font-awesome.min.css',
     	'css-js/css/fonts/ionicons.css',
+    	'css-js/plugins/iCheck/square/blue.css',
     ];
 	public $js = [
-    	'css-js/js/app.js',
+    	
 		'css-js/js/bootstrap.js',
+		'css-js/plugins/iCheck/icheck.min.js',
+		'css-js/js/app.js',
 			
 	];
     public $depends = [

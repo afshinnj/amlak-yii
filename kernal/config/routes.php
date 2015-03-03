@@ -8,7 +8,7 @@ return [
 		'contact' => 'frontend/default/contact',
 		
 		
-		
+		'SignUp' => 'user/register',
 		'login' => 'user/default/login',
 		'logout' => 'user/default/logout',
 		'change-password' => '/user/account',
@@ -56,6 +56,7 @@ return [
 		'price-delete/<id:\d+>' => 'dashboard/price/delete',
 		'price-edit/<id:\d+>' => 'dashboard/price/update',
 		'price-list' => 'dashboard/price/index',
+		
 		'bargain-create' => 'dashboard/bargain/create',
 		'bargain-delete/<id:\d+>' => 'dashboard/bargain/delete',
 		'bargain-edit/<id:\d+>' => 'dashboard/bargain/update',

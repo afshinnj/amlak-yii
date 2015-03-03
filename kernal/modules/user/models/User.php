@@ -72,6 +72,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     protected $_access = [];
     
+    public $check;
+
     /**
      * @inheritdoc
      */
@@ -79,7 +81,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::getDb()->tablePrefix . "user";
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -95,11 +97,11 @@ class User extends ActiveRecord implements IdentityInterface
             [['username'], 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u', 'message' => "{attribute} can contain only letters, numbers, and '_'."],
 
             // password rules
-            [['newPassword'], 'string', 'min' => 6],
+            [['newPassword'], 'string', 'min' => 8],
             [['newPassword'], 'filter', 'filter' => 'trim'],
             [['newPassword'], 'required', 'on' => ['register', 'reset']],
-            [['newPasswordConfirm'], 'required', 'on' => ['reset']],
-            [['newPasswordConfirm'], 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Passwords do not match'],
+            [['newPasswordConfirm'], 'required', 'on' => ['register','reset']],
+            [['newPasswordConfirm'], 'compare', 'compareAttribute' => 'newPassword', 'message' => Yii::t('user','Passwords do not match')],
 
             // account page
             [['currentPassword'], 'required', 'on' => ['account']],
@@ -110,6 +112,12 @@ class User extends ActiveRecord implements IdentityInterface
             [['role_id', 'status'], 'integer', 'on' => ['admin']],
             [['ban_time'], 'integer', 'on' => ['admin']],
             [['ban_reason'], 'string', 'max' => 255, 'on' => 'admin'],
+        		
+        	['check', 'required', 'requiredValue' => 1, 'message' => 'برای ثبت نام باید شرایط را قبول کنید'],
+        		
+       		
+        		
+
         ];
 
         // add required rules for email/username depending on module properties
@@ -160,6 +168,10 @@ class User extends ActiveRecord implements IdentityInterface
             'currentPassword' => Yii::t('user', 'Current Password'),
             'newPassword'     => Yii::t('user', 'New Password'),
         	'newPasswordConfirm' => Yii::t('user', 'New Password Confirm'),
+        	
+        	'check' => \Yii::t('user','I agree to the terms'),
+        		
+        	'verifyCode' => 'Verification Code',
         ];
     }
 
