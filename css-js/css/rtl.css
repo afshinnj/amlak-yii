@@ -148,3 +148,20 @@ h6,
 .register-box {
   width: 100%;
 }
+.verifyCode{
+	border:1px solid #CCC;
+	margin-bottom: 5px;
+	border-radius:5px;
+	background-color: #f3f3f3;
+
+}
+.verifyCode .control-label {
+	display: none;
+}
+.verifyCode .input{
+	margin-top: 20px;	
+}
+.verifyCode .help-block{
+	margin-right: 10px;
+	
+}

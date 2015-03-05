@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use Faker\Provider\Image;
 use app\assets\AppAsset;
+use yii\captcha\Captcha;
+
+use app\modules\dashboard\models\Pages;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -57,13 +60,23 @@ $this->title = Yii::t('user', 'Login');
 								<small class="text-muted"><?= Yii::t('fa-IR','Please enter your login details.')?></small>
 							</div>
 				
-						<?php $form = ActiveForm::begin(['id' => 'login-form','options' => ['class' => 'form-horizontal'],
-
-						]); ?>
-				
+						<?php $form = ActiveForm::begin(['id' => 'login-form','options' => ['class' => 'form-horizontal'],]); ?>
+							
 						       <?= $form->field($model, 'username',['template' => '<div class="col-lg-12 has-feedback"><span class="glyphicon glyphicon-envelope form-control-feedback"></span>{input}{error}{hint}</div>',])->textInput(array('placeholder' => 'Email'));?>
 						       
 						       <?= $form->field($model, 'password',['template' => '<div class="col-lg-12 has-feedback"><span class="glyphicon glyphicon-lock form-control-feedback"></span>{input}{error}{hint}</div>',])->passwordInput(array('placeholder' => 'Password')) ?>
+						         <?php 
+						         $captcha = Pages::findOne(['id' => 1]);
+						         if($captcha->captcha_count == Yii::$app->session['captcha'] and $captcha->captcha_show == 1):
+						         ?>
+						       <div class="col-lg-12 verifyCode">
+								   <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+								   		'captchaAction' => '/site/captcha',
+						                'template' => '<div class="col-xs-6">{image}</div><div class="col-xs-6 input">{input}</div>',
+								   			
+						            ]) ?>  
+				              </div>
+				             	<?php endif?>
 						    <div style="margin-bottom: 10px;">  
 							  <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary btn-block btn-flat']) ?>
 							</div>   

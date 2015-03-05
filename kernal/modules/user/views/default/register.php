@@ -95,7 +95,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 
 							
 					<div class="box-footer text-center">
-				  	 <?= Html::a(Yii::t('user', 'Login'), ["/dashboard"],['class' => 'btn btn-info btnLogin'])?>
+				  	 <?= Html::a(Yii::t('user', 'Login'), ["/login"],['class' => 'btn btn-info btnLogin'])?>
 					</div>
 						</div>
 						<!-- /.box-body -->

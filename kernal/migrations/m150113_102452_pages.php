@@ -17,18 +17,22 @@ class m150113_102452_pages extends Migration
     	$this->createTable(Pages::tableName(), [
     			"id" => Schema::TYPE_PK,
     			"title" => Schema::TYPE_STRING . ' not null',
+    			"title_en" => Schema::TYPE_STRING . ' not null',
     			"text" => Schema::TYPE_TEXT . ' not null',
+    			"keyword" => Schema::TYPE_STRING . ' null default null',
+    			"captcha_count" => Schema::TYPE_SMALLINT . ' not null default 5',
+    			"captcha_show" => Schema::TYPE_SMALLINT . ' not null default 1',
     			"create_time" => Schema::TYPE_DATETIME . ' null default null',
     			"update_time" => Schema::TYPE_DATETIME . ' null default null',
     	], $tableOptions);
     	
     	// insert role data
-    	$columns = ["title", "text", "create_time"];
+    	$columns = ["title","title_en", "text", "create_time"];
     	$this->batchInsert(Pages::tableName(), $columns, [
-    			["صفحه ورود", "صفحه ورود",  Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["صفحه ثبت نام ", "صفحه ثبت نام", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["درباره ما", "درباره ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["تماس با ما", "تماس با ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["صفحه ورود", "Login","صفحه ورود",  Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["صفحه ثبت نام", "SignUp","صفحه ثبت نام", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["درباره ما","About", "درباره ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["تماس با ما","Contact", "تماس با ما", Yii::$app->jdate->date('Y-m-d H:i:s')],
     	]);
     }
 

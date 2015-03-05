@@ -94,4 +94,6 @@ return [
 	'Current password incorrect' => 'رمز عبور فعلی اشتباه است.',
 	'Passwords do not match' => 'رمزهای ورود مطابقت ندارند ',
 	'I agree to the terms'=>'من با شرایط موافق هستید',
+	'New Password Confirm' => 'تکرار رمز عبور',
+	'verifyCode' =>'کد امنیتی',
 ];

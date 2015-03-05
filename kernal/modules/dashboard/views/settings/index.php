@@ -17,7 +17,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
-<?= Yii::$app->dashboard->html(); $this->registerJs(Yii::$app->dashboard->js());?>
+<?= Yii::$app->autoSave->html(); $this->registerJs(Yii::$app->autoSave->js());?>
 
     <?php $form = ActiveForm::begin(); ?>
 	<div class="col-lg-6">

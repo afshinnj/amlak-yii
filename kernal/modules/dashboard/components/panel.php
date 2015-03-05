@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
  
-class panel extends Component
+class autoSave extends Component
 {
 	 public function html()
 	 {

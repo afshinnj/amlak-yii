@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard','Update');
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
                   </div><!-- /.box-header -->
                 <div class="box-body">
-<?= Yii::$app->dashboard->html(); $this->registerJs(Yii::$app->dashboard->js());?>
+<?= Yii::$app->autoSave->html(); $this->registerJs(Yii::$app->autoSave->js());?>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>

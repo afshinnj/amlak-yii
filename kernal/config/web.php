@@ -8,17 +8,16 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'fa-IR',
 	
-	'defaultRoute' => 'frontend',
+	'defaultRoute' => 'site',
 		
     'modules' => [
         'user' => ['class' => 'app\modules\user\Module',],
         'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
-    	'frontend' => ['class' => 'app\modules\frontend\Module',],
     	'error' => ['class' => 'app\modules\error\error',],
 	
     ],   
     'components' => [
-    	'dashboard' => ['class' => 'app\modules\dashboard\components\panel',],
+    	'aoutoSave' => ['class' => 'app\modules\dashboard\components\autoSave',],
     		
 	    'i18n' => [
 	        'translations' => [
@@ -59,16 +58,13 @@ $config = [
         	'loginUrl' => ['login'],
         ],
         'errorHandler' => [
-            'errorAction' => 'frontend/default/error',
+            'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
                'messageConfig' => [
-                'from' => ['admin@website.com' => 'Admin'], // this is needed for sending emails
+                'from' => ['afshin.nj@gmail.com' => 'Admin'], // this is needed for sending emails
                 'charset' => 'UTF-8',
             ]
         ],

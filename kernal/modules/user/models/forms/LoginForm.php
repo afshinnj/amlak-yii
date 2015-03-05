@@ -5,6 +5,8 @@ namespace app\modules\user\models\forms;
 use Yii;
 use yii\base\Model;
 
+use app\modules\dashboard\models\Pages;
+
 /**
  * LoginForm is the model behind the login form.
  */
@@ -30,18 +32,28 @@ class LoginForm extends Model
      */
     protected $_user = false;
 
+    public $verifyCode;
     /**
      * @return array the validation rules.
      */
     public function rules()
     {
-        return [
+    	
+       $rules=[
             [["username", "password"], "required"],
             ["username", "validateUser"],
             ["username", "validateUserStatus"],
             ["password", "validatePassword"],
             ["rememberMe", "boolean"],
+        	
         ];
+       
+        $captcha = Pages::findOne(['id' => 1]);
+        
+        if($captcha->captcha_count == Yii::$app->session['captcha'] and $captcha->captcha_show == 1){	
+        	 $rules[] =['verifyCode', 'captcha'] ;
+        }
+        return $rules;
     }
 
     /**
@@ -146,6 +158,7 @@ class LoginForm extends Model
             "username" => Yii::t("user", $attribute),
             "password" => Yii::t("user", "Password"),
             "rememberMe" => Yii::t("user", "Remember Me"),
+        	"verifyCode" => Yii::t('user' ,'verifyCode'),	
         ];
     }
 

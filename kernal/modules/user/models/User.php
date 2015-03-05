@@ -115,7 +115,7 @@ class User extends ActiveRecord implements IdentityInterface
         		
         	['check', 'required', 'requiredValue' => 1, 'message' => 'برای ثبت نام باید شرایط را قبول کنید'],
         		
-       		
+        	//['verifyCode', 'captcha','captchaAction'=>'/user/default/captcha'],
         		
 
         ];
@@ -170,8 +170,7 @@ class User extends ActiveRecord implements IdentityInterface
         	'newPasswordConfirm' => Yii::t('user', 'New Password Confirm'),
         	
         	'check' => \Yii::t('user','I agree to the terms'),
-        		
-        	'verifyCode' => 'Verification Code',
+
         ];
     }
 
