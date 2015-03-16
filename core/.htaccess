@@ -1,0 +1,6 @@
+Options -Indexes
+Deny from all
+<Files *.sql> 
+    Order deny,allow
+    Deny from all
+</Files>

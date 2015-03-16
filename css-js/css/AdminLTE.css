@@ -75,10 +75,11 @@ body {
   z-index: 800;
 }
 .main-footer {
-  background: #fff;
-  padding: 15px;
-  color: #444;
+  background: #222D32;
+  padding:5px 15px 5px 15px;
+  color: #FFF;
   border-top: 1px solid #eee;
+  font-size: 10px;
 }
 /* Fixed layout */
 .fixed .main-header,

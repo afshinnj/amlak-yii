@@ -362,5 +362,5 @@ $('input').iCheck({
 $(".box").each(function(index, value) { 
 	
     $('#'+$(this).attr('id')).addClass("active");
-    $('#'+$(this).attr('li')).addClass("active");
+    $('#'+$(this).attr('data-form-name')).addClass("active");
 });

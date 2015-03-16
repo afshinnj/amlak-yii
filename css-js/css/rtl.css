@@ -129,10 +129,12 @@ h6,
   .navbar-nav > .user-menu .user-image {
     margin-left: 0;
   }
+	.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+	  left: auto;
+	}
 }
-.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
-  right: auto;
-}
+
+
 @media (max-width: 991px) {
   .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
     right: auto;
