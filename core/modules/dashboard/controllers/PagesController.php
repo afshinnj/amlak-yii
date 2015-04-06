@@ -90,7 +90,7 @@ class PagesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	// validate for ajax request
         	if (!Yii::$app->request->isAjax) {
-        	     Yii::$app->session->setFlash("State-success", Yii::t("dashboard", "Successfully Update [ {PageName} ] Page", ["PageName" => $model->title]));
+        	     Yii::$app->session->setFlash("Pages-success", Yii::t("dashboard", "Successfully Update [ {PageName} ] Page", ["PageName" => $model->title]));
           		 return $this->redirect(['/pages']);
         	}
 

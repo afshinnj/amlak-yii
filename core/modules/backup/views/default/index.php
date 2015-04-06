@@ -17,6 +17,22 @@ $this->params['breadcrumbs'][] = $this->title;
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
                   </div><!-- /.box-header -->
                 <div class="box-body">
+		            <?php if ($flash = Yii::$app->session->getFlash("success")): ?>
+				        <div class="alert alert-success">
+				        <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+				            <p><?= $flash ?></p>
+				        </div>
+				    <?php endif; ?> 
+                	 <?php if ($flash = Yii::$app->session->getFlash("danger")): ?>
+				        <div class="alert alert-danger">
+				        <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+				            <p><?= $flash ?></p>
+				        </div>
+				    <?php endif; ?> 
                 <?= Html::a(Yii::t('dashboard','Backup'),['/create'],['class'=>'btn btn-primary'])?>
                 <?= Html::a(Yii::t('dashboard','Upload'),['/backup-upload'],['class'=>'btn btn-primary'])?>
                 <hr>

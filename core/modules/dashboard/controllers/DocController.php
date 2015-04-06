@@ -3,7 +3,7 @@
 namespace app\modules\dashboard\controllers;
 
 use Yii;
-use app\modules\dashboard\models\Option;
+
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,28 +11,27 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use yii\data\Pagination;
-
+use app\modules\dashboard\models\HomeDetails;
 /**
- * OptionController implements the CRUD actions for Option model.
+ * DocController implements the CRUD actions for DocType model.
  */
-class OptionController extends Controller
+class DocController extends Controller
 {
     public function behaviors()
     {
         return [
-        		
-        	'access' => [
-        			'class' => AccessControl::className(),
-        			'rules' => [
-        				[
-        				'actions' => ['index','update','create','view'],
-        				'allow'   => true,
-        				'roles'   => ['admin'],
-        				],
+        		'access' => [
+        				'class' => AccessControl::className(),
+        				'rules' => [
+        						[
+        								'actions' => ['index','create','update','delete'],
+        								'allow'   => true,
+        								'roles'   => ['admin'],
+        						],
         						 
-        			],
+        				],
         		],
-            'verbs' => [
+        		'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
@@ -42,51 +41,44 @@ class OptionController extends Controller
     }
 
     /**
-     * Lists all Option models.
+     * Lists all DocType models.
      * @return mixed
      */
     public function actionIndex()
     {
-    	// redirect url
+        	// redirect url
     	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
     	
     	
-    	$query = Option::find();
+    	$query = HomeDetails::find()->where(['details_id'=>2,'details'=>'Doc Type']);
     	$countQuery = clone $query;
     	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
     	$models = $query->offset($pages->offset)
     	->limit($pages->limit)
-    	->where(['option_id'=> '2'])
     	->all();
-    	return $this->render('pages/index', [
-    			'Page' => $models,
+    	return $this->render('index', [
+    			'Doc' => $models,
     			'pages' => $pages,
     	]);
+   
     }
 
     /**
-     * Displays a single Option model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Option model.
+     * Creates a new DocType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Option();
+        $model = new HomeDetails();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+        	$model->details_id = 2;
+    		$model->details = 'Doc Type';
+        	if($model->save()){
+            	Yii::$app->session->setFlash("State-success", Yii::t("dashboard", "Successfully registered [ {StateName} ] Doc", ["StateName" => $model->title]));
+           	    return $this->redirect(['/Doc-Type']);
+        	}
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -95,7 +87,7 @@ class OptionController extends Controller
     }
 
     /**
-     * Updates an existing Option model.
+     * Updates an existing DocType model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +97,8 @@ class OptionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+             Yii::$app->session->setFlash("State-success", Yii::t("dashboard", "Successfully Update [ {StateName} ] Doc", ["StateName" => $model->title]));
+            return $this->redirect(['/Doc-Type']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -114,7 +107,7 @@ class OptionController extends Controller
     }
 
     /**
-     * Deletes an existing Option model.
+     * Deletes an existing DocType model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -127,15 +120,15 @@ class OptionController extends Controller
     }
 
     /**
-     * Finds the Option model based on its primary key value.
+     * Finds the DocType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Option the loaded model
+     * @return DocType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Option::findOne($id)) !== null) {
+        if (($model = HomeDetails::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

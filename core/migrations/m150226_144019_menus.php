@@ -34,12 +34,15 @@ class m150226_144019_menus extends Migration
     	$user_menus = 2;
     	
     	$Settings_id = 1;
+    	
     	$Registration_location_id = 6;
 		$Registration_variable_id = 10;
+		
 		$User_id_admin = 15;
 		$User_id_user = 20;
-		$Registration_home_id_user = 27;
-		$Registration_home_id_admin = 29;
+		
+		$Registration_home_id_user = 29;
+		$Registration_home_id_admin = 20;
 		
     	   // insert role data
     	$columns = ["role_id", "parent_id", "title", "url" ,"section", "icon","create_time"];
@@ -57,9 +60,9 @@ class m150226_144019_menus extends Migration
     			
     			[$admin_menus, 0, "Registration-variable", "", "panel", "fa-home", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[$admin_menus, $Registration_variable_id, "Home-Type", "Home-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$admin_menus, $Registration_variable_id, "Bargain-Type", "Bargain-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[$admin_menus, $Registration_variable_id, "Doc-Type", "Doc-Type", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[$admin_menus, $Registration_variable_id, "Total-Price", "Total-Price", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$admin_menus, $Registration_variable_id, "Area-Groups", "Area-Groups", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[$admin_menus, $Registration_variable_id, "Metr-Groups", "Metr-Groups", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			[$admin_menus, 0, "User", "", "panel", "fa-user", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[$admin_menus, $User_id_admin, "Change-Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
@@ -68,8 +71,8 @@ class m150226_144019_menus extends Migration
     			[$admin_menus, $User_id_admin, "Change-Email", "change-email", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			[$admin_menus, 0, "Registration-home", "", "panel", "fa-home", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$admin_menus, $Registration_home_id_admin, "Request-Home", "Request-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$admin_menus, $Registration_home_id_admin, "Registr-Home", "registr-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],  
+    			[$admin_menus, $Registration_home_id_admin, "Request-Home", "request-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[$admin_menus, $Registration_home_id_admin, "Apartments", "apartments", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],  
     			  			
     			[$user_menus, 0, "User", "", "panel", "fa-user", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			[$user_menus, $User_id_user, "Change-Password", "change-password", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
@@ -79,8 +82,8 @@ class m150226_144019_menus extends Migration
     			[$user_menus, $User_id_user, "File-Manager", "media-file", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			[$user_menus, 0, "Registration-home", "", "panel", "fa-home", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$user_menus, $Registration_home_id_user, "Request-Home", "Request-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			[$user_menus, $Registration_home_id_user, "Registr-Home", "registr-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[$user_menus, $Registration_home_id_user, "Request-Home", "request-home", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			[$user_menus, $Registration_home_id_user, "Apartments", "apartments", "panel", "", Yii::$app->jdate->date('Y-m-d H:i:s')],
 
     			
     			 

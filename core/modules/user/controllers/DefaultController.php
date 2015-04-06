@@ -72,20 +72,21 @@ class DefaultController extends Controller
      */
     public function actionLogin()
     {
-
         /** @var \app\modules\user\models\forms\LoginForm $model */
 
         // load post data and login
         $model = Yii::$app->getModule("user")->model("LoginForm");
         if ($model->load(Yii::$app->request->post()) && $model->login(Yii::$app->getModule("user")->loginDuration)) {
-        	if(isset($session['captcha'])){unset($session['captcha']);}
+        	
+        	isset($session['captcha']) ? $session['captcha'] = 0 : '';
+        	
             return $this->goBack(Yii::$app->getModule("user")->loginRedirect);
         }else{
 			if(Yii::$app->session['captcha'] >= 1){
 				$count =  Yii::$app->session['captcha'];
-				if($count != Pages::findOne(['id' => 1])->captcha_count){
-			    	Yii::$app->session->set('captcha', $count =$count + 1 );
-				}   
+				$page_captcha_count = Pages::findOne(['id' => 1])->captcha_count; 
+				 $count != $page_captcha_count ? Yii::$app->session->set('captcha', $count = $count + 1 ) : '';			    	
+				  
 			}else{
 				Yii::$app->session['captcha'] = 1;
 			}

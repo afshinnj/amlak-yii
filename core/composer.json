@@ -20,7 +20,6 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-imagine": "*",
         "vova07/yii2-imperavi-widget": "*",
-        "amnah/yii2-user": "dev-master",
         "mohammad-mahdy/yii2-jdate": "*",
         "2amigos/yii2-file-upload-widget" : "*"
     },

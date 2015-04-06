@@ -34,22 +34,22 @@ class m150222_154457_Home_Details extends Migration
     			["1","home Type","دامداری و دامپروری", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["1","home Type","مجتمع آپارتمانی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
-    			["2","Bargain Type","مسکونی", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","تجاری", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","اداری", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","موقعیت اداری", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","مسکونی ", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","صنعتی", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["2","Bargain Type","مزروعی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","مسکونی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","تجاری", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","اداری", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","موقعیت اداری", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","مسکونی ", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","صنعتی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["2","Doc Type","مزروعی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
-    			["3","Area","تا 50 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","50 تا 75 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","75 تا 100 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","100 تا 150 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","150 تا 200 متر ", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","200 تا 250 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","250 تا 300 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["3","Area","بالای 300 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","تا 50 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","50 تا 75 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","75 تا 100 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","100 تا 150 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","150 تا 200 متر ", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","200 تا 250 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","250 تا 300 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["3","Metr","بالای 300 متر", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			["4","Total Price","قیمت روز", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["4","Total Price","تا 50 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],
@@ -71,7 +71,7 @@ class m150222_154457_Home_Details extends Migration
     			
     			["6","WC","ایرانی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["6","WC","فرنگی", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["6","wc","ایرانی - فرنگی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["6","WC","ایرانی - فرنگی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
     			["7","Flooring","HDF", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["7","Flooring","پارکت", Yii::$app->jdate->date('Y-m-d H:i:s')],
@@ -136,10 +136,35 @@ class m150222_154457_Home_Details extends Migration
     			["12","Location","شرقی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			["12","Location","غربی", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			
-    			["12","Home Old","نوساز", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["12","Home Old","قدیمی", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["12","Home Old","باز سازی شده", Yii::$app->jdate->date('Y-m-d H:i:s')],
-    			["12","Home Old","غربی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["13","Home Old","نوساز", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["13","Home Old","قدیمی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["13","Home Old","باز سازی شده", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			
+    			["14","Contract Type","فروش", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["14","Contract Type","رهن و اجاره", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			
+    			
+    			["15","Price Rent","تا 10 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],//حدود قیمت ودیعه
+    			["15","Price Rent","10 تا 15 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["15","Price Rent","15 تا 20 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["15","Price Rent","20 تا 30 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["15","Price Rent","40 تا 50 میلیون", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["15","Price Rent","50 میلیون به بالا", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			
+    			["16","Rent","رهن کامل", Yii::$app->jdate->date('Y-m-d H:i:s')],//اجاره
+    			["16","Rent","تا 200,000", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["16","Rent","تا 300,000 200,000", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["16","Rent","تا 400,000 300,000", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["16","Rent","تا 500,000 400,000", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["16","Rent","تا 700,000 500,000", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["16","Rent","700,000 به بالا", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			
+    			["17","Sale Contract Type","فروش", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["17","Sale Contract Type","رهن و اجاره", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["17","Sale Contract Type","رهن", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["17","Sale Contract Type","اجاره", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["17","Sale Contract Type","سر قفلی", Yii::$app->jdate->date('Y-m-d H:i:s')],
+    			["17","Sale Contract Type","پیش فروش", Yii::$app->jdate->date('Y-m-d H:i:s')],
     			 
     	]);
     }

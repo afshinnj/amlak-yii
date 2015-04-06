@@ -99,5 +99,6 @@ return [
 	'Change Password' => 'تغییر رمز عبور',
 	'Change Email' => 'تغییر ایمیل',
 	"{attribute} can contain only letters, numbers, and '_'." => " {attribute} میتواند تنها شامل حروف , عدد , '_' باشد.",
+	'Current password incorrect' => 'کلمه عبور فعلی نادرست است',
 		
 ];

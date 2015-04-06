@@ -5,14 +5,14 @@ namespace app\modules\dashboard\models;
 use Yii;
 use yii\db\ActiveRecord;
 /**
- * This is the model class for table "{{%home_type}}".
+ * This is the model class for table "{{%bargain_type}}".
  *
  * @property integer $id
  * @property string $title
  * @property string $create_time
  * @property string $update_time
  */
-class HomeType extends ActiveRecord
+class HomeDetails extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -42,11 +42,13 @@ class HomeType extends ActiveRecord
         return [
             'id' => Yii::t('dashboard','ID'),
             'title' => Yii::t('dashboard','Title'),
-            'create_time' => Yii::t('dashboard','Create Time'),
-            'update_time' => Yii::t('dashboard','Update Time'),
+            'create_time' => Yii::t('app','Create Time'),
+            'update_time' => Yii::t('app','Update Time'),
         ];
     }
-      
+    
+
+    
     /**
      * @inheritdoc
      */
@@ -63,16 +65,9 @@ class HomeType extends ActiveRecord
             ],
         ];
     }
-    
-    /**
-     * @inheritdoc
-     */
-    public function beforeSave($insert)
-    {
-    
-    	$this->details_id = 1;
-    	$this->details = 'home Type';
-    	return parent::beforeSave($insert);
-    }
 
+    public static function oldHome()
+    {
+    	return ['new' => Yii::t('dashboard','new') , 'old' => Yii::t('dashboard','old'), 'restored' => Yii::t('dashboard','restored'),'4' => 'ساله'];
+    }
 }

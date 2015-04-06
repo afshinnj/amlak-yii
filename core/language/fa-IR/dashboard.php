@@ -13,14 +13,17 @@ return [
 		
 		'Successfully Update [ {PageName} ] Page' => 'صفحه [ {PageName} ] با موفقیت بروز شد ',
 		
-		'Successfully registered [ {StateName} ] Area' => 'متراژ [ {StateName} ] با موفقیت ثبت شد ',
-		'Successfully Update [ {StateName} ] Area' => 'متراژ [ {StateName} ] با موفقیت بروز شد ',
+		'Successfully registered [ {StateName} ] Metr' => 'متراژ [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Metr' => 'متراژ [ {StateName} ] با موفقیت بروز شد ',
 
 		'Successfully registered [ {StateName} ] Price' => 'مبلغ [ {StateName} ] با موفقیت ثبت شد ',
 		'Successfully Update [ {StateName} ] Price' => 'مبلغ [ {StateName} ] با موفقیت بروز شد ',
 		
-		'Successfully registered [ {StateName} ] Bargain' => 'نوع سند [ {StateName} ] با موفقیت ثبت شد ',
-		'Successfully Update [ {StateName} ] Bargain' => 'نوع سند [ {StateName} ] با موفقیت بروز شد ',
+		'Successfully registered [ {StateName} ] Doc' => 'نوع سند [ {StateName} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {StateName} ] Doc' => 'نوع سند [ {StateName} ] با موفقیت بروز شد ',
+		
+		'Successfully registered [ {RequestCode} ] Request' => 'تقاضا [ {RequestCode} ] با موفقیت ثبت شد ',
+		'Successfully Update [ {RequestCode} ] Request' => 'تقاضا [ {RequestCode} ] با موفقیت بروز شد ',
 		
 		'States Name' => 'نام شهر ها',
 		
@@ -69,17 +72,17 @@ return [
 		'Home Types' => 'لیست نوع ملک',
 		'Update Home Type: ' => 'ویرایش : ',
 		
-		'Areas' => 'متراژ',
-		'Create Area' => 'ثبت متراژ جدید',
+		'Metrs' => 'متراژ',
+		'Create Metr' => 'ثبت متراژ جدید',
 		
 		'Create Price' => 'ایجاد قیمت',
 		'Total Prices' => 'لیست قیمت ها',
 		'Prices' => 'لیست قیمت',
 		'Update Price: ' => 'ویرایش قیمت',
 		
-		'Bargain Types' => 'نوع سند',
-		'Update Bargain Type: ' => 'بروزرسانی :',
-		'Create Bargain Type' => 'ایجاد نوع سند',
+		'Doc Types' => 'نوع سند',
+		'Update Doc Type: ' => 'بروزرسانی :',
+		'Create Doc Type' => 'ایجاد نوع سند',
 		
 		'login page' => 'صفحه ورود',
 		'Sign up' => 'ثبت نام',
@@ -89,4 +92,70 @@ return [
 		'Restore' => 'بازگرداندن',
 
 		'Upload File' => 'آپلود',
+		
+		'Request Homes' => 'لیست تقاضا های ثبت شده',
+		'Create Request Home' => 'ثبت تقاضا',
+		
+		'State ID' => 'استان',
+		'City ID' => 'شهرستان',
+		'Zone ID' => 'منطقه',
+		'Home Type' => 'نوع ملک',
+		'Doc Type' => 'نوع سند',
+		'Contract Type' => 'نوع معامله',
+		'Metr' => 'متراژ',
+		'Total Price' => 'حدود قیمت کل',
+		'Price Rent' => 'حدود قیمت ودیعه',
+		'Rent' => 'حدود اجاره',
+		'Description' => 'توضیحات بیشتر',
+		
+		'Location' => 'منـاطـق ',
+		'User' => 'نام متقاضی',
+		'Request Code' => 'کد تقاضا',
+		'Request Date' => 'تاریخ ثبت',
+		'Tell' => 'تلفن',
+		
+		'Update Request Home: ' => 'بروز رسانی تقاضای : ',
+		
+		'Successfully Backup .' => 'پشتیبان گیری با موفقیت انجام شد .',
+		'Unsuccessfully Backup .' => 'پشتیبان گیری با موفقیت انجام نشد .',
+		'Successfully  Restore .' => 'با موفقیت انجام شد .',
+		
+		'Apartments' => 'آپارتمان ها',
+		'Create Apartments' => 'ثبت آپارتمان',
+		'Home General Info' => 'مشخصات عمومی ملک',
+		'Home Info' => 'مشخصات ملک',
+		'facilities' => 'امکانات',
+		
+		'Infrastructure' => 'متراژ بنا',
+		'Location'=> 'موقعیت جغرافیایی',
+		'Metr'=> 'مساحت زمین',
+		'Rooms'=> 'تعداد اتاق ها',
+		'Floor'=> 'طبقه',
+		'Floors'=> 'تعداد طبقات',
+		'Unit'=> 'جمع واحد ها',
+		'Units'=> 'تعداد واحد در طبقه',
+		'View'=> 'نما',
+		'R Status'=> 'وضعیت سکونت',
+		'Old Home'=> 'سن بنا',
+		'Cabinets'=> 'کابینت',
+		'Wc'=> 'سرویس بهداشتی',
+		'Flooring'=> 'کف پوش',
+		'Price Metr'=> 'قیمت متری/اجاره',
+		'Price All'=> 'قیمت کل',
+		'Parking'=> 'تعداد پارکینگ',
+		'Tell Count'=> 'تعداد تلفن',
+		'Loan'=> 'وام',
+		
+		'new' => 'نوساز',
+		'old' => 'قدیمی',
+		'restored' => 'باز سازی شده',
+		'Age' => 'ساله',
+		'Owner Name' => 'نام مالک/ ثبت کننده',
+	    'Owner Email' => 'پست الکترونیکی',
+		'Address Home' => 'آدرس ملک',
+		'No Home' => 'پلاک ملک',
+		'Mobile' => 'تلفن همراه',
+		'Call Tell' => 'شماره تماس 1',
+		'Call Tell1' => 'شماره تماس 2',
+		
 ];

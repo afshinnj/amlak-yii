@@ -6,11 +6,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\dashboard\models\BargainType */
 
-$this->title = Yii::t('dashboard','Create Bargain Type');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard','Bargain Types'), 'url' => ['index']];
+$this->title = Yii::t('dashboard','Create Doc Type');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard','Doc Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="box box-primary" dir="rtl" id="Registration-variable" data-form-name="Bargain-Type">
+<div class="box box-primary" dir="rtl" id="Registration-variable" data-form-name="Doc-Type">
 
                 <div class="box-header">
                  	 <i class="ion ion-compose"></i>

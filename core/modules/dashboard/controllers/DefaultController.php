@@ -6,41 +6,24 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
+use app\components\sms;
 
 class DefaultController extends Controller {
 	public function behaviors() {
 		return [ 
 				'access' => [ 
 						'class' => AccessControl::className (),
-						
 						// 'only' => ['index','create','update','view','hello'],
 						'rules' => [ 
 								[ 
-										'actions' => [ 
-												'index' 
-										],
-										'allow' => true,
-										'roles' => [ 
-												'admin',
-												'user' 
-										] 
+									'actions' => [ 'index' ],
+									'allow' => true,
+									'roles' => [ 'admin', 'user' ]
+ 
 								] 
 						] 
 				],
-				[ 
-						'class' => 'yii\filters\PageCache',
-						'only' => [ 
-								'index' 
-						],
-						'duration' => 60,
-						'variations' => [ 
-								\Yii::$app->language 
-						],
-						'dependency' => [ 
-								'class' => 'yii\caching\DbDependency',
-								'sql' => 'SELECT COUNT(*) FROM {{%menus}}' 
-						] 
-				] 
+ 
 		];
 	}
 	public function actionIndex() {
@@ -48,7 +31,7 @@ class DefaultController extends Controller {
 		 * delete old session
 		 */
 		Yii::$app->session->gcSession (1200);
-		
+	
 		if (Yii::$app->user->can ( "admin" )) {
 			return $this->render ( 'index' );
 		}

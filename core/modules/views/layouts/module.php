@@ -18,7 +18,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -128,20 +128,20 @@ AppAsset::register($this);
            <?php foreach (Menus::find()->where(['role_id'=> Yii::$app->user->identity->role_id, 'parent_id' => 0])->all() as $r):?>
             <li class="treeview" id="<?= $r['title']?>">
               <a href="#">
-               <i class="fa fa-angle-right pull-left"></i>  <span><?= Yii::t('fa-IR',$r['title'])?></span> <i class="fa <?= $r['icon']?>"></i>
+               <i class="fa fa-angle-right pull-left"></i>   <i class="fa <?= $r['icon']?>"></i> <span><?= Yii::t('fa-IR',$r['title'])?></span>
               </a>
               <ul class="treeview-menu">
               <?php foreach (Menus::find()->where(['role_id'=>Yii::$app->user->identity->role_id, 'parent_id' => $r['id']])->all() as $rr):?>
-              	<li id="<?= $rr['title']?>" ><?= Html::a(Yii::t('fa-IR',$rr['title']).'<i class="fa fa-circle-o"></i>',['/'.$rr['url']]);?></li>
+              	<li id="<?= $rr['title']?>" ><?= Html::a('<i class="fa fa-circle-o"></i>' . Yii::t('fa-IR', $rr['title']),['/'.$rr['url']]);?></li>
               <?php endforeach;?>
 
               </ul>
             </li>
 			<?php endforeach;?>
             <li class="header">LABELS</li>
-            <li><a href="#"> Important <i class="fa fa-circle-o text-danger"></i></a></li>
-            <li><a href="#"> Warning <i class="fa fa-circle-o text-warning"></i></a></li>
-            <li><a href="#"> Information <i class="fa fa-circle-o text-info"></i></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important </a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning </a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information </a></li>
           </ul>
         </section>
         <!-- /.sidebar -->

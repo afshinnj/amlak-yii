@@ -1,6 +1,4 @@
 <?php
-
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -35,68 +33,4 @@ use app\modules\dashboard\models\State;
     </div>
 
     <?php ActiveForm::end(); ?>
-
-
-
-<?php 
-$js = <<<JS
-State();
-City();	
-$('#state').change(function(){
-	State();
-});
-$('#city').change(function(){
-	City();
-});		
-function State(){
-		$('#city').prop('disabled', true);
-		$('#area').prop('disabled', true);	
-		$("#city").html("<option>Please wait</option>");
-		$("#area").html("<option>Please wait</option>");
-		var id = $('#state').val();
-		var formURL = 'subcat';
-		var postData = {'id' : id};
-		$.ajax({
-			url: formURL,
-			type: 'post',
-			data: postData,
-			success:function(data)
-					{
-					if(data){
-						$('#city').prop('disabled', false);
-						$('#area').prop('disabled', false);
-						$("#city").html(data);
-					}else{
-						$("#city").html(data);
-					}
-
-					City();
-			    	}
-		 });
-};
-function City(){
-			
-		var id = $('#city').val();
-		var formURL = 'subcity';
-		var postData = {'id' : id};
-		$.ajax({
-			url: formURL,
-			type: 'post',
-			data: postData,
-			success:function(data)
-					{
-						if(data){
-							$("#area").html(data);
-						}else{
-							$("#area").html('')
-							}
-						
-			    	}
-		 });
-};		
-
-
-JS;
-$this->registerJs($js)
-
-?>
+<?= $this->registerJs(Yii::$app->City->js());?>

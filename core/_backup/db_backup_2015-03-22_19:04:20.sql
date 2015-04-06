@@ -9,37 +9,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 -- START BACKUP
 -- -------------------------------------------
 -- -------------------------------------------
--- TABLE `filemanager_mediafile`
--- -------------------------------------------
-DROP TABLE IF EXISTS `filemanager_mediafile`;
-CREATE TABLE IF NOT EXISTS `filemanager_mediafile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `url` text NOT NULL,
-  `alt` text,
-  `size` varchar(255) NOT NULL,
-  `description` text,
-  `thumbs` text,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -------------------------------------------
--- TABLE `filemanager_owners`
--- -------------------------------------------
-DROP TABLE IF EXISTS `filemanager_owners`;
-CREATE TABLE IF NOT EXISTS `filemanager_owners` (
-  `mediafile_id` int(11) NOT NULL,
-  `owner_id` int(11) NOT NULL,
-  `owner` varchar(255) NOT NULL,
-  `owner_attribute` varchar(255) NOT NULL,
-  PRIMARY KEY (`mediafile_id`,`owner_id`,`owner`,`owner_attribute`),
-  CONSTRAINT `filemanager_owners_ref_mediafile` FOREIGN KEY (`mediafile_id`) REFERENCES `filemanager_mediafile` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -------------------------------------------
 -- TABLE `yii_city`
 -- -------------------------------------------
 DROP TABLE IF EXISTS `yii_city`;
@@ -71,6 +40,25 @@ CREATE TABLE IF NOT EXISTS `yii_home_details` (
   `title` varchar(255) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- -------------------------------------------
+-- TABLE `yii_mediafile`
+-- -------------------------------------------
+DROP TABLE IF EXISTS `yii_mediafile`;
+CREATE TABLE IF NOT EXISTS `yii_mediafile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `url` text NOT NULL,
+  `alt` text,
+  `size` varchar(255) NOT NULL,
+  `description` text,
+  `thumbs` text,
+  `owner_id` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -151,6 +139,30 @@ CREATE TABLE IF NOT EXISTS `yii_profile` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
+-- TABLE `yii_request_home`
+-- -------------------------------------------
+DROP TABLE IF EXISTS `yii_request_home`;
+CREATE TABLE IF NOT EXISTS `yii_request_home` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `request_code` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `state_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `zone_id` int(11) DEFAULT NULL,
+  `home_type` varchar(255) DEFAULT NULL,
+  `doc_type` varchar(255) DEFAULT NULL,
+  `contract_type` int(11) DEFAULT NULL,
+  `metr` varchar(255) DEFAULT NULL,
+  `total_price` varchar(255) DEFAULT NULL,
+  `price_rent` varchar(255) DEFAULT NULL,
+  `rent` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- -------------------------------------------
 -- TABLE `yii_role`
 -- -------------------------------------------
 DROP TABLE IF EXISTS `yii_role`;
@@ -208,12 +220,12 @@ CREATE TABLE IF NOT EXISTS `yii_user` (
   `email` varchar(255) DEFAULT NULL,
   `new_email` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `password` varchar(60) DEFAULT NULL,
   `auth_key` varchar(255) DEFAULT NULL,
   `api_key` varchar(255) DEFAULT NULL,
-  `login_ip` varchar(255) DEFAULT NULL,
+  `login_ip` varchar(15) DEFAULT NULL,
   `login_time` datetime DEFAULT NULL,
-  `create_ip` varchar(255) DEFAULT NULL,
+  `create_ip` varchar(15) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   `ban_time` datetime DEFAULT NULL,
@@ -265,17 +277,17 @@ CREATE TABLE IF NOT EXISTS `yii_user_key` (
 -- TABLE DATA yii_city
 -- -------------------------------------------
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('1','اردبیل','0','0','1','0','0','1393-12-20 14:55:03','0000-00-00 00:00:00');
+('1','تهران','0','0','1','0','0','1394-01-01 12:13:16','0000-00-00 00:00:00');
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('2','نمین','1','0','0','1','0','1393-12-20 14:55:14','0000-00-00 00:00:00');
+('2','کرج','1','0','0','1','0','1394-01-01 12:13:20','0000-00-00 00:00:00');
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('3','منطقه 1','1','2','0','0','1','1393-12-20 14:55:29','0000-00-00 00:00:00');
+('3','پاریس','1','2','0','0','1','1394-01-01 12:13:26','0000-00-00 00:00:00');
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('4','تهران','','','1','0','0','1393-12-20 14:57:57','');
+('4','اردبیل','0','0','1','0','0','1394-01-02 13:55:27','0000-00-00 00:00:00');
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('5','کرج','4','','0','1','0','1393-12-20 14:58:15','');
+('5','نمین','4','0','0','1','0','1394-01-02 13:55:35','0000-00-00 00:00:00');
 INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`create_time`,`update_time`) VALUES
-('6','گلسار','4','5','0','0','1','1393-12-20 14:58:26','');
+('6','پاریس1','4','5','0','0','1','1394-01-02 13:55:47','0000-00-00 00:00:00');
 
 
 
@@ -283,209 +295,247 @@ INSERT INTO `yii_city` (`id`,`name`,`state_id`,`city_id`,`state`,`city`,`area`,`
 -- TABLE DATA yii_home_details
 -- -------------------------------------------
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('1','1','home Type','آپارتمان','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('1','1','home Type','آپارتمان','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('2','1','home Type','ویلا - خانه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('2','1','home Type','ویلا - خانه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('3','1','home Type','مغازه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('3','1','home Type','مغازه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('4','1','home Type','زمین - کلنگی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('4','1','home Type','زمین - کلنگی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('5','1','home Type','املاک کشاورزی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('5','1','home Type','املاک کشاورزی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('6','1','home Type','کارخانه و کارگاه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('6','1','home Type','کارخانه و کارگاه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('7','1','home Type','دامداری و دامپروری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('7','1','home Type','دامداری و دامپروری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('8','1','home Type','مجتمع آپارتمانی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('8','1','home Type','مجتمع آپارتمانی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('9','2','Bargain Type','مسکونی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('9','2','Doc Type','مسکونی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('10','2','Bargain Type','تجاری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('10','2','Doc Type','تجاری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('11','2','Bargain Type','اداری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('11','2','Doc Type','اداری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('12','2','Bargain Type','موقعیت اداری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('12','2','Doc Type','موقعیت اداری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('13','2','Bargain Type','مسکونی ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('13','2','Doc Type','مسکونی ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('14','2','Bargain Type','صنعتی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('14','2','Doc Type','صنعتی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('15','2','Bargain Type','مزروعی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('15','2','Doc Type','مزروعی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('16','3','Area','تا 50 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('16','3','Metr','تا 50 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('17','3','Area','50 تا 75 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('17','3','Metr','50 تا 75 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('18','3','Area','75 تا 100 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('18','3','Metr','75 تا 100 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('19','3','Area','100 تا 150 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('19','3','Metr','100 تا 150 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('20','3','Area','150 تا 200 متر ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('20','3','Metr','150 تا 200 متر ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('21','3','Area','200 تا 250 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('21','3','Metr','200 تا 250 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('22','3','Area','250 تا 300 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('22','3','Metr','250 تا 300 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('23','3','Area','بالای 300 متر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('23','3','Metr','بالای 300 متر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('24','4','Total Price','قیمت روز','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('24','4','Total Price','قیمت روز','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('25','4','Total Price','تا 50 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('25','4','Total Price','تا 50 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('26','4','Total Price','50 تا 100 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('26','4','Total Price','50 تا 100 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('27','4','Total Price','100 تا 200 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('27','4','Total Price','100 تا 200 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('28','4','Total Price','200 تا 300 میلیون ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('28','4','Total Price','200 تا 300 میلیون ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('29','4','Total Price','300 تا 400 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('29','4','Total Price','300 تا 400 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('30','4','Total Price','400 تا 500 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('30','4','Total Price','400 تا 500 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('31','4','Total Price','500 تا 600 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('31','4','Total Price','500 تا 600 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('32','4','Total Price','600 تا 700 میلیون','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('32','4','Total Price','600 تا 700 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('33','4','Total Price','700 تا 1 میلیارد','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('33','4','Total Price','700 تا 1 میلیارد','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('34','4','Total Price','1 میلیارد به بالا','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('34','4','Total Price','1 میلیارد به بالا','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('35','5','Kitchen Cabinets','MDF','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('35','5','Kitchen Cabinets','MDF','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('36','5','Kitchen Cabinets','آبدار خانه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('36','5','Kitchen Cabinets','آبدار خانه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('37','5','Kitchen Cabinets','چوبی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('37','5','Kitchen Cabinets','چوبی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('38','5','Kitchen Cabinets','فلزی طرح چوب','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('38','5','Kitchen Cabinets','فلزی طرح چوب','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('39','5','Kitchen Cabinets','فایبر گلاس','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('39','5','Kitchen Cabinets','فایبر گلاس','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('40','6','WC','ایرانی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('40','6','WC','ایرانی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('41','6','WC','فرنگی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('41','6','WC','فرنگی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('42','6','wc','ایرانی - فرنگی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('42','6','WC','ایرانی - فرنگی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('43','7','Flooring','HDF','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('43','7','Flooring','HDF','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('44','7','Flooring','پارکت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('44','7','Flooring','پارکت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('45','7','Flooring','سرامیک','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('45','7','Flooring','سرامیک','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('46','7','Flooring','موکت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('46','7','Flooring','موکت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('47','7','Flooring','کاشی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('47','7','Flooring','کاشی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('48','8','View','آجر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('48','8','View','آجر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('49','8','View','آجر سه سانت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('49','8','View','آجر سه سانت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('50','8','View','آلمینیوم','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('50','8','View','آلمینیوم','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('51','8','View','رفلکس','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('51','8','View','رفلکس','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('52','8','View','رومی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('52','8','View','رومی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('53','8','View','گرانیت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('53','8','View','گرانیت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('54','8','View','کامپوزیت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('54','8','View','کامپوزیت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('55','8','View','کلاسیک','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('55','8','View','کلاسیک','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('56','8','View','سنگ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('56','8','View','سنگ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('57','8','View','سیمان','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('57','8','View','سیمان','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('58','9','Residence status','مالک','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('58','9','Residence status','مالک','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('59','9','Residence status','مستاجر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('59','9','Residence status','مستاجر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('60','9','Residence status','تخلیه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('60','9','Residence status','تخلیه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('61','10','Type Villa','یک طبقه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('61','10','Type Villa','یک طبقه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('62','10','Type Villa','دو طبقه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('62','10','Type Villa','دو طبقه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('63','10','Type Villa','دوبلکس','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('63','10','Type Villa','دوبلکس','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('64','10','Type Villa','تریبلکس','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('64','10','Type Villa','تریبلکس','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('65','10','Type Villa','دوقلو','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('65','10','Type Villa','دوقلو','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('66','10','Type Villa','سه قلو','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('66','10','Type Villa','سه قلو','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('67','11','Facilities','شوفاژ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('67','11','Facilities','شوفاژ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('68','11','Facilities','چیلر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('68','11','Facilities','چیلر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('69','11','Facilities','فن کوئل','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('69','11','Facilities','فن کوئل','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('70','11','Facilities','پکیچ','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('70','11','Facilities','پکیچ','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('71','11','Facilities','کولر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('71','11','Facilities','کولر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('72','11','Facilities','استخر','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('72','11','Facilities','استخر','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('73','11','Facilities','سونا','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('73','11','Facilities','سونا','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('74','11','Facilities','جکوزی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('74','11','Facilities','جکوزی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('75','11','Facilities','آسانسور','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('75','11','Facilities','آسانسور','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('76','11','Facilities','باربیکیو','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('76','11','Facilities','باربیکیو','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('77','11','Facilities','آیفون تصویری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('77','11','Facilities','آیفون تصویری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('78','11','Facilities','دوربین مدار بسته','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('78','11','Facilities','دوربین مدار بسته','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('79','11','Facilities','درب ریموت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('79','11','Facilities','درب ریموت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('80','11','Facilities','آنتن مرکزی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('80','11','Facilities','آنتن مرکزی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('81','11','Facilities','اینترنت مرکزی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('81','11','Facilities','اینترنت مرکزی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('82','11','Facilities','حیاط خلوت','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('82','11','Facilities','حیاط خلوت','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('83','11','Facilities','فضای سبز','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('83','11','Facilities','فضای سبز','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('84','11','Facilities','لابی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('84','11','Facilities','لابی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('85','11','Facilities','سالن اجتماعات','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('85','11','Facilities','سالن اجتماعات','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('86','11','Facilities','سرایداری','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('86','11','Facilities','سرایداری','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('87','11','Facilities','پاسیو','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('87','11','Facilities','پاسیو','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('88','11','Facilities','نیمه مبله','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('88','11','Facilities','نیمه مبله','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('89','11','Facilities','مبله','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('89','11','Facilities','مبله','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('90','11','Facilities','اطفاء حریق','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('90','11','Facilities','اطفاء حریق','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('91','11','Facilities','شوتینگ زباله','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('91','11','Facilities','شوتینگ زباله','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('92','11','Facilities','انبار','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('92','11','Facilities','انبار','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('93','11','Facilities','بالکن','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('93','11','Facilities','بالکن','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('94','11','Facilities','شومینه','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('94','11','Facilities','شومینه','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('95','12','Location','شمالی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('95','12','Location','شمالی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('96','12','Location','جنوبی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('96','12','Location','جنوبی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('97','12','Location','شرقی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('97','12','Location','شرقی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('98','12','Location','غربی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('98','12','Location','غربی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('99','12','Home Old','نوساز','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('99','13','Home Old','نوساز','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('100','12','Home Old','قدیمی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('100','13','Home Old','قدیمی','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('101','12','Home Old','باز سازی شده','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('101','13','Home Old','باز سازی شده','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
-('102','12','Home Old','غربی','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('102','13','Home Old','غربی','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('103','14','Contract Type','فروش','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('104','14','Contract Type','رهن و اجاره','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('105','15','Price Rent','تا 10 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('106','15','Price Rent','10 تا 15 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('107','15','Price Rent','15 تا 20 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('108','15','Price Rent','20 تا 30 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('109','15','Price Rent','40 تا 50 میلیون','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('110','15','Price Rent','50 میلیون به بالا','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('111','16','Rent','رهن کامل','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('112','16','Rent','تا 200,000','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('113','16','Rent','تا 300,000 200,000','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('114','16','Rent','تا 400,000 300,000','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('115','16','Rent','تا 500,000 400,000','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('116','16','Rent','تا 700,000 500,000','1394-01-01 12:12:28','0000-00-00 00:00:00');
+INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time`,`update_time`) VALUES
+('117','16','Rent','700,000 به بالا','1394-01-01 12:12:28','0000-00-00 00:00:00');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA yii_mediafile
+-- -------------------------------------------
+INSERT INTO `yii_mediafile` (`id`,`filename`,`type`,`url`,`alt`,`size`,`description`,`thumbs`,`owner_id`,`created_at`,`updated_at`) VALUES
+('1','20150321_152048.jpg','image/jpeg','/uploads/2015/03/20150321_152048.jpg','','1620602','','a:3:{s:5:\"small\";s:43:\"/uploads/2015/03/20150321_152048-120x80.jpg\";s:6:\"medium\";s:44:\"/uploads/2015/03/20150321_152048-400x300.jpg\";s:5:\"large\";s:44:\"/uploads/2015/03/20150321_152048-800x600.jpg\";}','1','1427021198','1427021199');
 
 
 
@@ -493,51 +543,67 @@ INSERT INTO `yii_home_details` (`id`,`details_id`,`details`,`title`,`create_time
 -- TABLE DATA yii_menus
 -- -------------------------------------------
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('1','1','0','Settings','','panel','fa-wrench','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('1','1','0','Settings','','panel','fa-wrench','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('2','1','1','Pages','pages','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('2','1','1','Pages','pages','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('3','1','1','Setting','settings','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('3','1','1','Setting','settings','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('4','1','1','Backup','backup','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('4','1','1','Backup','backup','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('5','1','0','Registration-location','','panel','fa-globe','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('5','1','1','File-Manager','media-file','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('6','1','5','State','State-List','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('6','1','0','Registration-location','','panel','fa-globe','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('7','1','5','Sub-State','City-List','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('7','1','6','State','State-List','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('8','1','5','Zone','Zone-List','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('8','1','6','Sub-State','City-List','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('9','1','0','Registration-variable','','panel','fa-home','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('9','1','6','Zone','Zone-List','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('10','1','9','Home-Type','Home-Type','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('10','1','0','Registration-variable','','panel','fa-home','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('11','1','9','Bargain-Type','Bargain-Type','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('11','1','10','Home-Type','Home-Type','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('12','1','9','Total-Price','Total-Price','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('12','1','10','Doc-Type','Doc-Type','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('13','1','9','Area-Groups','Area-Groups','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('13','1','10','Total-Price','Total-Price','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('14','1','0','User','','panel','fa-user','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('14','1','10','Metr-Groups','Metr-Groups','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('15','1','14','Change-Password','change-password','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('15','1','0','User','','panel','fa-user','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('16','1','14','Change-Profile','change-profile','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('16','1','15','Change-Password','change-password','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('17','1','14','Change-Avatar','change-avatar','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('17','1','15','Change-Profile','change-profile','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('18','1','14','Change-Email','change-email','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('18','1','15','Change-Avatar','change-avatar','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('19','2','0','User','','panel','fa-user','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('19','1','15','Change-Email','change-email','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('20','2','19','Change-Password','change-password','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('20','1','0','Registration-home','','panel','fa-home','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('21','2','19','Change-Profile','change-profile','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('21','1','20','Request-Home','request-home','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('22','2','19','Change-Avatar','change-avatar','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('22','1','20','Sale-Home','sale-home','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
-('23','2','19','Change-Email','change-email','panel','','1393-12-20 14:44:24','0000-00-00 00:00:00');
+('23','2','0','User','','panel','fa-user','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('24','2','20','Change-Password','change-password','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('25','2','20','Change-Profile','change-profile','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('26','2','20','Change-Avatar','change-avatar','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('27','2','20','Change-Email','change-email','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('28','2','20','File-Manager','media-file','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('29','2','0','Registration-home','','panel','fa-home','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('30','2','29','Request-Home','request-home','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
+INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`icon`,`create_time`,`update_time`) VALUES
+('31','2','29','Sale-Home','sale-home','panel','','1394-01-01 12:12:29','0000-00-00 00:00:00');
 
 
 
@@ -545,29 +611,27 @@ INSERT INTO `yii_menus` (`id`,`role_id`,`parent_id`,`title`,`url`,`section`,`ico
 -- TABLE DATA yii_migration
 -- -------------------------------------------
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m000000_000000_base','1426072457');
+('m000000_000000_base','1426670845');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m141129_130551_create_filemanager_mediafile_table','1426072460');
+('m141129_130551_mediafile','1426927345');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m141203_173402_create_filemanager_owners_table','1426072460');
+('m141207_081031_init_session','1426927345');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m141203_175538_add_filemanager_owners_ref_mediafile_fk','1426072461');
+('m150113_102452_pages','1426927345');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m141207_081031_init_session','1426072461');
+('m150123_183235_settings','1426927345');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150113_102452_pages','1426072461');
+('m150214_044831_init_user','1426927348');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150123_183235_settings','1426072461');
+('m150222_154457_Home_Details','1426927348');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150214_044831_init_user','1426072463');
+('m150222_182756_option','1426927348');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150222_154457_Home_Details','1426072463');
+('m150223_083339_city','1426927349');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150222_182756_option','1426072464');
+('m150226_144019_menus','1426927349');
 INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150223_083339_city','1426072464');
-INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
-('m150226_144019_menus','1426072464');
+('m150318_114736_request_sale_home','1426927349');
 
 
 
@@ -575,29 +639,29 @@ INSERT INTO `yii_migration` (`version`,`apply_time`) VALUES
 -- TABLE DATA yii_option
 -- -------------------------------------------
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('1','1','setting','title','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('1','1','setting','title','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('2','1','setting','email','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('2','1','setting','email','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('3','1','setting','telephone','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('3','1','setting','telephone','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('4','1','setting','description','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('4','1','setting','description','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('5','1','setting','keywords','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('5','1','setting','keywords','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('6','1','setting','admin_language','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('6','1','setting','admin_language','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('7','1','setting','site_language','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('7','1','setting','site_language','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('8','1','setting','site_off_description','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('8','1','setting','site_off_description','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('9','2','page','login','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('9','2','page','login','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('10','2','page','Sign up','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('10','2','page','Sign up','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('11','2','page','about','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('11','2','page','about','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_value`,`create_time`,`update_time`) VALUES
-('12','2','page','contact','','1393-12-20 14:44:23','0000-00-00 00:00:00');
+('12','2','page','contact','','1394-01-01 12:12:28','0000-00-00 00:00:00');
 
 
 
@@ -605,13 +669,13 @@ INSERT INTO `yii_option` (`id`,`option_id`,`option_name`,`option_title`,`option_
 -- TABLE DATA yii_pages
 -- -------------------------------------------
 INSERT INTO `yii_pages` (`id`,`title`,`title_en`,`text`,`keyword`,`captcha_count`,`captcha_show`,`create_time`,`update_time`) VALUES
-('1','صفحه ورود','Login','صفحه ورود','','5','1','1393-12-20 14:44:21','0000-00-00 00:00:00');
+('1','صفحه ورود','Login','صفحه ورود','','5','1','1394-01-01 12:12:25','0000-00-00 00:00:00');
 INSERT INTO `yii_pages` (`id`,`title`,`title_en`,`text`,`keyword`,`captcha_count`,`captcha_show`,`create_time`,`update_time`) VALUES
-('2','صفحه ثبت نام','SignUp','صفحه ثبت نام','','5','1','1393-12-20 14:44:21','0000-00-00 00:00:00');
+('2','صفحه ثبت نام','SignUp','صفحه ثبت نام','','5','1','1394-01-01 12:12:25','0000-00-00 00:00:00');
 INSERT INTO `yii_pages` (`id`,`title`,`title_en`,`text`,`keyword`,`captcha_count`,`captcha_show`,`create_time`,`update_time`) VALUES
-('3','درباره ما','About','درباره ما','','5','1','1393-12-20 14:44:21','0000-00-00 00:00:00');
+('3','درباره ما','About','درباره ما','','5','1','1394-01-01 12:12:25','0000-00-00 00:00:00');
 INSERT INTO `yii_pages` (`id`,`title`,`title_en`,`text`,`keyword`,`captcha_count`,`captcha_show`,`create_time`,`update_time`) VALUES
-('4','تماس با ما','Contact','تماس با ما','','5','1','1393-12-20 14:44:21','0000-00-00 00:00:00');
+('4','تماس با ما','Contact','تماس با ما','','5','1','1394-01-01 12:12:25','0000-00-00 00:00:00');
 
 
 
@@ -619,7 +683,17 @@ INSERT INTO `yii_pages` (`id`,`title`,`title_en`,`text`,`keyword`,`captcha_count
 -- TABLE DATA yii_profile
 -- -------------------------------------------
 INSERT INTO `yii_profile` (`id`,`user_id`,`create_time`,`update_time`,`full_name`,`mobile`,`avatar`) VALUES
-('1','1','1393-12-20 14:44:23','0000-00-00 00:00:00','the one','','');
+('1','1','1394-01-01 12:12:27','0000-00-00 00:00:00','the one','','');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA yii_request_home
+-- -------------------------------------------
+INSERT INTO `yii_request_home` (`id`,`request_code`,`user_id`,`state_id`,`city_id`,`zone_id`,`home_type`,`doc_type`,`contract_type`,`metr`,`total_price`,`price_rent`,`rent`,`description`,`create_time`,`update_time`) VALUES
+('1','14034','1','1','2','3','آپارتمان','مسکونی','103','تا 50 متر','قیمت روز','تا 10 میلیون','رهن کامل','555','1394-01-01 12:16:38','1394-01-02 14:55:11');
+INSERT INTO `yii_request_home` (`id`,`request_code`,`user_id`,`state_id`,`city_id`,`zone_id`,`home_type`,`doc_type`,`contract_type`,`metr`,`total_price`,`price_rent`,`rent`,`description`,`create_time`,`update_time`) VALUES
+('9','12214','1','4','5','6','آپارتمان','مسکونی','103','تا 50 متر','قیمت روز','تا 10 میلیون','رهن کامل','','1394-01-02 15:03:55','0000-00-00 00:00:00');
 
 
 
@@ -627,11 +701,11 @@ INSERT INTO `yii_profile` (`id`,`user_id`,`create_time`,`update_time`,`full_name
 -- TABLE DATA yii_role
 -- -------------------------------------------
 INSERT INTO `yii_role` (`id`,`name`,`create_time`,`update_time`,`can_admin`,`can_user`,`can_author`) VALUES
-('1','Admin','1393-12-20 14:44:23','0000-00-00 00:00:00','1','0','0');
+('1','Admin','1394-01-01 12:12:27','0000-00-00 00:00:00','1','0','0');
 INSERT INTO `yii_role` (`id`,`name`,`create_time`,`update_time`,`can_admin`,`can_user`,`can_author`) VALUES
-('2','User','1393-12-20 14:44:23','0000-00-00 00:00:00','0','1','0');
+('2','User','1394-01-01 12:12:27','0000-00-00 00:00:00','0','1','0');
 INSERT INTO `yii_role` (`id`,`name`,`create_time`,`update_time`,`can_admin`,`can_user`,`can_author`) VALUES
-('3','Author','1393-12-20 14:44:23','0000-00-00 00:00:00','0','0','1');
+('3','Author','1394-01-01 12:12:27','0000-00-00 00:00:00','0','0','1');
 
 
 
@@ -639,7 +713,7 @@ INSERT INTO `yii_role` (`id`,`name`,`create_time`,`update_time`,`can_admin`,`can
 -- TABLE DATA yii_session
 -- -------------------------------------------
 INSERT INTO `yii_session` (`id`,`expire`,`data`) VALUES
-('0gfuc9jdnqodif27b93qc1s2o3','1426095928','__flash|a:0:{}captcha|i:1;__id|i:1;');
+('rdgp8qor71buheg7buknbipnh6','1427052498','__flash|a:0:{}__returnUrl|s:19:\"/home/change-avatar\";captcha|i:1;__id|i:1;page|s:17:\"/home/Metr-Groups\";');
 
 
 
@@ -647,7 +721,7 @@ INSERT INTO `yii_session` (`id`,`expire`,`data`) VALUES
 -- TABLE DATA yii_settings
 -- -------------------------------------------
 INSERT INTO `yii_settings` (`id`,`title`,`email`,`telephone`,`description`,`keywords`,`admin_language`,`site_language`,`site_off`,`site_off_description`,`email_confirmation`,`create_time`,`update_time`) VALUES
-('1','','','','','','fa-IR','fa-IR','1','','1','1393-12-20 14:44:21','1393-12-20 16:14:52');
+('1','املاک','a@a.com','09144540742','','','fa-IR','fa-IR','1','','1','1394-01-01 12:12:25','1394-01-01 14:09:56');
 
 
 
@@ -655,7 +729,7 @@ INSERT INTO `yii_settings` (`id`,`title`,`email`,`telephone`,`description`,`keyw
 -- TABLE DATA yii_user
 -- -------------------------------------------
 INSERT INTO `yii_user` (`id`,`role_id`,`status`,`email`,`new_email`,`username`,`password`,`auth_key`,`api_key`,`login_ip`,`login_time`,`create_ip`,`create_time`,`update_time`,`ban_time`,`ban_reason`) VALUES
-('1','1','1','neo@neo.com','','neo','$2y$13$dyVw4WkZGkABf2UrGWrhHO4ZmVBv.K4puhOL59Y9jQhIdj63TlV.O','KeSIKOH6CXhVTcKSuTijd3d3taAwD7xX','4tjOll4k62zMiLktw9ZpHwjdMIciD39c','127.0.0.1','1393-12-20 20:49:01','','2015-03-11 11:14:23','0000-00-00 00:00:00','','');
+('1','1','1','neo@neo.com','','neo','$2y$13$dyVw4WkZGkABf2UrGWrhHO4ZmVBv.K4puhOL59Y9jQhIdj63TlV.O','yhIUgwOmS5E4if8ltjC0lO_Rz9cQZspa','jt8d7Ksc6_3YNFEHHDTcuVZwy61bvRMa','127.0.0.1','1394-01-02 22:32:18','','2015-03-21 08:42:27','0000-00-00 00:00:00','0000-00-00 00:00:00','');
 
 
 

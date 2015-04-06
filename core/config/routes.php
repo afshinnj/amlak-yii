@@ -40,28 +40,28 @@ return [
 		'settings' => 'dashboard/settings/index',
 		
 		'Home-Type' => 'dashboard/home/index',
-		'Bargain-Type' => 'dashboard/bargain/index',
+		'Doc-Type' => 'dashboard/doc/index',
 		'Total-Price' => 'dashboard/price/index',
-		'Area-Groups' => 'dashboard/area/index',
+		'Metr-Groups' => 'dashboard/metr/index',
 		
 		'homeType-create' => 'dashboard/home/create',
 		'homeType-delete/<id:\d+>' => 'dashboard/home/delete',
 		'homeType-edit/<id:\d+>' => 'dashboard/home/update',
 		
-		'Area-Create' => 'dashboard/area/create',
-		'area-delete/<id:\d+>' => 'dashboard/area/delete',
-		'area-edit/<id:\d+>' => 'dashboard/area/update',
-		'area-list' => 'dashboard/area/index',
+		'Metr-Create' => 'dashboard/metr/create',
+		'metr-delete/<id:\d+>' => 'dashboard/metr/delete',
+		'metr-edit/<id:\d+>' => 'dashboard/metr/update',
+		'metr-list' => 'dashboard/metr/index',
 		
 		'price-create' => 'dashboard/price/create',
 		'price-delete/<id:\d+>' => 'dashboard/price/delete',
 		'price-edit/<id:\d+>' => 'dashboard/price/update',
 		'price-list' => 'dashboard/price/index',
 		
-		'bargain-create' => 'dashboard/bargain/create',
-		'bargain-delete/<id:\d+>' => 'dashboard/bargain/delete',
-		'bargain-edit/<id:\d+>' => 'dashboard/bargain/update',
-		'bargain-list' => 'dashboard/bargain/index',	
+		'doc-create' => 'dashboard/doc/create',
+		'doc-delete/<id:\d+>' => 'dashboard/doc/delete',
+		'doc-edit/<id:\d+>' => 'dashboard/doc/update',
+		'doc-list' => 'dashboard/doc/index',	
 		
 		'subcat' => 'dashboard/zone/subcat',
 		'subcity' => 'dashboard/zone/subcity',
@@ -77,6 +77,23 @@ return [
 		
 		'media-upload' => 'filemanager/file/uploadmanager',
 		'media-file' => 'filemanager/file/index',
+		
+		'request-home' =>'dashboard/request/index',
+		'create-request-home' => 'dashboard/request/create',
+		'request-home-edit/<id:\d+>' => 'dashboard/request/update',
+		'request-home-delete/<id:\d+>' => 'dashboard/request/delete',
+		'request-home-edit/subcat' => 'dashboard/zone/subcat',
+		'request-home-edit/subcity' => 'dashboard/zone/subcity',
+		
+		
+		'apartments' => 'dashboard/apartments/index',
+		'apartment-create' => 'dashboard/apartments/create',
+		'apartment-edit/<id:\d+>' => 'dashboard/apartments/update',
+		'apartment-delete/<id:\d+>' => 'dashboard/apartments/delete',
+		'apartment-edit/subcat' => 'dashboard/zone/subcat',
+		'apartment-edit/subcity' => 'dashboard/zone/subcity',
+		
+		
 		
 
 ];

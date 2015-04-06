@@ -8,10 +8,11 @@ use app\modules\backup\models\UploadForm;
 use yii\data\ArrayDataProvider;
 use yii\web\Request;
 use yii\web\UploadedFile;
+use yii\helpers\Html;
 
 class DefaultController extends Controller
 {
-	public $menu = [];
+	//public $menu = [];
 	public $tables = [];
 	public $fp ;
 	public $file_name;
@@ -28,6 +29,7 @@ class DefaultController extends Controller
 	
 		parent::init();
 	}
+	
 	protected function getPath()
 	{
 		if ( isset ($this->module->path )) $this->_path = $this->module->path;
@@ -121,6 +123,7 @@ class DefaultController extends Controller
 			return $data_string;
 		}
 	}
+	
 	public function getTables($dbName = null)
 	{
 		$sql = 'SHOW TABLES';
@@ -128,6 +131,7 @@ class DefaultController extends Controller
 		$tables = $cmd->queryColumn();
 		return $tables;
 	}
+	
 	public function StartBackup($addcheck = true)
 	{
 		$this->file_name =  $this->path . $this->back_temp_file . date('Y-m-d_H:i:s') . '.sql';
@@ -149,6 +153,7 @@ class DefaultController extends Controller
 		$this->writeComment('START BACKUP');
 		return true;
 	}
+	
 	public function EndBackup($addcheck = true)
 	{
 		fwrite ( $this->fp, '-- -------------------------------------------'.PHP_EOL );
@@ -164,39 +169,16 @@ class DefaultController extends Controller
 		fclose($this->fp);
 		$this->fp = null;
 	}
+	
 	public function writeComment($string)
 	{
 		fwrite ( $this->fp, '-- -------------------------------------------'.PHP_EOL );
 		fwrite ( $this->fp, '-- '.$string .PHP_EOL );
 		fwrite ( $this->fp, '-- -------------------------------------------'.PHP_EOL );
 	}
-	public function actionCreate()
-	{
-		$tables = $this->getTables();
-
-		if(!$this->StartBackup())
-		{
-			//render error
-			Yii::$app->user->setFlash('success', "Error");
-			return $this->render('index');
-		}
-
-		foreach($tables as $tableName)
-		{
-			$this->getColumns($tableName);
-		}
-		foreach($tables as $tableName)
-		{
-			$this->getData($tableName);
-		}
-		$this->EndBackup();
-
-		$this->redirect(['/backup']);
-	}
-
-	public function actionDelete($file = null)
-	{
-
+	
+	private function getFile(){
+		
 		$dataArray = array();
 		
 		$list_files = glob($this->path .'*.sql');
@@ -212,15 +194,43 @@ class DefaultController extends Controller
 				$dataArray[] = $columns;
 			}
 		}
+		
+		return $dataArray;
+	}	
+	public function actionCreate()
+	{
+		$tables = $this->getTables();
 
-		if(isset($dataArray[(int)$file]['name'])){
-			
-			unlink($this->path.$dataArray[(int)$file]['name']);
+		if(!$this->StartBackup())
+		{
+			//render error
+			Yii::$app->session->setFlash("danger", Yii::t("dashboard", "Unsuccessfully Backup ."));
+			return $this->render('index');
 		}
 
+		foreach($tables as $tableName)
+		{
+			$this->getColumns($tableName);
+		}
+		foreach($tables as $tableName)
+		{
+			$this->getData($tableName);
+		}
+		$this->EndBackup();
+		Yii::$app->session->setFlash("success", Yii::t("dashboard", "Successfully Backup ."));
+	
 		$this->redirect(['/backup']);
 	}
 
+	public function actionDelete($file = null)
+	{
+		$getFile = $this->getFile();
+		if(isset($getFile[(int)$file]['name'])){	
+			unlink($this->path.$getFile[(int)$file]['name']);
+		}
+		$this->redirect(['/backup']);
+	}
+	
 	public function actionIndex()
 	{
 
@@ -254,10 +264,10 @@ class DefaultController extends Controller
 	public function actionRestore($file = null)
 	{
 
-		$dataArray = array();
+		/*$dataArray = array();
 		
 		$list_files = glob($this->path .'*.sql');
-		if ($list_files )
+		if ($list_files)
 		{
 			$list = array_map('basename',$list_files);
 			rsort($list);
@@ -269,39 +279,25 @@ class DefaultController extends Controller
 				$dataArray[] = $columns;
 			}
 		}
-		
-
-		if(isset($dataArray[(int)$file]['name']))
+		*/
+		$getFile = $this->getFile();
+		if(isset($getFile[(int)$file]['name']))
 		{
+			$this->execSqlFile($this->path.$getFile[(int)$file]['name']);
 			
-			$this->execSqlFile($this->path.$dataArray[(int)$file]['name']);
 		}
-		
+		Yii::$app->session->setFlash("success", Yii::t("dashboard", "Successfully  Restore ."));
 		$this->redirect(['/backup']);
 
 	}
 
 	public function actionDownload($file = null)
 	{
-		$dataArray = array();
-		
-		$list_files = glob($this->path .'*.sql');
-		if ($list_files )
-		{
-			$list = array_map('basename',$list_files);
-			rsort($list);
-			foreach ( $list as $id=>$filename )
-			{
-				$columns = array();
-				$columns['id'] = $id;
-				$columns['name'] = basename($filename);
-				$dataArray[] = $columns;
-			}
-		}
+		$getFile = $this->getFile();
 
-		if(isset($dataArray[(int)$file]['name']))
+		if(isset($getFile[(int)$file]['name']))
 		{
-			Yii::$app->response->sendFile($this->path.$dataArray[(int)$file]['name']);
+			Yii::$app->response->sendFile($this->path.$getFile[(int)$file]['name']);
 		}
 		
 	}

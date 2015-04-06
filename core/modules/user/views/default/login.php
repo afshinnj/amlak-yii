@@ -35,18 +35,7 @@ $this->title = Yii::t('user', 'Login');
 <?php $this->beginBody() ?>
     
         <div class="container">
-		 	<div class="row">
-		 		<div class="col-lg-8">
-		 				<div class="box box-primary" dir="rtl">
-			                <div class="box-header">
-			                  <i class="ion ion-clipboard"></i>
-			                  <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-			                  </div><!-- /.box-header -->
-			                <div class="box-body">
-									<?= $page['text']?>
-			                </div><!-- /.box-body -->
-			 				</div>
-		 		</div>
+		 	<div class="row">	
 		 		<div class="col-lg-4">
 		 				<div class="box box-primary" dir="rtl">
 			                <div class="box-header">
@@ -91,7 +80,17 @@ $this->title = Yii::t('user', 'Login');
 			                </div><!-- /.box-body -->
 			 				</div>
 		 		</div>
-
+		 		<div class="col-lg-8">
+		 				<div class="box box-primary" dir="rtl">
+			                <div class="box-header">
+			                  <i class="ion ion-clipboard"></i>
+			                  <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+			                  </div><!-- /.box-header -->
+			                <div class="box-body">
+									<?= $page['text']?>
+			                </div><!-- /.box-body -->
+			 				</div>
+		 		</div>
 			</div>   <!-- row -->          
         </div> <!-- container -->
 

@@ -136,7 +136,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateCurrentPassword()
     {
         if (!$this->verifyPassword($this->currentPassword)) {
-            $this->addError("currentPassword", "Current password incorrect");
+            $this->addError("currentPassword",  Yii::t("user","Current password incorrect"));
         }
     }
 

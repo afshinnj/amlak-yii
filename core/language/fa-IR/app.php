@@ -28,7 +28,7 @@ return [
 		
 	'Registration-State' => 'ثیت شهر',
 	'Registration-Sub-State' => 'ثبت شهرستان',
-	'Registration-Area' => 'ثیت منطقه',
+	'Registration-Metr' => 'ثیت منطقه',
 	
 		
 	'You are not allowed to perform this action.' =>'انجام این عمل برای شما امکان پذیر نمی باشد .',
@@ -39,8 +39,8 @@ return [
 	'Please enter your login details.' => 'لطفا مشخصات کاربری خود را وارد کنید.',
 		
 	'Home-Type' => 'نوع ملک',
-	'Bargain-Type' => 'نوع سند',
-	'Area-Groups' => 'محدوده متراژ',
+	'Doc-Type' => 'نوع سند',
+	'Metr-Groups' => 'محدوده متراژ',
 	'Total-Price' => 'حدود قیمت',
 	'Backup'=>'پشتیبان گیری',
 	
@@ -48,8 +48,10 @@ return [
 		
 	'Add files...' => 'اضافه کردن فایل ...',
 		
-	'Registration-home' => 'ثبت / درخواست خانه',
+	'Registration-home' => 'ثبت فروش/ تقاضای خانه',
 	'Request-Home' => 'درخواست خانه',
-	'Registr-Home' => 'ثبت خانه',
+	'Sale-Home' => 'فروش خانه',
+	'Apartments' => 'آپارتمان',
+	
 
 ];

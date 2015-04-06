@@ -6,6 +6,7 @@ $this->title = Yii::t('dashboard', 'Dashboard');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-3 col-xs-6">

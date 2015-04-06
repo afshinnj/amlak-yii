@@ -8,10 +8,10 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('dashboard','Areas');
+$this->title = Yii::t('dashboard','Metrs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="box box-primary" dir="rtl" id="Registration-variable" data-form-name="Area-Groups">
+<div class="box box-primary" dir="rtl" id="Registration-variable" data-form-name="Metr-Groups">
  
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
@@ -28,20 +28,20 @@ $this->params['breadcrumbs'][] = $this->title;
 				    <?php endif; ?>
                 <div class="box-body">
 				    <p>
-				        <?= Html::a(Yii::t('dashboard','Create Area'), ['/Area-Create'], ['class' => 'btn btn-success']) ?>
+				        <?= Html::a(Yii::t('dashboard','Create Metr'), ['/Metr-Create'], ['class' => 'btn btn-success']) ?>
 				    </p>
 				    <ul class="todo-list">
-				 <?php foreach ($Area as $row):?>
+				 <?php foreach ($Metr as $row):?>
 				
 					<li><?= $row['title']?>
 						<div class="tools pull-left">
-						<?= Html::a('<i class="fa fa-edit"></i>',['/area-edit/'.$row['id']], [
+						<?= Html::a('<i class="fa fa-edit"></i>',['/Metr-edit/'.$row['id']], [
 				                    'title' => Yii::t('yii', 'Update'),
 				                   'data-method' => 'post',
 				                   'data-pjax' => '0',
 								]);
 						?>
-						<?= Html::a('<i class="fa fa-trash-o"></i>', ['/area-delete/'.$row['id']], [
+						<?= Html::a('<i class="fa fa-trash-o"></i>', ['/Metr-delete/'.$row['id']], [
 		                    'title' => Yii::t('yii', 'Delete'),
 		                    'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
 		                    'data-method' => 'post',

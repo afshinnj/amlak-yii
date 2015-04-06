@@ -18,12 +18,17 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+  	   'css-js/css/fonts.css',
     	'css-js/css/login.css',
-    	'css-js/css/AdminLTE.css',  	
+        'css-js/css/rtl.css',
+    	'css-js/css/AdminLTE.css',
+    	'css-js/css/bootstrap-rtl.css',
     	'css-js/css/skins/_all-skins.css',
     	'css-js/css/fonts/font-awesome.min.css',
     	'css-js/css/fonts/ionicons.css',
     	'css-js/plugins/iCheck/square/blue.css',
+        
+    	
     ];
 	public $js = [
     	

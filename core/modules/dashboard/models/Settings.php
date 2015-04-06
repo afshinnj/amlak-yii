@@ -38,6 +38,8 @@ class Settings extends ActiveRecord
     {
         return [
             [['admin_language', 'site_language', 'site_off'], 'required'],
+        	[['email'], 'email'],
+        	[['telephone'], 'integer'],
             [['site_off'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['title', 'email', 'telephone', 'description', 'keywords', 'admin_language', 'site_language','site_off_description'], 'string', 'max' => 255]

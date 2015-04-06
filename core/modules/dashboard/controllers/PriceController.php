@@ -3,7 +3,7 @@
 namespace app\modules\dashboard\controllers;
 
 use Yii;
-use app\modules\dashboard\models\TotalPrice;
+
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use yii\data\Pagination;
+use app\modules\dashboard\models\HomeDetails;
 /**
  * PriceController implements the CRUD actions for TotalPrice model.
  */
@@ -48,7 +49,7 @@ class PriceController extends Controller
     	// redirect url
     	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
     	
-    	$query = TotalPrice::find()->where(['details_id'=>4,'details'=>'Total Price']);
+    	$query = HomeDetails::find()->where(['details_id'=>4,'details'=>'Total Price']);
     	$countQuery = clone $query;
     	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
     	$models = $query->offset($pages->offset)
@@ -61,18 +62,6 @@ class PriceController extends Controller
     }
 
     /**
-     * Displays a single TotalPrice model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new TotalPrice model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -81,9 +70,14 @@ class PriceController extends Controller
     {
         $model = new TotalPrice();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash("State-success", Yii::t("dashboard", "Successfully registered [ {StateName} ] Price", ["StateName" => $model->title]));
-            return $this->redirect(['/price-list']);
+        if ($model->load(Yii::$app->request->post())) {
+        	$model->details_id = 4;
+        	$model->details = 'Total Price';
+        	if($model->save()){
+        		Yii::$app->session->setFlash("State-success", Yii::t("dashboard", "Successfully registered [ {StateName} ] Price", ["StateName" => $model->title]));
+        		return $this->redirect(['/price-list']);	
+        	}
+
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -133,7 +127,7 @@ class PriceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = TotalPrice::findOne($id)) !== null) {
+        if (($model = HomeDetails::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

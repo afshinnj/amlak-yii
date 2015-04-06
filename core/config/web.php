@@ -11,11 +11,12 @@ $config = [
 		'user' => ['class' => 'app\modules\user\Module'],
 		'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
 		'backup' => ['class' => 'app\modules\backup\Module',],
-		'filemanager' => ['class' => 'app\modules\filemanager\Module',],						
+		'filemanager' => ['class' => 'app\vendor\filemanager\Module',],						
 	],
     'components' => [
     	'session' => ['class' => 'yii\web\DbSession',],
     	'autoSave' => ['class' => 'app\modules\dashboard\components\autoSave',],
+    	'City' => ['class' => 'app\modules\dashboard\components\City',],
     	'user' => ['class' => 'app\modules\user\components\User'],
     	'jdate' => ['class' => 'jDate\DateTime'],
 
@@ -73,8 +74,8 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-   // $config['bootstrap'][] = 'debug';
-    //$config['modules']['debug'] = 'yii\debug\Module';
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = 'yii\debug\Module';
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = 'yii\gii\Module';

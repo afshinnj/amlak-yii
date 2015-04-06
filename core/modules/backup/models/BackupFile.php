@@ -47,7 +47,5 @@ class BackupFile extends Model
 				'modified_time'=>'Modified Time',
 		);
 	}
-	public static function label($n = 1) {
-		return Yii::t('app', 'Backup File|Backup Files', $n);
-	}
+
 }

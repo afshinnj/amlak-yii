@@ -50,7 +50,7 @@ class LoginForm extends Model
         $captcha = Pages::findOne(['id' => 1]);
         
         if($captcha->captcha_count == Yii::$app->session['captcha'] and $captcha->captcha_show == 1){	
-        	 $rules[] =['verifyCode', 'captcha'] ;
+        	$rules[] =['verifyCode', 'captcha'] ;
         }
         return $rules;
     }

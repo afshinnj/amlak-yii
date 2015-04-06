@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 		<span class="handle ui-sortable-handle">
 	                        <i class="fa fa-ellipsis-v"></i>
                        </span>
-                		<?= Html::encode($row['name']) . ' - ' . City::getCity($row['state_id']) ?>
+                		<?= City::getCity($row['state_id']) . ' - ' . Html::encode($row['name'])?>
                 		<div class="tools pull-left">
              		
                 		<?= Html::a('<i class="fa fa-edit"></i> ',['/city-edit/'.$row['id']], [
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 	<?php endforeach;?>
                 </ul>
                 </div><!-- /.box-body -->
-                  <div class="box-footer clearfix no-border">
+                <div class="box-footer clearfix no-border">
                  <?= LinkPager::widget(['pagination' => $pages,]);?>
                 </div>
                 

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<!-- /.box-header -->
 
       <div class="box-body">
-	    <?php if ($flash = Yii::$app->session->getFlash("State-success")): ?>
+	    <?php if ($flash = Yii::$app->session->getFlash("Pages-success")): ?>
 		<div class="alert alert-success">
 			<button type="button" class="close pull-left" data-dismiss="alert"
 				aria-label="Close">

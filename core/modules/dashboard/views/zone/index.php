@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 		<span class="handle">
 	                        <i class="fa fa-ellipsis-v"></i>
                        </span>
-                		<?=Html::encode($row['name'] .' - '.  Zone::getCity($row['city_id'])  .' - '. Zone::getCity($row['state_id'])) ?>
+                		<?=Zone::getCity($row['state_id']) .' - '.  Zone::getCity($row['city_id'])  .' - '. Html::encode($row['name']) ?>
                 		<div class="tools pull-left">
              		
                 		<?= Html::a('<i class="fa fa-edit"></i> ',['/zone-edit/'.$row['id']], [
