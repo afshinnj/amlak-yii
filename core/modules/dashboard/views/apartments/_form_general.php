@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 use app\modules\dashboard\models\State;
@@ -15,13 +13,13 @@ use app\modules\dashboard\models\HomeDetails;
 ?>
 <div class="row">
 		<div class="col-xs-12 col-md-4 col-lg-4">
-			<?= $form->field($homeGeneralInfo, 'state_id')->dropDownList(ArrayHelper::map(State::find()->where(['state' => 1])->All(),'id','name'),['id'=>'state']) ?>
+			<?= $form->field($homeGeneralInfo, 'state_id')->dropDownList(ArrayHelper::map(State::find()->where(['state' => 1])->orderBy('name')->All(),'id','name'),['id'=>'state']) ?>
 		</div>
 		<div class="col-xs-12 col-md-4  col-lg-4">
-			<?= $form->field($homeGeneralInfo, 'city_id')->dropDownList(ArrayHelper::map(City::find()->where(['city' => 1])->All(),'id','name'),['id'=>'city']) ?>
+			<?= $form->field($homeGeneralInfo, 'city_id')->dropDownList(ArrayHelper::map(City::find()->where(['city' => 1])->orderBy('name')->All(),'id','name'),['id'=>'city']) ?>
 		</div>
 		<div class="col-xs-12  col-md-4 col-lg-4">
-			<?= $form->field($homeGeneralInfo, 'zone_id')->dropDownList(ArrayHelper::map(Zone::find()->where(['area' => 1])->All(),'id','name'),['id'=>'area'])?>
+			<?= $form->field($homeGeneralInfo, 'zone_id')->dropDownList(ArrayHelper::map(Zone::find()->where(['area' => 1])->orderBy('name')->All(),'id','name'),['id'=>'area'])?>
 		</div>
 </div>
 

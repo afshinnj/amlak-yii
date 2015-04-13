@@ -4,13 +4,12 @@ namespace app\modules\filemanager;
 
 use Yii;
 
-class Module extends \yii\base\Module
-{
-    public $controllerNamespace = 'app\modules\filemanager\controllers';
+class Module extends \yii\base\Module {
 
+    public $controllerNamespace = 'app\modules\filemanager\controllers';
     public $layout = "@app/modules/views/layouts/module.php";
-    
     public $defaultRoute = 'file';
+
     /**
      * @var array upload routes
      */
@@ -46,27 +45,23 @@ class Module extends \yii\base\Module
      */
     private static $defaultThumbSize = [128, 128];
 
-    public function init()
-    {
+    public function init() {
         parent::init();
         $this->registerTranslations();
     }
 
-    public function registerTranslations()
-    {
-    	// set up i8n
-    	if (empty(Yii::$app->i18n->translations['filemanager'])) {
-    		Yii::$app->i18n->translations['filemanager'] = [
-    		'class' => 'yii\i18n\PhpMessageSource',
-    		'basePath' =>'@app/language',
-    		'forceTranslation' => true,
-    	
-    		];
-    	}
+    public function registerTranslations() {
+        // set up i8n
+        if (empty(Yii::$app->i18n->translations['filemanager'])) {
+            Yii::$app->i18n->translations['filemanager'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@app/language',
+                'forceTranslation' => true,
+            ];
+        }
     }
 
-    public static function t($category, $message, $params = [], $language = null)
-    {
+    public static function t($category, $message, $params = [], $language = null) {
         if (!isset(Yii::$app->i18n->translations['modules/filemanager/*'])) {
             return $message;
         }
@@ -77,8 +72,8 @@ class Module extends \yii\base\Module
     /**
      * @return array default thumbnail size. Using in filemanager view.
      */
-    public static function getDefaultThumbSize()
-    {
+    public static function getDefaultThumbSize() {
         return self::$defaultThumbSize;
     }
+
 }

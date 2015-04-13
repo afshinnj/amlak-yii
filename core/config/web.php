@@ -6,40 +6,36 @@ $config = [
     'id' => 'home',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-	'language' => 'fa-IR',
-	'modules' => [
-		'user' => ['class' => 'app\modules\user\Module'],
-		'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
-		'backup' => ['class' => 'app\modules\backup\Module',],
-		'filemanager' => ['class' => 'app\vendor\filemanager\Module',],						
-	],
+    'language' => 'fa-IR',
+    'modules' => [
+        'user' => ['class' => 'app\modules\user\Module'],
+        'dashboard' => ['class' => 'app\modules\dashboard\dashboard',],
+        'backup' => ['class' => 'app\modules\backup\Module',],
+        'filemanager' => ['class' => 'app\modules\filemanager\Module',],
+    ],
     'components' => [
-    	'session' => ['class' => 'yii\web\DbSession',],
-    	'autoSave' => ['class' => 'app\modules\dashboard\components\autoSave',],
-    	'City' => ['class' => 'app\modules\dashboard\components\City',],
-    	'user' => ['class' => 'app\modules\user\components\User'],
-    	'jdate' => ['class' => 'jDate\DateTime'],
-
-	    'i18n' => [
-	        'translations' => [
-	            'fa-IR' => [
-	                'class' => 'yii\i18n\PhpMessageSource',
-	                'basePath' => '@app/language',
-	                'fileMap' => [
-	                    'fa-IR' => 'app.php',
-                	
-	                ],
-	            ],
-	        ],
-	    ],
-    		
-    	'urlManager' => [
-    			'class' => 'yii\web\UrlManager',
-    			'enablePrettyUrl' => true,
-    			'showScriptName' => false,
-    			'rules' => require(__DIR__ . '/routes.php'),
-    	],
-    		
+        'session' => ['class' => 'yii\web\DbSession',],
+        'autoSave' => ['class' => 'app\modules\dashboard\components\autoSave',],
+        'City' => ['class' => 'app\modules\dashboard\components\City',],
+        'user' => ['class' => 'app\modules\user\components\User'],
+        'jdate' => ['class' => 'jDate\DateTime'],
+        'i18n' => [
+            'translations' => [
+                'fa-IR' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/language',
+                    'fileMap' => [
+                        'fa-IR' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => require(__DIR__ . '/routes.php'),
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'YozzdUmOJaiFmwzu7liukO05pXCMjJiy',

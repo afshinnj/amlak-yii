@@ -5,36 +5,29 @@ namespace app\modules\dashboard\controllers;
 use Yii;
 use app\modules\dashboard\models\Apartments;
 use app\modules\dashboard\models\HomeGeneralInfo;
-
-use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use yii\web\ForbiddenHttpException;
 use yii\data\Pagination;
-
 
 /**
  * ApartmentsController implements the CRUD actions for Apartments model.
  */
-class ApartmentsController extends Controller
-{
-    public function behaviors()
-    {
+class ApartmentsController extends Controller {
+
+    public function behaviors() {
         return [
-        		'access' => [
-        				'class' => AccessControl::className(),
-        				'rules' => [
-        						[
-        								'actions' => ['index','create','update','delete','view'],
-        								'allow'   => true,
-        								'roles'   => ['admin'],
-        						],
-        						 
-        				],
-        		],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete', 'view'],
+                        'allow' => true,
+                        'roles' => ['admin', 'user'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -48,28 +41,26 @@ class ApartmentsController extends Controller
      * Lists all Apartments models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-    	// redirect url
-    	Yii::$app->session['page'] = Yii::$app->getRequest()->url;
-    	
-    	
-        if(Yii::$app->user->identity->role_id == 1){
-    		$query = Apartments::find();
-    	}else{
-    		$query = Apartments::find()
-    		->where(['user_id' => Yii::$app->user->identity->id])
-    		->all();
-    	}
-    	$countQuery = clone $query;
-    	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeLimit' => [1,10]]);
-    	$models = $query->offset($pages->offset)
-    	->limit($pages->limit)
-    	->all();
-    	return $this->render('index', [
-    			'apartments' => $models,
-    			'pages' => $pages,
-    	]);
+    public function actionIndex() {
+        // redirect url
+        Yii::$app->session['page'] = Yii::$app->getRequest()->url;
+
+
+        if (Yii::$app->user->identity->role_id == 1) {
+            $query = Apartments::find();
+        } else {
+            $query = Apartments::find()
+                    ->where(['user_id' => Yii::$app->user->identity->id]);
+        }
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSizeLimit' => [1, 10]]);
+        $models = $query->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all();
+        return $this->render('index', [
+                    'apartments' => $models,
+                    'pages' => $pages,
+        ]);
     }
 
     /**
@@ -77,10 +68,9 @@ class ApartmentsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -89,29 +79,29 @@ class ApartmentsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Apartments();
         $homeGeneralInfo = new HomeGeneralInfo();
-		
-		if($homeGeneralInfo->load(Yii::$app->request->post())){
-			$homeGeneralInfo->save();
-		}	
-        if ($model->load(Yii::$app->request->post()) ) {
-        	$facilities = Yii::$app->request->post();
-        	
-        	if($facilities['Apartments']['old_home'] == 4){
-        		$model->old_home = Yii::t('dashboard','Age') . $facilities['Apartments']['age'];
-        	}
-        	
-        	$model->home_general_Info_id = $homeGeneralInfo->id;
-        	$model->facilities = serialize ($facilities['Apartments']['facilities']);
-        	$model->save();
+
+        if ($homeGeneralInfo->load(Yii::$app->request->post())) {
+            $homeGeneralInfo->save();
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            $facilities = Yii::$app->request->post();
+
+            if ($facilities['Apartments']['old_home'] == 4) {
+                $model->old_home = $facilities['Apartments']['age'];
+            }
+
+            $model->home_general_Info_id = $homeGeneralInfo->id;
+            $model->facilities = serialize($facilities['Apartments']['facilities']);
+            $model->save();
             return $this->redirect(['/apartments']);
         } else {
             return $this->render('create', [
-                'model' => $model,
-            	'homeGeneralInfo' => $homeGeneralInfo,	
+                        'model' => $model,
+                        'homeGeneralInfo' => $homeGeneralInfo,
             ]);
         }
     }
@@ -122,25 +112,30 @@ class ApartmentsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
+
+
         $model = $this->findModel($id);
-        $homeGeneralInfo = new HomeGeneralInfo();
-        
+        $homeGeneralInfo = HomeGeneralInfo::findOne(['id' => $model->home_general_Info_id]);
+
+        if ($homeGeneralInfo->load(Yii::$app->request->post())) {
+            $homeGeneralInfo->save();
+        }
         if ($model->load(Yii::$app->request->post())) {
-        	$facilities = Yii::$app->request->post();
-        	if($facilities['Apartments']['old_home'] == 4){
-        		$model->old_home = Yii::t('dashboard','Age') . $facilities['Apartments']['age'];
-        	}
-        	$model->facilities = serialize ($facilities['Apartments']['facilities']);
-        	$model->save();
+            $facilities = Yii::$app->request->post();
+
+            if ($facilities['Apartments']['old_home'] == 4) {
+                $model->old_home = $facilities['Apartments']['age'];
+            }
+
+            $model->facilities = serialize($facilities['Apartments']['facilities']);
+            $model->save();
             return $this->redirect(['/apartments']);
         } else {
-        	$model->facilities = unserialize ($model->facilities);
+            $model->facilities = unserialize($model->facilities);
             return $this->render('update', [
-                'model' => $model,
-            	'homeGeneralInfo' => $homeGeneralInfo,
-            	
+                        'model' => $model,
+                        'homeGeneralInfo' => $homeGeneralInfo,
             ]);
         }
     }
@@ -151,13 +146,11 @@ class ApartmentsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-    	
-       $apartment = $this->findModel($id);
-       HomeGeneralInfo::deleteAll(['id' => $apartment->home_general_Info_id]);
-       $apartment->delete();
-       return $this->redirect(Yii::$app->session['page']);
+    public function actionDelete($id) {
+        $apartment = $this->findModel($id);
+        HomeGeneralInfo::deleteAll(['id' => $apartment->home_general_Info_id]);
+        $apartment->delete();
+        return $this->redirect(Yii::$app->session['page']);
     }
 
     /**
@@ -167,12 +160,25 @@ class ApartmentsController extends Controller
      * @return Apartments the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
-        if (($model = Apartments::findOne($id)) !== null) {
-            return $model;
+    protected function findModel($id) {
+        if (Yii::$app->user->identity->role_id == 1) {
+
+            if (($model = Apartments::findOne($id)) !== null) {
+
+                return $model;
+            }
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+
+            $model = Apartments::findOne(['user_id' => Yii::$app->user->identity->id, 'id' => $id]);
+
+            if (($model) !== null) {
+
+                return $model;
+            } else {
+
+                throw new NotFoundHttpException(Yii::t('dashboard', 'The requested page does not exist.'));
+            }
         }
     }
+
 }

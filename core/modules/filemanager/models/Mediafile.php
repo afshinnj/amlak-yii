@@ -10,7 +10,6 @@ use yii\imagine\Image;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use app\modules\filemanager\Module;
-use yii\base\Model;
 
 /**
  * This is the model class for table "filemanager_mediafile".
@@ -27,25 +26,22 @@ use yii\base\Model;
  * @property integer $updated_at
  * @property Owners[] $owners
  */
-class Mediafile extends ActiveRecord
-{
-    public $file;
+class Mediafile extends ActiveRecord {
 
+    public $file;
     public static $imageFileTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%mediafile}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['filename', 'type', 'url', 'size'], 'required'],
             [['url', 'alt', 'description', 'thumbs'], 'string'],
@@ -58,8 +54,7 @@ class Mediafile extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('filemanager', 'ID'),
             'filename' => Yii::t('filemanager', 'filename'),
@@ -77,8 +72,7 @@ class Mediafile extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
@@ -90,14 +84,12 @@ class Mediafile extends ActiveRecord
         ];
     }
 
-
     /**
      * Save just uploaded file
      * @param array $routes routes from module settings
      * @return bool
      */
-    public function saveUploadedFile(array $routes)
-    {
+    public function saveUploadedFile(array $routes) {
         $year = date('Y', time());
         $month = date('m', time());
         $structure = "$routes[baseUrl]/$routes[uploadPath]/$year/$month";
@@ -136,8 +128,7 @@ class Mediafile extends ActiveRecord
      * @param array $presets thumbs presets. See in module config
      * @return bool
      */
-    public function createThumbs(array $routes, array $presets)
-    {
+    public function createThumbs(array $routes, array $presets) {
         $thumbs = [];
         $basePath = $basePath = Yii::getAlias($routes['basePath']);
         $originalFile = pathinfo($this->url);
@@ -172,8 +163,7 @@ class Mediafile extends ActiveRecord
      *
      * @param array $routes see routes in module config
      */
-    public function createDefaultThumb(array $routes)
-    {
+    public function createDefaultThumb(array $routes) {
         $originalFile = pathinfo($this->url);
         $dirname = $originalFile['dirname'];
         $filename = $originalFile['filename'];
@@ -197,19 +187,17 @@ class Mediafile extends ActiveRecord
      * @param string $owner_attribute owner identification attribute
      * @return bool save result, $owner, $owner_attribut
      */
-    public function addOwner($owner_id)
-    {
+    public function addOwner($owner_id) {
 
-       	$model = self::findOne($this->id);
-		$model->owner_id = $owner_id;
+        $model = self::findOne($this->id);
+        $model->owner_id = $owner_id;
         return $model->save();
     }
 
     /**
      * @return bool if type of this media file is image, return true;
      */
-    public function isImage()
-    {
+    public function isImage() {
         return in_array($this->type, self::$imageFileTypes);
     }
 
@@ -217,8 +205,7 @@ class Mediafile extends ActiveRecord
      * @param $baseUrl
      * @return string default thumbnail for image
      */
-    public function getDefaultThumbUrl($baseUrl = '')
-    {
+    public function getDefaultThumbUrl($baseUrl = '') {
         if ($this->isImage()) {
             $size = Module::getDefaultThumbSize();
             $originalFile = pathinfo($this->url);
@@ -237,8 +224,7 @@ class Mediafile extends ActiveRecord
     /**
      * @return array thumbnails
      */
-    public function getThumbs()
-    {
+    public function getThumbs() {
         return unserialize($this->thumbs);
     }
 
@@ -246,8 +232,7 @@ class Mediafile extends ActiveRecord
      * @param string $alias thumb alias
      * @return string thumb url
      */
-    public function getThumbUrl($alias)
-    {
+    public function getThumbUrl($alias) {
         $thumbs = $this->getThumbs();
 
         if ($alias === 'original') {
@@ -264,8 +249,7 @@ class Mediafile extends ActiveRecord
      * @param array $options html options
      * @return string Html image tag
      */
-    public function getThumbImage($alias, $options=[])
-    {
+    public function getThumbImage($alias, $options = []) {
         $url = $this->getThumbUrl($alias);
 
         if (empty($url)) {
@@ -283,8 +267,7 @@ class Mediafile extends ActiveRecord
      * @param Module $module
      * @return array images list
      */
-    public function getImagesList(Module $module)
-    {
+    public function getImagesList(Module $module) {
         $thumbs = $this->getThumbs();
         $list = [];
 
@@ -303,8 +286,7 @@ class Mediafile extends ActiveRecord
      * Delete thumbnails for current image
      * @param array $routes see routes in module config
      */
-    public function deleteThumbs(array $routes)
-    {
+    public function deleteThumbs(array $routes) {
         $basePath = Yii::getAlias($routes['basePath']);
 
         foreach ($this->getThumbs() as $thumbUrl) {
@@ -319,8 +301,7 @@ class Mediafile extends ActiveRecord
      * @param array $routes see routes in module config
      * @return bool
      */
-    public function deleteFile(array $routes)
-    {
+    public function deleteFile(array $routes) {
         $basePath = Yii::getAlias($routes['basePath']);
         return unlink("$basePath/{$this->url}");
     }
@@ -329,14 +310,13 @@ class Mediafile extends ActiveRecord
      * Creates data provider instance with search query applied
      * @return ActiveDataProvider
      */
-    public function search()
-    {
-    	if (!empty(Yii::$app->user) && Yii::$app->user->can("user")) {
-    		$query = self::find()->orderBy('created_at DESC')->where(['owner_id'=>Yii::$app->user->identity->id]);
-    	}else{
-    		$query = self::find()->orderBy('created_at DESC');
-    	}
-		
+    public function search() {
+        if (!empty(Yii::$app->user) && Yii::$app->user->can("user")) {
+            $query = self::find()->orderBy('created_at DESC')->where(['owner_id' => Yii::$app->user->identity->id]);
+        } else {
+            $query = self::find()->orderBy('created_at DESC');
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -347,8 +327,7 @@ class Mediafile extends ActiveRecord
     /**
      * @return int last changes timestamp
      */
-    public function getLastChanges()
-    {
+    public function getLastChanges() {
         return !empty($this->updated_at) ? $this->updated_at : $this->created_at;
     }
 
@@ -358,8 +337,7 @@ class Mediafile extends ActiveRecord
      * @param string $delimiter delimiter between width and height
      * @return string image size like '1366x768'
      */
-    public function getOriginalImageSize(array $routes, $delimiter = ' × ')
-    {
+    public function getOriginalImageSize(array $routes, $delimiter = ' × ') {
         $imageSizes = $this->getOriginalImageSizes($routes);
         return "$imageSizes[0]$delimiter$imageSizes[1]";
     }
@@ -369,8 +347,7 @@ class Mediafile extends ActiveRecord
      * @param array $routes see routes in module config
      * @return array
      */
-    public function getOriginalImageSizes(array $routes)
-    {
+    public function getOriginalImageSizes(array $routes) {
         $basePath = Yii::getAlias($routes['basePath']);
         return getimagesize("$basePath/{$this->url}");
     }
@@ -378,8 +355,7 @@ class Mediafile extends ActiveRecord
     /**
      * @return string file size
      */
-    public function getFileSize()
-    {
+    public function getFileSize() {
         Yii::$app->formatter->sizeFormatBase = 1000;
         return Yii::$app->formatter->asShortSize($this->size, 0);
     }
@@ -390,8 +366,7 @@ class Mediafile extends ActiveRecord
      * @param $url
      * @return static
      */
-    public static function findByUrl($url)
-    {
+    public static function findByUrl($url) {
         return self::findOne(['url' => $url]);
     }
 
@@ -400,17 +375,15 @@ class Mediafile extends ActiveRecord
      * @param array $types file types
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function findByTypes(array $types)
-    {
+    public static function findByTypes(array $types) {
         return self::find()->filterWhere(['in', 'type', $types])->all();
     }
 
-    public static function loadOneByOwner($owner, $owner_id, $owner_attribute)
-    {
+    public static function loadOneByOwner($owner, $owner_id, $owner_attribute) {
         $owner = Owners::findOne([
-            'owner' => $owner,
-            'owner_id' => $owner_id,
-            'owner_attribute' => $owner_attribute,
+                    'owner' => $owner,
+                    'owner_id' => $owner_id,
+                    'owner_attribute' => $owner_attribute,
         ]);
 
         if ($owner) {
@@ -419,4 +392,5 @@ class Mediafile extends ActiveRecord
 
         return false;
     }
+
 }

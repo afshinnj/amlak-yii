@@ -14,21 +14,19 @@ use yii\db\ActiveRecord;
  * @property string $create_time
  * @property string $update_time
  */
-class Pages extends ActiveRecord
-{
+class Pages extends ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%pages}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['title', 'text'], 'required'],
             [['text'], 'string'],
@@ -40,27 +38,26 @@ class Pages extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
-            'title' => Yii::t('dashboard','Title'),
-            'text' => Yii::t('dashboard','Text'),
+            'title' => Yii::t('dashboard', 'Title'),
+            'text' => Yii::t('dashboard', 'Text'),
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
     }
 
-
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'timestamp' => [
-                'class'      => 'yii\behaviors\TimestampBehavior',
-                'value'      => function () { return Yii::$app->jdate->date('Y-m-d H:i:s'); },
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'value' => function () {
+                    return Yii::$app->jdate->date('Y-m-d H:i:s');
+                },
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
@@ -68,4 +65,5 @@ class Pages extends ActiveRecord
             ],
         ];
     }
+
 }

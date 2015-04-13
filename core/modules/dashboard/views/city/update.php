@@ -10,16 +10,18 @@ $this->params['breadcrumbs'][] = ['label' => 'Substates', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-	<div class="box box-primary" dir="rtl" id="Registration-location" data-form-name="Sub-State">
-                <div class="box-header">
-                  <i class="ion ion-compose"></i>
-                  <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-                  </div><!-- /.box-header -->
+<div class="box box-primary" dir="rtl" id="Registration-location" data-form-name="Sub-State">
+    <div class="box-header">
+        <i class="ion ion-compose"></i>
+        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+    </div><!-- /.box-header -->
 
 
-    <?= $this->render('_form', [
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>
 

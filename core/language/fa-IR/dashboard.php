@@ -146,16 +146,21 @@ return [
 		'Tell Count'=> 'تعداد تلفن',
 		'Loan'=> 'وام',
 		
-		'new' => 'نوساز',
+		'New' => 'نوساز',
 		'old' => 'قدیمی',
 		'restored' => 'باز سازی شده',
 		'Age' => 'ساله',
 		'Owner Name' => 'نام مالک/ ثبت کننده',
-	    'Owner Email' => 'پست الکترونیکی',
+                'Owner Email' => 'پست الکترونیکی',
 		'Address Home' => 'آدرس ملک',
 		'No Home' => 'پلاک ملک',
 		'Mobile' => 'تلفن همراه',
 		'Call Tell' => 'شماره تماس 1',
 		'Call Tell1' => 'شماره تماس 2',
-		
+                'Northern' => 'شمالی',
+                'Southern'=>'جنوبی',
+                'Eastern'=>'شرقی',
+                'Western'=>'غربی',
+                'The requested page does not exist.' => 'صفحه درخواست شده پیدا نشد .',
+ 		
 ];

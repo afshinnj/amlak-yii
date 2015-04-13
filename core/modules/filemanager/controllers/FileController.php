@@ -7,30 +7,26 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use app\modules\filemanager\Module;
 use app\modules\filemanager\models\Mediafile;
 use app\modules\filemanager\assets\FilemanagerAsset;
 use yii\helpers\Url;
 
-class FileController extends Controller
-{
+class FileController extends Controller {
+
     public $enableCsrfValidation = false;
 
-    
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
-        		'access' => [
-        				'class' => AccessControl::className(),
-        				'rules' => [
-        						[
-        						'actions' => ['index','uploadmanager','update','upload','delete','resize','info'],
-        						'allow'   => true,
-        						'roles'   => ['admin','user'],
-        						],
-        						 
-        				],
-        		],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'uploadmanager', 'update', 'upload', 'delete', 'resize', 'info'],
+                        'allow' => true,
+                        'roles' => ['admin', 'user'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -41,8 +37,7 @@ class FileController extends Controller
         ];
     }
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action) {
         if (defined('YII_DEBUG') && YII_DEBUG) {
             Yii::$app->assetManager->forceCopy = true;
         }
@@ -50,20 +45,18 @@ class FileController extends Controller
         return parent::beforeAction($action);
     }
 
-    public function actionIndex()
-    {
-    	$model = new Mediafile();
-    	$dataProvider = $model->search();
-    	$dataProvider->pagination->defaultPageSize = 15;  	 
-    	
+    public function actionIndex() {
+        $model = new Mediafile();
+        $dataProvider = $model->search();
+        $dataProvider->pagination->defaultPageSize = 15;
+
         return $this->render('index', [
-            'model' => $model,
-            'dataProvider' => $dataProvider,
+                    'model' => $model,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionUploadmanager()
-    {
+    public function actionUploadmanager() {
         return $this->render('uploadmanager', ['model' => new Mediafile()]);
     }
 
@@ -71,8 +64,7 @@ class FileController extends Controller
      * Provides upload file
      * @return mixed
      */
-    public function actionUpload()
-    {
+    public function actionUpload() {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $model = new Mediafile();
@@ -85,18 +77,18 @@ class FileController extends Controller
         }
 
         $response['files'][] = [
-            'url'           => $model->url,
-            'thumbnailUrl'  => $model->getDefaultThumbUrl($bundle->baseUrl),
-            'name'          => $model->filename,
-            'type'          => $model->type,
-            'size'          => $model->file->size,
-            'deleteUrl'     => Url::to(['file/delete', 'id' => $model->id]),
-            'deleteType'    => 'POST',
+            'url' => $model->url,
+            'thumbnailUrl' => $model->getDefaultThumbUrl($bundle->baseUrl),
+            'name' => $model->filename,
+            'type' => $model->type,
+            'size' => $model->file->size,
+            'deleteUrl' => Url::to(['file/delete', 'id' => $model->id]),
+            'deleteType' => 'POST',
         ];
-        
+
         $user_id = Yii::$app->user->identity->id;
-		$model->addOwner($user_id);
-		
+        $model->addOwner($user_id);
+
         return $response;
     }
 
@@ -105,8 +97,7 @@ class FileController extends Controller
      * @param $id
      * @return array
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = Mediafile::findOne($id);
         $message = Yii::t('filemanager', 'Changes not saved.');
 
@@ -117,8 +108,8 @@ class FileController extends Controller
         Yii::$app->session->setFlash('mediafileUpdateResult', $message);
 
         return $this->renderPartial('info', [
-            'model' => $model,
-            'strictThumb' => null,
+                    'model' => $model,
+                    'strictThumb' => null,
         ]);
     }
 
@@ -127,8 +118,7 @@ class FileController extends Controller
      * @param $id
      * @return array
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $routes = $this->module->routes;
 
@@ -142,14 +132,12 @@ class FileController extends Controller
         $model->delete();
 
         return ['success' => 'true'];
-        
     }
 
     /**
      * Resize all thumbnails
      */
-    public function actionResize()
-    {
+    public function actionResize() {
         $models = Mediafile::findByTypes(Mediafile::$imageFileTypes);
         $routes = $this->module->routes;
 
@@ -169,12 +157,12 @@ class FileController extends Controller
      * @param string $strictThumb only this thumb will be selected
      * @return string
      */
-    public function actionInfo($id, $strictThumb = null)
-    {
+    public function actionInfo($id, $strictThumb = null) {
         $model = Mediafile::findOne($id);
         return $this->renderPartial('info', [
-            'model' => $model,
-            'strictThumb' => $strictThumb,
+                    'model' => $model,
+                    'strictThumb' => $strictThumb,
         ]);
     }
+
 }

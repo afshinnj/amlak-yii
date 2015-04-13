@@ -15,25 +15,23 @@ use yii\db\ActiveRecord;
  *
  * @property Substate[] $substates
  */
-class State extends ActiveRecord
-{
+class State extends ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return static::getDb()->tablePrefix . 'city';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name'], 'required'],
-        	[['name'], 'unique'],
-            [['create_time', 'update_time','state'], 'safe'],
+            [['name'], 'unique'],
+            [['create_time', 'update_time', 'state'], 'safe'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -41,11 +39,10 @@ class State extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
-            'name' => Yii::t('dashboard','Name'),
+            'name' => Yii::t('dashboard', 'Name'),
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
@@ -54,20 +51,20 @@ class State extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubstates()
-    {
+    public function getSubstates() {
         return $this->hasMany(Substate::className(), ['state_id' => 'id']);
     }
 
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'timestamp' => [
-                'class'      => 'yii\behaviors\TimestampBehavior',
-                'value'      => function () { return Yii::$app->jdate->date('Y-m-d H:i:s'); },
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'value' => function () {
+                    return Yii::$app->jdate->date('Y-m-d H:i:s');
+                },
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
@@ -75,14 +72,14 @@ class State extends ActiveRecord
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
-    public function beforeSave($insert)
-    {
+    public function beforeSave($insert) {
 
-    	$this->state = 1;
-    	return parent::beforeSave($insert);
+        $this->state = 1;
+        return parent::beforeSave($insert);
     }
+
 }

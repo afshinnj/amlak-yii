@@ -20,21 +20,19 @@ use Yii;
  * @property Menus[] $menuses
  * @property Role $role
  */
-class Menus extends \yii\db\ActiveRecord
-{
+class Menus extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return static::getDb()->tablePrefix . 'menus';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['role_id', 'title', 'section'], 'required'],
             [['role_id', 'parent_id'], 'integer'],
@@ -46,8 +44,7 @@ class Menus extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'role_id' => 'Role ID',
@@ -63,24 +60,22 @@ class Menus extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getParent()
-    {
+    public function getParent() {
         return $this->hasOne(Menus::className(), ['id' => 'parent_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMenuses()
-    {
+    public function getMenuses() {
         return $this->hasMany(Menus::className(), ['parent_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRole()
-    {
+    public function getRole() {
         return $this->hasOne(Role::className(), ['id' => 'role_id']);
     }
+
 }
