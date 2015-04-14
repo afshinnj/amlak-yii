@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <p><?= $flash ?></p>
+                <p><?= Yii::$app->session->getFlash("Request-success") ?></p>
             </div>
 
         <?php endif; ?>

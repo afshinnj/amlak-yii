@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard', $this->title);
                 <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <p><?= $flash ?></p>
+                <p><?= Yii::$app->session->getFlash("State-success") ?></p>
             </div>
         <?php endif; ?> 
 

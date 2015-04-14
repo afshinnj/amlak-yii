@@ -20,12 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <p><?= $flash ?></p>
+                <p><?= Yii::$app->session->getFlash("State-success") ?></p>
             </div>
         <?php endif; ?> 
         <hr>
         <p>
-            <?= Html::a(Yii::t('dashboard', 'Create Apartments'), ['/apartment-create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('dashboard', 'Create Apartments'), ['/apartment-step1'], ['class' => 'btn btn-success']) ?>
         </p>
     </div><!-- /.box-header -->
     <div class="box-body">

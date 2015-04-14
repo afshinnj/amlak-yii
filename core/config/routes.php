@@ -87,7 +87,9 @@ return [
 		
 		
 		'apartments' => 'dashboard/apartments/index',
-		'apartment-create' => 'dashboard/apartments/create',
+		'apartment-step1' => 'dashboard/apartments/create',
+                'apartment-step2' => 'dashboard/apartments/image',
+                'apartment-step3' => 'dashboard/apartments/finish', 
 		'apartment-edit/<id:\d+>' => 'dashboard/apartments/update',
 		'apartment-delete/<id:\d+>' => 'dashboard/apartments/delete',
 		'apartment-edit/subcat' => 'dashboard/zone/subcat',

@@ -92,7 +92,8 @@ return [
 		'Restore' => 'بازگرداندن',
 
 		'Upload File' => 'آپلود',
-		
+                'Upload' => 'آپلود',
+    
 		'Request Homes' => 'لیست تقاضا های ثبت شده',
 		'Create Request Home' => 'ثبت تقاضا',
 		
@@ -162,5 +163,11 @@ return [
                 'Eastern'=>'شرقی',
                 'Western'=>'غربی',
                 'The requested page does not exist.' => 'صفحه درخواست شده پیدا نشد .',
- 		
+                'Step 1' => 'مرحله اول',
+                'Step 2' => 'مرحله دوم',
+                'Step 3' => 'مرحله سوم',
+                'General View of the property' =>'مشخصات عمومی ملک',
+                'Home Image and Positioning' => 'تصویر و موقعیت ملک',
+                'Finish Register' => 'پایان ثبت',
+ 		'Next Step' => 'مرحله بعد',
 ];

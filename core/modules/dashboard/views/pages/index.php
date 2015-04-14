@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <p><?= $flash ?></p>
+                <p><?= Yii::$app->session->getFlash("Pages-success") ?></p>
             </div>
         <?php endif; ?>
         <ul class="todo-list">
             <?php foreach ($Pages as $row): ?>
-                <li><span class="handle ui-sortable-handle"> <i
+                <li><span class="handle"> <i
                             class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <?= Html::encode($row['title']); ?>

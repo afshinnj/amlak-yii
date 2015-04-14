@@ -22,7 +22,7 @@ class ApartmentsController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'delete', 'view'],
+                        'actions' => ['index', 'create', 'update', 'delete', 'view','image','finish'],
                         'allow' => true,
                         'roles' => ['admin', 'user'],
                     ],
@@ -97,9 +97,9 @@ class ApartmentsController extends Controller {
             $model->home_general_Info_id = $homeGeneralInfo->id;
             $model->facilities = serialize($facilities['Apartments']['facilities']);
             $model->save();
-            return $this->redirect(['/apartments']);
+            return $this->redirect(['/apartment-step2']);
         } else {
-            return $this->render('create', [
+            return $this->render('step1', [
                         'model' => $model,
                         'homeGeneralInfo' => $homeGeneralInfo,
             ]);
@@ -153,6 +153,15 @@ class ApartmentsController extends Controller {
         return $this->redirect(Yii::$app->session['page']);
     }
 
+    public function actionImage() {
+        
+        return $this->render('step2');
+    }
+    
+    public function actionFinish() {
+      
+        return $this->render('step3');
+    }
     /**
      * Finds the Apartments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
