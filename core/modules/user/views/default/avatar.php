@@ -2,8 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use app\modules\user\models\Profile;
+
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -42,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<br>
 				<br>
 				<div style="width: 400px; margin: auto;">
-					<?= $form->field($user, 'file')->fileInput(["class" => "form-control"]) ?>
+					<?= $form->field($user, 'file')->fileInput(["class" => ""]) ?>
 				</div>
            		
 

@@ -55,8 +55,6 @@ class CityController extends Controller {
     public function actionIndex() {
         // redirect url
         Yii::$app->session['page'] = Yii::$app->getRequest()->url;
-
-
         $query = City::find()->where(['city' => 1]);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSizeLimit' => [1, 10]]);

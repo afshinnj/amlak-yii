@@ -47,7 +47,7 @@ class Mediafile extends ActiveRecord {
             [['url', 'alt', 'description', 'thumbs'], 'string'],
             [['created_at', 'updated_at', 'size'], 'integer'],
             [['filename', 'type'], 'string', 'max' => 255],
-            [['file'], 'file']
+           // [['file'], 'file', 'extensions' => 'gif, jpg, png','mimeTypes' => 'image/gif ,image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024]
         ];
     }
 

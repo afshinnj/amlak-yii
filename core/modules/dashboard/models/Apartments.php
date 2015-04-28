@@ -36,11 +36,12 @@ use app\modules\user\models\Profile;
  * @property string $facilities
  * @property string $create_time
  * @property string $update_time
+ * @property string $file
  */
 class Apartments extends ActiveRecord {
 
     public $age;
-
+    public $file;
     /**
      * @inheritdoc
      */
@@ -56,7 +57,8 @@ class Apartments extends ActiveRecord {
             //[['Infrastructure', 'rooms', 'floor', 'floors', 'units', 'price_metr', 'price_all'], 'required'],
             [['home_general_Info_id', 'user_id', 'age', 'unit', 'units', 'parking', 'tell', 'floor', 'floors', 'rooms'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['Infrastructure', 'metr', 'location', 'view', 'r_status', 'old_home', 'description', 'cabinets', 'wc', 'flooring', 'price_metr', 'price_all', 'loan', 'facilities'], 'string', 'max' => 255]
+            [['Infrastructure', 'metr', 'location', 'view', 'r_status', 'old_home', 'description', 'cabinets', 'wc', 'flooring', 'price_metr', 'price_all', 'loan', 'facilities'], 'string', 'max' => 255],
+            [['file'], 'file', 'extensions' => 'png, jpg','mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
         ];
     }
 
@@ -93,7 +95,6 @@ class Apartments extends ActiveRecord {
             'new' => Yii::t('dashboard', 'New'),
             'old' => Yii::t('dashboard', 'old'),
             'restored' => Yii::t('dashboard', 'restored'),
-            
             'Northern' => Yii::t('dashboard', 'Northern'),
             'Southern' => Yii::t('dashboard', 'Southern'),
             'Eastern' => Yii::t('dashboard', 'Eastern'),
@@ -127,8 +128,7 @@ class Apartments extends ActiveRecord {
 
     public static function getApartmentsCode($id) {
 
-       return HomeGeneralInfo::findOne(['id' => $id])->sale_code;
-        
+        return HomeGeneralInfo::findOne(['id' => $id])->sale_code;
     }
 
     /**

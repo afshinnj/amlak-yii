@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model app\modules\dashboard\models\Apartments */
 /* @var $this yii\web\View */
 /* @var $model app\modules\dashboard\models\Apartments */
 /* @var $form yii\widgets\ActiveForm */
@@ -46,9 +46,24 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    
+
     <div class="box-body">
-        
+
+        <?php
+        $form = ActiveForm::begin([ 'options' => ['enctype' => 'multipart/form-data']]);
+        ?>          
+        <div class="row">
+            <div class="col-lg-4">
+                <?= $form->field($model, 'image')->fileInput()?>
+            </div>
+        </div>
+
+
+        <?= Html::submitButton(Yii::t('user', 'Upload'), ['class' => 'btn btn-primary']) ?>
+
+
+
+        <?php ActiveForm::end(); ?>
     </div>
 
 </div>

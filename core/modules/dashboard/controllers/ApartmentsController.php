@@ -5,11 +5,17 @@ namespace app\modules\dashboard\controllers;
 use Yii;
 use app\modules\dashboard\models\Apartments;
 use app\modules\dashboard\models\HomeGeneralInfo;
+use app\modules\dashboard\models\Mediafile;
+use app\modules\filemanager\assets\FilemanagerAsset;
+use app\modules\dashboard\models\State;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\data\Pagination;
+use yii\web\Response;
+use yii\helpers\Url;
+use yii\web\UploadedFile;
 
 /**
  * ApartmentsController implements the CRUD actions for Apartments model.
@@ -22,7 +28,7 @@ class ApartmentsController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'delete', 'view','image','finish'],
+                        'actions' => ['index', 'create', 'update', 'delete', 'view', 'image', 'finish', 'upload'],
                         'allow' => true,
                         'roles' => ['admin', 'user'],
                     ],
@@ -32,9 +38,18 @@ class ApartmentsController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                //'image' => ['post'],
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action) {
+        if (defined('YII_DEBUG') && YII_DEBUG) {
+            Yii::$app->assetManager->forceCopy = true;
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -154,14 +169,48 @@ class ApartmentsController extends Controller {
     }
 
     public function actionImage() {
-        
-        return $this->render('step2');
+
+        $model = new Mediafile();
+        // 
+        for ($index = 0; $index < 10; $index++) {
+            $model = new Mediafile();
+            $model->filename = "neda love $index";
+            $model->save();
+           // $model->upload();
+        }
+
+        /* if (Yii::$app->request->isPost) {
+          $routes = $this->module->routes;
+
+          if (UploadedFile::getInstance($model, 'image')) {
+          $model->upload($routes, UploadedFile::getInstance($model, 'image'));
+          }
+
+          if (UploadedFile::getInstance($model, 'image1')) {
+          $model->upload($routes, UploadedFile::getInstance($model, 'image1'));
+          }
+
+          if (UploadedFile::getInstance($model, 'image2')) {
+          $model->upload($routes, UploadedFile::getInstance($model, 'image2'));
+          }
+
+          if (UploadedFile::getInstance($model, 'image3')) {
+          $model->upload($routes, UploadedFile::getInstance($model, 'image3'));
+          }
+
+          if (UploadedFile::getInstance($model, 'image4')) {
+          $model->upload($routes, UploadedFile::getInstance($model, 'image4'));
+          }
+          } */
+
+        return $this->render('step2', ['model' => $model]);
     }
-    
+
     public function actionFinish() {
-      
+
         return $this->render('step3');
     }
+
     /**
      * Finds the Apartments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

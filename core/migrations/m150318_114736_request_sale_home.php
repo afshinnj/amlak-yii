@@ -85,16 +85,16 @@ class m150318_114736_request_sale_home extends Migration {
         $this->createTable('{{%home_images}}', [
             "id" => Schema::TYPE_PK,
             "home_id" => Schema::TYPE_INTEGER . ' null default null',
-            'filename' => Schema::TYPE_STRING . ' NOT NULL',
-            'type' => Schema::TYPE_STRING . ' NOT NULL',
-            'url' => Schema::TYPE_TEXT . ' NOT NULL',
-            'alt' => Schema::TYPE_TEXT,
-            'size' => Schema::TYPE_STRING . ' NOT NULL',
-            'description' => Schema::TYPE_TEXT,
-            'thumbs' => Schema::TYPE_TEXT,
-            'owner_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updated_at' => Schema::TYPE_INTEGER,
+            'filename' => Schema::TYPE_STRING . ' null default null',
+            'type' => Schema::TYPE_STRING . ' null default null',
+            'url' => Schema::TYPE_TEXT . ' null default null',
+            'alt' => Schema::TYPE_TEXT. ' null default null',
+            'size' => Schema::TYPE_STRING . ' null default null',
+            'description' => Schema::TYPE_TEXT. ' null default null',
+            'thumbs' => Schema::TYPE_TEXT. ' null default null',
+            'owner_id' => Schema::TYPE_INTEGER . ' null default null',
+            "create_time" => Schema::TYPE_DATETIME . ' null default null',
+            "update_time" => Schema::TYPE_DATETIME . ' null default null',
                 ], $tableOptions);
     }
 

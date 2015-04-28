@@ -329,7 +329,6 @@ class DefaultController extends Controller
     	if (Yii::$app->request->isPost) {
     		$model = new Profile ();
     		$model->file = UploadedFile::getInstance ( $model, 'file' );
-    		 
     		if ($model->validate ()) {
     			@unlink ( $dir_avatar . $profile->avatar );
     			$avatar = 'avatar(' . Yii::$app->user->identity->username . '-' . md5 ( $model->file->baseName . time () ) . ').' . $model->file->extension;

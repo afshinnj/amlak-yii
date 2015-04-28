@@ -52,9 +52,9 @@ class StateController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        // redirect url 
-        Yii::$app->session['page'] = Yii::$app->getRequest()->url;
 
+        // redirect url
+        Yii::$app->session['page'] = Yii::$app->getRequest()->url;
         $query = State::find()->where(['state' => 1]);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSizeLimit' => [1, 10]]);
