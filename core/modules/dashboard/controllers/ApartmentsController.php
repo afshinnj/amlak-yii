@@ -6,16 +6,15 @@ use Yii;
 use app\modules\dashboard\models\Apartments;
 use app\modules\dashboard\models\HomeGeneralInfo;
 use app\modules\dashboard\models\Mediafile;
-use app\modules\filemanager\assets\FilemanagerAsset;
-use app\modules\dashboard\models\State;
+use app\modules\dashboard\dashboard;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\data\Pagination;
-use yii\web\Response;
-use yii\helpers\Url;
-use yii\web\UploadedFile;
+
+
 
 /**
  * ApartmentsController implements the CRUD actions for Apartments model.
@@ -171,38 +170,11 @@ class ApartmentsController extends Controller {
     public function actionImage() {
 
         $model = new Mediafile();
-        // 
-        for ($index = 0; $index < 10; $index++) {
-            $model = new Mediafile();
-            $model->filename = "neda love $index";
-            $model->save();
-           // $model->upload();
+        $routes = dashboard::$routes;
+        if(Yii::$app->request->isPost){
+            $model->saveUploadedFile($routes); 
         }
-
-        /* if (Yii::$app->request->isPost) {
-          $routes = $this->module->routes;
-
-          if (UploadedFile::getInstance($model, 'image')) {
-          $model->upload($routes, UploadedFile::getInstance($model, 'image'));
-          }
-
-          if (UploadedFile::getInstance($model, 'image1')) {
-          $model->upload($routes, UploadedFile::getInstance($model, 'image1'));
-          }
-
-          if (UploadedFile::getInstance($model, 'image2')) {
-          $model->upload($routes, UploadedFile::getInstance($model, 'image2'));
-          }
-
-          if (UploadedFile::getInstance($model, 'image3')) {
-          $model->upload($routes, UploadedFile::getInstance($model, 'image3'));
-          }
-
-          if (UploadedFile::getInstance($model, 'image4')) {
-          $model->upload($routes, UploadedFile::getInstance($model, 'image4'));
-          }
-          } */
-
+       
         return $this->render('step2', ['model' => $model]);
     }
 

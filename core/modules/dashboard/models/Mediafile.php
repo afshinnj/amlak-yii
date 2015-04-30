@@ -3,10 +3,10 @@
 namespace app\modules\dashboard\models;
 
 use Yii;
-
 use yii\db\ActiveRecord;
 use yii\imagine\Image;
 use app\modules\dashboard\dashboard;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "filemanager_mediafile".
@@ -26,10 +26,6 @@ use app\modules\dashboard\dashboard;
 class Mediafile extends ActiveRecord {
 
     public $image;
-    public $image1;
-    public $image2;
-    public $image3;
-    public $image4;
 
     /**
      * @inheritdoc
@@ -43,13 +39,9 @@ class Mediafile extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['filename', 'type', 'size', 'url','thumbs', 'owner_id'], 'required'],
+            [['filename'], 'required'],
             [['filename', 'type', 'size', 'url', 'alt', 'description', 'thumbs', 'home_id', 'owner_id', 'create_time', 'update_time'], 'safe'],
             [['image'], 'file', 'extensions' => ' jpg, png, gif', 'mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
-            [['image1'], 'file', 'extensions' => ' jpg, png, gif', 'mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
-            [['image2'], 'file', 'extensions' => ' jpg, png, gif', 'mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
-            [['image3'], 'file', 'extensions' => ' jpg, png, gif', 'mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
-            [['image4'], 'file', 'extensions' => ' jpg, png, gif', 'mimeTypes' => 'image/jpeg, image/png', 'maxSize' => 1024 * 1024 * 1024],
         ];
     }
 
@@ -68,46 +60,33 @@ class Mediafile extends ActiveRecord {
         ];
     }
 
-    public function upload() {
-        //$user_name = Yii::$app->user->identity->username;
+    /**
+     * Save just uploaded file
+     * @param array $routes routes from module settings
+     * @return bool
+     */
+    public function saveUploadedFile(array $routes) {
+        $model = new Mediafile();
+        $username = Yii::$app->user->identity->username;
 
-       /* $structure = "$routes[baseUrl]/$routes[uploadPath]/$user_name";
+        $structure = "$routes[baseUrl]/$routes[uploadPath]/$username";
         $basePath = Yii::getAlias($routes['basePath']);
         $absolutePath = "$basePath/$structure";
 
         if (!file_exists($absolutePath)) {
             mkdir($absolutePath, 0777, true);
-        }*/
-
-
-           /* $this->image = $images;
-            $filename = md5($this->image->baseName . time()) . '.' . $this->image->extension;
-            $this->image->saveAs($absolutePath . '/' . $filename);
-            $this->filename = $filename;
-            $this->type = $this->image->type;
-            $this->size = $this->image->size;
-            $this->owner_id = Yii::$app->user->identity->id;
-            $this->url = "$structure/$filename";
-            $this->save();
-            $this->createThumbs($routes, dashboard::thumbs());*/
-
-
-
-
-        /* //if ($this->file && $this->validate()) {
-          foreach ($this->file as $file) {
-          $filename = md5($file->baseName . time()) . '.' . $file->extension;
-          $file->saveAs("$absolutePath/$filename");
-          $this->filename = $filename;
-          $this->type = $file->type;
-          $this->size = $file->size;
-          $this->owner_id = Yii::$app->user->identity->id;
-          $this->url = "$structure/$filename";
-          $this->save();
-          $this->createThumbs($routes, dashboard::thumbs());
-          }
-          //} */
-        // return $this->file;
+        }
+        
+        $model->image = UploadedFile::getInstance($model, 'image');
+        $filename = md5($model->image->baseName . time()) . '.' . $model->image->extension;
+        $model->image->saveAs($absolutePath . '/' . $filename);
+        $model->filename = $filename;
+        $model->type = $model->image->type;
+        $model->size = $model->image->size;
+        $model->owner_id = Yii::$app->user->identity->id;
+        $model->url = "$structure/$filename";
+        $model->save(false);
+        $model->createThumbs($routes, dashboard::thumbs());
     }
 
     /**

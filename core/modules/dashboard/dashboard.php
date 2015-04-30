@@ -12,7 +12,7 @@ class dashboard extends \yii\base\Module {
     /**
      * @var array upload routes
      */
-    public $routes = [
+    public static $routes = [
         // base absolute path to web directory
         'baseUrl' => '',
         // base web directory url

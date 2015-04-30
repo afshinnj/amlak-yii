@@ -1,35 +1,24 @@
 @font-face {
-  font-family: 'yekan';
-  src: url('fonts/BYekan.eot?#') format('eot'),
-       url('fonts/BYekan.woff') format('woff'),
-       url('fonts/BYekan.ttf') format('truetype'),
-       url('fonts/BYekan.otf') format('opentype'),
-       url('fonts/BYekan.svg') format('svg'),
-	   local('B Yekan');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'yekan';
+    src: url('fonts/BYekan.eot?#') format('eot'),
+        url('fonts/BYekan.woff') format('woff'),
+        url('fonts/BYekan.ttf') format('truetype'),
+        url('fonts/BYekan.otf') format('opentype'),
+        url('fonts/BYekan.svg') format('svg');
 }
 @font-face {
-  font-family: 'dinarb';
-  src: url('fonts/dinar.eot?#'),
-	   url('fonts/dinar.otf') format('opentype'),
-       local('?'),
-       local('Mj_Dinar One Medium'),
-       url('fonts/dinar.woff') format('woff'),
-       url('fonts/dinar.ttf') format('truetype'),
-       url('fonts/dinar.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'dinarb';
+    src: url('fonts/dinar.eot?#'),
+        url('fonts/dinar.otf') format('opentype'),
+        url('fonts/dinar.woff') format('woff'),
+        url('fonts/dinar.ttf') format('truetype'),
+        url('fonts/dinar.svg') format('svg');
 }
 @font-face {
-  font-family: 'dinar';
-  src: url('fonts/dinarm.eot?#'),
-	   url('fonts/dinarm.otf') format('opentype'),
-       local('?'),
-       local('Mj_Dinar Two Medium'),
-       url('fonts/dinarm.woff') format('woff'),
-       url('fonts/dinarm.ttf') format('truetype'),
-       url('fonts/dinarm.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'dinar';
+    src: url('fonts/dinarm.eot?#'),
+        url('fonts/dinarm.otf') format('opentype'),
+        url('fonts/dinarm.woff') format('woff'),
+        url('fonts/dinarm.ttf') format('truetype'),
+        url('fonts/dinarm.svg') format('svg');
 }
